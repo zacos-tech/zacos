@@ -2,7 +2,7 @@
 
 ## What is ZAC
 
-ZAC (Zero-infrastructure Autonomous Computer aka Zombie Apocalypse Computer) is an open-source, offline-first survival computer. The software runs on a Raspberry Pi 5 with mesh radio, SDR, GPS, sensors, and a local LLM.
+ZAC (Zombie Apocalypse Computer aka Zero-Infrastructure Autonomous Computer) is an open-source, offline-first survival computer. The software runs on a Raspberry Pi 5 with mesh radio, SDR, GPS, sensors, and a local LLM.
 
 ## Repository Structure
 
