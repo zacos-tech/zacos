@@ -1,25 +1,190 @@
-# ZAC - Zombie Apocalypse Computer
-ZAC is an open-source, self-contained survival computer designed to operate completely off-grid. Built around a Raspberry Pi 5, it combines a local AI assistant, mesh radio communication, software-defined radio, offline knowledge libraries, and GPS navigation into a single ruggedized Pelican case. No internet required. No cloud. No subscriptions. Just you and a machine designed to work even if the rest of the world isn't.
+# ZAC Development Setup
 
-At its heart is ZAC Shell, a unified interface that ties everything together. Unlike other off-grid computers that dump you into a Linux desktop with a dozen disconnected apps, ZAC presents a single, cohesive experience. Ask questions and get answers from a local LLM. Search Wikipedia, survival guides, and medical references instantly. Communicate with other ZAC units miles away via LoRa mesh. Scan radio frequencies for aircraft, weather satellites, and emergency broadcasts. Check your position on offline maps. All from one interface, designed to be usable by anyone, not just hackers (though it is fully open source and hackable!). 
+## What is ZAC
 
-ZAC isn't just a collection of DIY tools. It's a survival partner for you and your loved ones.
+ZAC (Zero-infrastructure Autonomous Computer, or Zombie Apocalypse Computer) is an open-source, offline-first survival computer. The software runs on a Raspberry Pi 5 with mesh radio, SDR, GPS, sensors, and a local LLM.
+
+## Repository Structure
 
 ```
 zac/
-├── README.md              ✓ Done
-├── LICENSE                ✓ Done
-├── .gitignore             ✓ Done
-├── apps/
-│   ├── shell/             ← ZAC Shell (React/Next.js)
-│   └── api/               ← Backend (NestJS)
-├── packages/
-│   ├── hardware/          ← Hardware daemon (Python)
-│   └── shared/            ← Shared types/utils
-├── docs/
-│   ├── hardware/          ← BOM, build guide
-│   └── software/          ← Setup, configuration
-├── scripts/
-│   └── setup.sh           ← One-command install
-└── docker-compose.yml     ← Dev environment
+├── os/                         # ZAC OS - the software
+│   ├── apps/
+│   │   ├── api/                # ZAC API (Node + Express)
+│   │   └── shell/              # ZAC Shell (React + Vite)
+│   ├── packages/
+│   │   └── types/              # Shared TypeScript types
+│   └── docker-compose.yml
+├── www/                        # Marketing site (GitHub Pages)
+│   ├── index.html
+│   ├── css/
+│   │   └── style.css
+│   ├── images/
+│   └── CNAME
+└── README.md
 ```
+
+## Architecture
+
+- **os/apps/api** - Node + Express + better-sqlite3 backend (the core)
+- **os/apps/shell** - React + Vite frontend (reference implementation)
+- **os/packages/types** - Shared TypeScript types
+- **www** - Static marketing site (GitHub Pages)
+
+The API is the primary interface to ZAC. The Shell is one possible frontend. Users may build their own UIs, CLI tools, or integrations against the API.
+
+## Requirements
+
+- Docker and docker-compose for development
+- Single `docker-compose up` from `os/` directory starts everything
+- Hot reload for both api and shell via volume mounts
+
+## Docker Services
+
+| Service | Port | Purpose |
+|---------|------|---------|
+| api | 8080 | Express backend |
+| shell | 3000 | Vite dev server |
+| ollama | 11434 | Local LLM inference |
+
+## Tech Choices (non-negotiable)
+
+- Node, not Bun
+- Express, not Hono/Fastify
+- React + Vite, not React Native
+- SQLite via better-sqlite3
+- Plain CSS variables for theming, not Tailwind
+- TypeScript throughout
+
+## API Design Principles
+
+The API should be:
+
+- **Complete** - Everything the Shell can do, the API exposes
+- **Documented** - OpenAPI spec, clear types
+- **Stable** - URL structure and response shapes don't change arbitrarily
+- **Watchable** - WebSocket endpoint for real-time updates
+
+Someone should be able to:
+
+- Build a CLI that talks to ZAC
+- Build a mobile app against the API
+- Write a Python script to pull sensor data
+- Integrate ZAC into Home Assistant or similar
+
+## API Endpoints
+
+```
+GET  /api/status              # System overview (gauges data)
+GET  /api/location            # GPS position
+GET  /api/sensors             # Environmental readings
+GET  /api/power               # Battery/power status
+GET  /api/mesh                # Mesh network nodes
+GET  /api/mesh/messages       # Message history
+POST /api/mesh/messages       # Send a message
+GET  /api/radio               # SDR status
+POST /api/radio/tune          # Tune to frequency
+GET  /api/library/search      # Search knowledge base
+POST /api/library/ask         # Search + LLM synthesis
+GET  /api/library/sources     # Available sources
+WS   /api/events              # Real-time event stream
+```
+
+## Website (www/)
+
+Static HTML/CSS for zombieapocalypse.tech. Hosted on GitHub Pages.
+
+- No build step, no static site generator
+- Plain HTML and CSS
+- Same visual language as Shell (dark, amber accents, IBM 3270 headers)
+
+GitHub Pages config:
+
+- Source: Deploy from branch
+- Branch: main
+- Folder: /www
+
+CNAME file contains: zombieapocalypse.tech
+
+## First Feature: Gauges Screen
+
+The shell displays a gauge/widget dashboard showing system status.
+
+### API Endpoint
+
+`GET /api/status` returns:
+
+```typescript
+interface SystemStatus {
+  location: {
+    lat: number;
+    lon: number;
+    alt: number;
+    speed: number;
+    heading: number;
+    fix: 'none' | '2d' | '3d';
+  };
+  sensors: {
+    temp_f: number;
+    humidity: number;
+    pressure_hpa: number;
+    trend: 'rising' | 'falling' | 'stable';
+  };
+  power: {
+    percent: number;
+    voltage: number;
+    current: number;
+    time_remaining: number | null;
+  };
+  mesh: {
+    nodes: Array<{
+      id: string;
+      name: string;
+      lastSeen: number;
+      snr: number;
+    }>;
+  };
+  time: {
+    utc: string;
+    local: string;
+    timezone: string;
+  };
+}
+```
+
+Return mock data. Structure code so adapters can be swapped in later.
+
+### Shell UI
+
+- Dark background (#0a0a0a)
+- Amber accent (#ffb000) - configurable via CSS variable
+- IBM 3270 font for headers
+- Inter or system sans for body text
+- Grid of gauge widgets showing each status category
+- Fetch from API on mount, refresh via WebSocket or polling
+
+## Adapter Pattern
+
+```
+os/apps/api/src/
+├── adapters/
+│   ├── location/
+│   │   ├── index.ts
+│   │   └── mock.ts
+│   ├── sensors/
+│   ├── power/
+│   └── mesh/
+├── routes/
+│   └── status.ts
+└── index.ts
+```
+
+Each adapter implements an interface. Config determines which adapter loads. Start with mock adapters only.
+
+## Do Not
+
+- Do not use Tailwind
+- Do not use React Native
+- Do not add authentication
+- Do not set up CI/CD yet
+- Do not over-engineer
