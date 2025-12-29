@@ -1,2 +1,2 @@
-# zac
-Monorepo for the Zombie Apocalypse Computer
+# ZAC - Zombie Apocalypse Computer
+To be continued...
