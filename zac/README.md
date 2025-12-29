@@ -2,7 +2,7 @@
 
 ## What is ZAC
 
-ZAC (Zero-infrastructure Autonomous Computer, or Zombie Apocalypse Computer) is an open-source, offline-first survival computer. The software runs on a Raspberry Pi 5 with mesh radio, SDR, GPS, sensors, and a local LLM.
+ZAC (Zero-infrastructure Autonomous Computer aka Zombie Apocalypse Computer) is an open-source, offline-first survival computer. The software runs on a Raspberry Pi 5 with mesh radio, SDR, GPS, sensors, and a local LLM.
 
 ## Repository Structure
 
@@ -29,7 +29,6 @@ zac/
 - **os/apps/api** - Node + Express + better-sqlite3 backend (the core)
 - **os/apps/shell** - React + Vite frontend (reference implementation)
 - **os/packages/types** - Shared TypeScript types
-- **www** - Static marketing site (GitHub Pages)
 
 The API is the primary interface to ZAC. The Shell is one possible frontend. Users may build their own UIs, CLI tools, or integrations against the API.
 
@@ -89,22 +88,6 @@ POST /api/library/ask         # Search + LLM synthesis
 GET  /api/library/sources     # Available sources
 WS   /api/events              # Real-time event stream
 ```
-
-## Website (www/)
-
-Static HTML/CSS for zombieapocalypse.tech. Hosted on GitHub Pages.
-
-- No build step, no static site generator
-- Plain HTML and CSS
-- Same visual language as Shell (dark, amber accents, IBM 3270 headers)
-
-GitHub Pages config:
-
-- Source: Deploy from branch
-- Branch: main
-- Folder: /www
-
-CNAME file contains: zombieapocalypse.tech
 
 ## First Feature: Gauges Screen
 
