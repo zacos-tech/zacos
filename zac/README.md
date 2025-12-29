@@ -15,12 +15,6 @@ zac/
 │   ├── packages/
 │   │   └── types/              # Shared TypeScript types
 │   └── docker-compose.yml
-├── www/                        # Marketing site (GitHub Pages)
-│   ├── index.html
-│   ├── css/
-│   │   └── style.css
-│   ├── images/
-│   └── CNAME
 └── README.md
 ```
 
@@ -48,11 +42,11 @@ The API is the primary interface to ZAC. The Shell is one possible frontend. Use
 
 ## Tech Choices (non-negotiable)
 
-- Node, not Bun
-- Express, not Hono/Fastify
-- React + Vite, not React Native
+- Node
+- Express
+- React + Vite
 - SQLite via better-sqlite3
-- Plain CSS variables for theming, not Tailwind
+- Plain CSS variables for theming
 - TypeScript throughout
 
 ## API Design Principles
@@ -139,8 +133,8 @@ Return mock data. Structure code so adapters can be swapped in later.
 
 ### Shell UI
 
-- Dark background (#0a0a0a)
-- Amber accent (#ffb000) - configurable via CSS variable
+- Dark background (#272727)
+- Muted Green accent (#85A78A) - configurable via CSS variable
 - IBM 3270 font for headers
 - Inter or system sans for body text
 - Grid of gauge widgets showing each status category
