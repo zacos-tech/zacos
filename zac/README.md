@@ -4,3 +4,22 @@ ZAC is an open-source, self-contained survival computer designed to operate comp
 At its heart is ZAC Shell, a unified interface that ties everything together. Unlike other off-grid computers that dump you into a Linux desktop with a dozen disconnected apps, ZAC presents a single, cohesive experience. Ask questions and get answers from a local LLM. Search Wikipedia, survival guides, and medical references instantly. Communicate with other ZAC units miles away via LoRa mesh. Scan radio frequencies for aircraft, weather satellites, and emergency broadcasts. Check your position on offline maps. All from one interface, designed to be usable by anyone, not just hackers (though it is fully open source and hackable!). 
 
 ZAC isn't just a collection of DIY tools. It's a survival partner for you and your loved ones.
+
+```
+zac/
+├── README.md              ✓ Done
+├── LICENSE                ✓ Done
+├── .gitignore             ✓ Done
+├── apps/
+│   ├── shell/             ← ZAC Shell (React/Next.js)
+│   └── api/               ← Backend (NestJS)
+├── packages/
+│   ├── hardware/          ← Hardware daemon (Python)
+│   └── shared/            ← Shared types/utils
+├── docs/
+│   ├── hardware/          ← BOM, build guide
+│   └── software/          ← Setup, configuration
+├── scripts/
+│   └── setup.sh           ← One-command install
+└── docker-compose.yml     ← Dev environment
+```
