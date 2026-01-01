@@ -1,0 +1,65 @@
+(() => {
+  // <stdin>
+  (function() {
+    const themes = ["green", "amber", "blue", "red", "purple", "silver"];
+    const savedTheme = localStorage.getItem("zat-theme") || "green";
+    const savedCrt = localStorage.getItem("zat-crt") === "on";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+    if (!savedCrt) {
+      document.documentElement.removeAttribute("data-crt");
+      document.documentElement.removeAttribute("data-glow");
+      document.documentElement.removeAttribute("data-rgb-shift");
+    }
+    function createControls() {
+      const controls = document.createElement("div");
+      controls.className = "site-controls";
+      const crtToggle = document.createElement("button");
+      crtToggle.className = "crt-toggle" + (savedCrt ? " active" : "");
+      crtToggle.setAttribute("title", "Toggle CRT Effects");
+      crtToggle.textContent = "CRT";
+      crtToggle.addEventListener("click", () => {
+        const isOn = document.documentElement.hasAttribute("data-crt");
+        if (isOn) {
+          document.documentElement.removeAttribute("data-crt");
+          document.documentElement.removeAttribute("data-glow");
+          document.documentElement.removeAttribute("data-rgb-shift");
+          localStorage.setItem("zat-crt", "off");
+          crtToggle.classList.remove("active");
+        } else {
+          document.documentElement.setAttribute("data-crt", "on");
+          document.documentElement.setAttribute("data-glow", "heavy");
+          document.documentElement.setAttribute("data-rgb-shift", "heavy");
+          localStorage.setItem("zat-crt", "on");
+          crtToggle.classList.add("active");
+        }
+      });
+      const switcher = document.createElement("div");
+      switcher.className = "theme-switcher";
+      themes.forEach((theme) => {
+        const btn = document.createElement("button");
+        btn.className = "theme-btn";
+        btn.setAttribute("data-theme-btn", theme);
+        btn.setAttribute("title", theme.charAt(0).toUpperCase() + theme.slice(1));
+        if (theme === savedTheme) btn.classList.add("active");
+        btn.addEventListener("click", () => {
+          document.documentElement.setAttribute("data-theme", theme);
+          localStorage.setItem("zat-theme", theme);
+          document.querySelectorAll(".theme-btn").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+        });
+        switcher.appendChild(btn);
+      });
+      controls.appendChild(switcher);
+      controls.appendChild(crtToggle);
+      const header = document.querySelector(".site-header .container");
+      if (header) {
+        header.appendChild(controls);
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", createControls);
+    } else {
+      createControls();
+    }
+  })();
+})();
