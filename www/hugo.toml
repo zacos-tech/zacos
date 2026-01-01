@@ -4,6 +4,10 @@ title = 'Zombie Apocalypse Tech'
 titleAbbrv = 'ZAT'
 theme = 'zat'
 
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
 [menus]
   [[menus.main]]
     name = 'Home'
