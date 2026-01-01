@@ -1,17 +1,19 @@
 // Theme and CRT switcher
 (function() {
-  const themes = ['green', 'amber', 'blue', 'red', 'purple', 'silver'];
+  const themes = ['amber', 'green', 'blue', 'purple', 'red', 'silver'];
 
   // Get saved preferences
-  const savedTheme = localStorage.getItem('zat-theme') || 'green';
+  const savedTheme = localStorage.getItem('zat-theme') || 'silver';
   const savedCrt = localStorage.getItem('zat-crt') === 'on';
 
   // Apply saved preferences immediately
   document.documentElement.setAttribute('data-theme', savedTheme);
-  if (!savedCrt) {
+  if (savedCrt) {
+    document.documentElement.setAttribute('data-crt', 'on');
+    document.documentElement.setAttribute('data-glow', 'heavy');
+  } else {
     document.documentElement.removeAttribute('data-crt');
     document.documentElement.removeAttribute('data-glow');
-    document.documentElement.removeAttribute('data-rgb-shift');
   }
 
   function createControls() {
@@ -29,13 +31,11 @@
       if (isOn) {
         document.documentElement.removeAttribute('data-crt');
         document.documentElement.removeAttribute('data-glow');
-        document.documentElement.removeAttribute('data-rgb-shift');
         localStorage.setItem('zat-crt', 'off');
         crtToggle.classList.remove('active');
       } else {
         document.documentElement.setAttribute('data-crt', 'on');
         document.documentElement.setAttribute('data-glow', 'heavy');
-        document.documentElement.setAttribute('data-rgb-shift', 'heavy');
         localStorage.setItem('zat-crt', 'on');
         crtToggle.classList.add('active');
       }
