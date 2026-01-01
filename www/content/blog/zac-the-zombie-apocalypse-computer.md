@@ -19,6 +19,6 @@ ZACOS provides a unified interface for all system functions:
 
 Fully open source. Fully offline. Field-serviceable.
 
-Join our mailing list to be notified of future updates.
+Join our email list to be notified of future updates.
 
 [Vaya Con Dios](https://www.youtube.com/watch?v=mlqtx1UVpaM)
