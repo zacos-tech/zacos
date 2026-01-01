@@ -859,13 +859,13 @@ main {
 
 .site-footer {
   border-top: 1px solid var(--zac-border);
-  padding: 3rem 0;
+  padding: 1.5rem 0;
   margin-top: 4rem;
 }
 
 .site-footer .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
@@ -888,6 +888,61 @@ main {
 
 .footer-links a:hover {
   color: var(--zac-accent);
+}
+
+/* Newsletter Form */
+.embeddable-buttondown-form {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.embeddable-buttondown-form label {
+  font-family: var(--zac-font-mono);
+  font-size: 0.75rem;
+  color: var(--zac-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.embeddable-buttondown-form input[type="email"] {
+  background: var(--zac-bg);
+  border: 1px solid var(--zac-border);
+  border-radius: 3px;
+  padding: 0.5rem 0.75rem;
+  font-family: var(--zac-font-mono);
+  font-size: 0.875rem;
+  color: var(--zac-text-tinted);
+  min-width: 200px;
+}
+
+.embeddable-buttondown-form input[type="email"]:focus {
+  outline: none;
+  border-color: var(--zac-accent);
+}
+
+.embeddable-buttondown-form input[type="email"]::placeholder {
+  color: var(--zac-text-brighter);
+}
+
+.embeddable-buttondown-form input[type="submit"] {
+  background: transparent;
+  border: 1px solid var(--zac-accent);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  font-family: var(--zac-font-mono);
+  font-size: 0.75rem;
+  color: var(--zac-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.embeddable-buttondown-form input[type="submit"]:hover {
+  background: var(--zac-accent);
+  color: var(--zac-bg);
 }
 
 /* ============================================
