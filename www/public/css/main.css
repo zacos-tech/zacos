@@ -203,7 +203,7 @@
 
 /* Soft CRT phosphor blur - applies to entire screen */
 [data-crt="on"] body {
-  filter: blur(0.3px);
+  filter: blur(0.3px) grayscale(25%);
   text-shadow: 0 0 1.5px currentColor;
 }
 

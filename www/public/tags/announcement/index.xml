@@ -13,7 +13,7 @@
       <link>http://localhost:1313/blog/zac-the-zombie-apocalypse-computer/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/blog/zac-the-zombie-apocalypse-computer/</guid>
-      <description>&lt;p&gt;ZAC is an open-source, self-contained survival computer designed to operate completely off-grid.&lt;/p&gt;&#xA;&lt;p&gt;Built around a Raspberry Pi / Mini PC architecture, ZAC integrates a local AI assistant, mesh radio communication, software-defined radio, offline knowledge archives, and GPS navigation into a ruggedized Pelican case. Solar and battery powered. No internet required. No cloud dependencies. No subscriptions. A true standalone, civilization-in-a-box, built to outlast the apocalypse.&lt;/p&gt;&#xA;&lt;p&gt;ZACOS provides a unified interface for all system functions:&lt;/p&gt;</description>
+      <description>&lt;p&gt;ZAC is an open-source, self-contained survival computer designed to operate completely off-grid.&lt;/p&gt;&#xA;&lt;p&gt;Built around a Raspberry Pi / Mini PC architecture, ZAC integrates a local AI assistant, mesh radio communication, software-defined radio, offline knowledge archives, and GPS navigation into a ruggedized Pelican case. Solar and battery powered. No internet required. No cloud dependencies. No subscriptions. A true standalone, civilization-in-a-box machine, built to outlast the zombie apocalypse.&lt;/p&gt;&#xA;&lt;p&gt;ZACOS is the software that runs on ZAC and provides a unified interface for all system functions:&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
