@@ -19,4 +19,4 @@ ZACOS is the software that runs on ZAC and provides a unified interface for all 
 
 Fully open source. Fully offline. Field-serviceable, including a printed manual with schematics and repair guides. Join our email list to be notified of future updates.
 
-[Vaya Con Dios](https://www.youtube.com/watch?v=mlqtx1UVpaM)
+[![Vaya Con Dios](vaya-con-dios-keanu-reeves.gif)](https://www.youtube.com/watch?v=mlqtx1UVpaM)
