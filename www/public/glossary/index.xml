@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Zombie Apocalypse Tech</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on Zombie Apocalypse Tech</description>
+    <title>Glossary on Zombie Apocalypse Tech</title>
+    <link>http://localhost:1313/glossary/</link>
+    <description>Recent content in Glossary on Zombie Apocalypse Tech</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 31 Dec 2025 01:46:11 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/glossary/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>LoRa</title>
       <link>http://localhost:1313/glossary/lora/</link>
@@ -35,13 +35,6 @@
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/zaclog/</guid>
       <description>&lt;p&gt;&lt;strong&gt;ZACLOG&lt;/strong&gt; - The build series documenting the &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; project from concept to field-ready system. Each entry covers a specific aspect of the build: hardware assembly, software configuration, testing, and deployment. Follow along via the &lt;a href=&#34;http://localhost:1313/tags/zaclog&#34;&gt;#zaclog&lt;/a&gt; tag.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>ZACLOG/000 - The Zombie Apocalypse Computer</title>
-      <link>http://localhost:1313/blog/zaclog-000/</link>
-      <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
-      <guid>http://localhost:1313/blog/zaclog-000/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; is a self-contained, open-source survival computer designed to function completely off-grid.&lt;/p&gt;&#xA;&lt;p&gt;Built around a Raspberry Pi 5 architecture, ZAC lives in a weatherproof Pelican case. Solar and battery powered. No internet required. No cloud dependencies. No subscriptions. A standalone, civilization-in-a-box machine constructed to outlast the zombie apocalypse.&lt;/p&gt;</description>
     </item>
     <item>
       <title>ZACOS</title>

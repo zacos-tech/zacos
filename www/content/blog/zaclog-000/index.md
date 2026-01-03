@@ -5,16 +5,16 @@ draft = false
 tags = ['zac', 'zaclog', 'announcement']
 +++
 
-ZAC is a self-contained, open-source survival computer designed to function completely off-grid.
+[ZAC](/glossary/zac) is a self-contained, open-source survival computer designed to function completely off-grid.
 
 Built around a Raspberry Pi 5 architecture, ZAC lives in a weatherproof Pelican case. Solar and battery powered. No internet required. No cloud dependencies. No subscriptions. A standalone, civilization-in-a-box machine constructed to outlast the zombie apocalypse.
 
-ZACOS is the operating system that brings ZAC to life, providing a unified interface for all system capabilities:
+[ZACOS](/glossary/zacos) is the operating system that brings ZAC to life, providing a unified interface for all system capabilities:
 
 - Ask questions and get answers from a local LLM—no internet required
 - Access offline Wikipedia, survival references, and medical guides
-- Communicate over LoRa mesh with any Meshtastic-compatible device
-- Monitor aircraft, weather satellites, and emergency broadcasts via SDR
+- Communicate over [LoRa](/glossary/lora) mesh with any Meshtastic-compatible device
+- Monitor aircraft, weather satellites, and emergency broadcasts via [SDR](/glossary/sdr)
 - Navigate anywhere with offline maps and GPS
 - Track environmental conditions: temperature, humidity, pressure
 - Activate emergency beacon mode when things go sideways
@@ -22,7 +22,7 @@ ZACOS is the operating system that brings ZAC to life, providing a unified inter
 
 Fully open source. Fully offline. Field-serviceable, with a printed manual including schematics and repair guides.
 
-This post kicks off ZACLOG, our build series documenting the ZAC project from first boot to field-ready. Join the email list to follow along.
+This post kicks off [ZACLOG](/glossary/zaclog), our build series documenting the ZAC project from first boot to field-ready. Join the email list to follow along.
 
 Until then...
 
