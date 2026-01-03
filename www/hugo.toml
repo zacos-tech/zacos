@@ -3,6 +3,7 @@ languageCode = 'en-us'
 title = 'Zombie Apocalypse Tech'
 titleAbbrv = 'ZAT'
 theme = 'zat'
+summaryLength = 40
 
 [caches]
   [caches.images]
