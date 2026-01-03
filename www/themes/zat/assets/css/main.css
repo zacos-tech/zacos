@@ -456,10 +456,13 @@ li {
   color: var(--zac-accent);
   display: flex;
   align-items: center;
+  filter: drop-shadow(0 0 calc(3px * var(--zac-glow-intensity)) var(--zac-accent));
 }
 
 .github-link:hover {
   color: var(--zac-accent-brighter);
+  filter: drop-shadow(0 0 calc(6px * var(--zac-glow-intensity)) var(--zac-accent))
+          drop-shadow(0 0 calc(12px * var(--zac-glow-intensity)) var(--zac-accent-glow));
 }
 
 .site-logo {
@@ -469,14 +472,14 @@ li {
   font-weight: 400;
   color: var(--zac-accent-bright);
   text-shadow:
-    0 0 calc(10px * var(--zac-glow-intensity)) var(--zac-accent),
-    0 0 calc(25px * var(--zac-glow-intensity)) var(--zac-accent-glow),
-    0 0 calc(50px * var(--zac-glow-intensity)) var(--zac-accent-glow),
-    0 0 calc(80px * var(--zac-glow-intensity)) var(--zac-accent-glow);
+    0 0 calc(3px * var(--zac-glow-intensity)) var(--zac-accent);
 }
 
 .site-logo:hover {
   text-decoration: none;
+  text-shadow:
+    0 0 calc(6px * var(--zac-glow-intensity)) var(--zac-accent),
+    0 0 calc(12px * var(--zac-glow-intensity)) var(--zac-accent-glow);
 }
 
 .site-nav {
@@ -524,6 +527,7 @@ li {
 .crt-toggle.active {
   background: var(--zac-accent);
   color: var(--zac-bg);
+  box-shadow: 0 0 calc(4px * var(--zac-glow-intensity)) var(--zac-accent-glow);
 }
 
 .theme-switcher {
@@ -541,18 +545,56 @@ li {
   cursor: pointer;
   padding: 0;
   background: transparent;
-  box-shadow: none;
 }
 
-.theme-btn[data-theme-btn="green"] { background: #4a9f4a; }
-.theme-btn[data-theme-btn="amber"] { background: #b38728; }
-.theme-btn[data-theme-btn="blue"] { background: #4a7fa8; }
-.theme-btn[data-theme-btn="red"] { background: #a05050; }
-.theme-btn[data-theme-btn="silver"] { background: #888888; }
-.theme-btn[data-theme-btn="purple"] { background: #7a5a9f; }
+.theme-btn[data-theme-btn="green"] {
+  background: #4a9f4a;
+  box-shadow: 0 0 calc(2px * var(--zac-glow-intensity)) #4a9f4a;
+}
+.theme-btn[data-theme-btn="amber"] {
+  background: #b38728;
+  box-shadow: 0 0 calc(2px * var(--zac-glow-intensity)) #b38728;
+}
+.theme-btn[data-theme-btn="blue"] {
+  background: #4a7fa8;
+  box-shadow: 0 0 calc(2px * var(--zac-glow-intensity)) #4a7fa8;
+}
+.theme-btn[data-theme-btn="red"] {
+  background: #a05050;
+  box-shadow: 0 0 calc(2px * var(--zac-glow-intensity)) #a05050;
+}
+.theme-btn[data-theme-btn="silver"] {
+  background: #888888;
+  box-shadow: 0 0 calc(2px * var(--zac-glow-intensity)) #888888;
+}
+.theme-btn[data-theme-btn="purple"] {
+  background: #7a5a9f;
+  box-shadow: 0 0 calc(2px * var(--zac-glow-intensity)) #7a5a9f;
+}
 
-.theme-btn.active {
-  box-shadow: 0 0 0 2px var(--zac-accent-brighter);
+.theme-btn[data-theme-btn="green"].active {
+  box-shadow: 0 0 0 2px var(--zac-accent-brighter),
+              0 0 calc(3px * var(--zac-glow-intensity)) #4a9f4a;
+}
+.theme-btn[data-theme-btn="amber"].active {
+  box-shadow: 0 0 0 2px var(--zac-accent-brighter),
+              0 0 calc(3px * var(--zac-glow-intensity)) #b38728;
+}
+.theme-btn[data-theme-btn="blue"].active {
+  box-shadow: 0 0 0 2px var(--zac-accent-brighter),
+              0 0 calc(3px * var(--zac-glow-intensity)) #4a7fa8;
+}
+.theme-btn[data-theme-btn="red"].active {
+  box-shadow: 0 0 0 2px var(--zac-accent-brighter),
+              0 0 calc(3px * var(--zac-glow-intensity)) #a05050;
+}
+.theme-btn[data-theme-btn="silver"].active {
+  box-shadow: 0 0 0 2px var(--zac-accent-brighter),
+              0 0 calc(3px * var(--zac-glow-intensity)) #888888;
+}
+.theme-btn[data-theme-btn="purple"].active {
+  box-shadow: 0 0 0 2px var(--zac-accent-brighter),
+              0 0 calc(3px * var(--zac-glow-intensity)) #7a5a9f;
 }
 
 /* ============================================
@@ -923,6 +965,7 @@ main {
   color: var(--zac-accent);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  text-shadow: 0 0 calc(5px * var(--zac-glow-intensity)) var(--zac-accent-glow);
 }
 
 .embeddable-buttondown-form input[type="email"] {
@@ -939,6 +982,7 @@ main {
 .embeddable-buttondown-form input[type="email"]:focus {
   outline: none;
   border-color: var(--zac-accent);
+  box-shadow: 0 0 calc(6px * var(--zac-glow-intensity)) var(--zac-accent-glow);
 }
 
 .embeddable-buttondown-form input[type="email"]::placeholder {
@@ -956,11 +1000,13 @@ main {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   cursor: pointer;
+  box-shadow: 0 0 calc(4px * var(--zac-glow-intensity)) var(--zac-accent-glow);
 }
 
 .embeddable-buttondown-form input[type="submit"]:hover {
   background: var(--zac-accent);
   color: var(--zac-bg);
+  box-shadow: 0 0 calc(4px * var(--zac-glow-intensity)) var(--zac-accent-glow);
 }
 
 /* ============================================
