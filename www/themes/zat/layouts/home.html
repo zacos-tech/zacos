@@ -1,14 +1,12 @@
 {{ define "main" }}
-  <div class="container">
-    {{ range site.RegularPages }}
-      <article class="card card-preview">
-        {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-        {{ $dateHuman := .Date | time.Format ":date_long" }}
-        <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-        <div class="card-summary">{{ .Summary }}</div>
-        <a href="{{ .RelPermalink }}" class="read-more">Read more →</a>
-      </article>
-    {{ end }}
-  </div>
+  {{ range site.RegularPages }}
+    <article class="card card-preview">
+      {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+      {{ $dateHuman := .Date | time.Format ":date_long" }}
+      <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+      <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+      <div class="card-summary">{{ .Summary }}</div>
+      <a href="{{ .RelPermalink }}" class="read-more">Read more →</a>
+    </article>
+  {{ end }}
 {{ end }}

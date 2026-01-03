@@ -51,9 +51,9 @@
       });
       controls.appendChild(switcher);
       controls.appendChild(crtToggle);
-      const header = document.querySelector(".site-header .container");
-      if (header) {
-        header.appendChild(controls);
+      const footer = document.querySelector(".site-footer .footer-controls");
+      if (footer) {
+        footer.appendChild(controls);
       }
     }
     if (document.readyState === "loading") {

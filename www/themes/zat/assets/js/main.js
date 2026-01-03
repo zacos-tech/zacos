@@ -65,10 +65,10 @@
     controls.appendChild(switcher);
     controls.appendChild(crtToggle);
 
-    // Add to header
-    const header = document.querySelector('.site-header .container');
-    if (header) {
-      header.appendChild(controls);
+    // Add to footer
+    const footer = document.querySelector('.site-footer .footer-controls');
+    if (footer) {
+      footer.appendChild(controls);
     }
   }
 
