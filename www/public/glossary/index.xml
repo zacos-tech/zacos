@@ -9,11 +9,46 @@
     <lastBuildDate>Wed, 31 Dec 2025 01:46:11 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/glossary/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>GPS</title>
+      <link>http://localhost:1313/glossary/gps/</link>
+      <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
+      <guid>http://localhost:1313/glossary/gps/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;GPS&lt;/strong&gt; (Global Positioning System) - A satellite-based navigation system that provides location and time information anywhere on Earth. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; uses GPS combined with offline maps to enable navigation without internet connectivity—satellites don&amp;rsquo;t care if civilization has collapsed.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Local LLM</title>
+      <link>http://localhost:1313/glossary/llm/</link>
+      <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
+      <guid>http://localhost:1313/glossary/llm/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Local LLM&lt;/strong&gt; (Large Language Model) - An AI system that runs entirely on-device, requiring no internet connection. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; uses a local LLM to answer questions, assist with survival scenarios, and provide information from its offline knowledge base—all without phoning home to the cloud.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>LoRa</title>
       <link>http://localhost:1313/glossary/lora/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/lora/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;LoRa&lt;/strong&gt; (Long Range) - A low-power, long-range radio communication protocol ideal for off-grid messaging. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; uses LoRa via Meshtastic-compatible devices to form mesh networks that can relay messages across kilometers without cellular or internet infrastructure.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;LoRa&lt;/strong&gt; (Long Range) - A low-power, long-range radio communication protocol ideal for off-grid messaging. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; uses LoRa via &lt;a href=&#34;http://localhost:1313/glossary/meshtastic&#34;&gt;Meshtastic&lt;/a&gt;-compatible devices to form mesh networks that can relay messages across kilometers without cellular or internet infrastructure.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Meshtastic</title>
+      <link>http://localhost:1313/glossary/meshtastic/</link>
+      <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
+      <guid>http://localhost:1313/glossary/meshtastic/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Meshtastic&lt;/strong&gt; - An open-source mesh networking project that runs on &lt;a href=&#34;http://localhost:1313/glossary/lora&#34;&gt;LoRa&lt;/a&gt; radio hardware. Enables off-grid text messaging, GPS location sharing, and telemetry between devices over distances of several kilometers. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; communicates with any Meshtastic-compatible device, creating decentralized communication networks that don&amp;rsquo;t rely on cell towers or internet.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Pelican</title>
+      <link>http://localhost:1313/glossary/pelican/</link>
+      <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
+      <guid>http://localhost:1313/glossary/pelican/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Pelican&lt;/strong&gt; - A brand of rugged, watertight, crushproof protective cases originally designed for sensitive equipment. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; lives inside a Pelican case to ensure survival in harsh conditions—dust, water, impact, and the general chaos of civilization&amp;rsquo;s end.&lt;/p&gt;&#xA;&lt;img src=&#34;pelican_1450.png&#34; alt=&#34;Pelican Case&#34; style=&#34;width: 200px;&#34;&gt;</description>
+    </item>
+    <item>
+      <title>Raspberry Pi</title>
+      <link>http://localhost:1313/glossary/raspberry-pi/</link>
+      <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
+      <guid>http://localhost:1313/glossary/raspberry-pi/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Raspberry Pi&lt;/strong&gt; - A low-cost, credit card-sized single-board computer developed by the Raspberry Pi Foundation. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; is built around the Raspberry Pi 5, chosen for its balance of performance, power efficiency, and widespread availability of replacement parts.&lt;/p&gt;&#xA;&lt;img src=&#34;raspberry_pi.png&#34; alt=&#34;Raspberry Pi&#34; style=&#34;width: 200px;&#34;&gt;</description>
     </item>
     <item>
       <title>SDR</title>
