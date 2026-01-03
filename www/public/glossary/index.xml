@@ -58,6 +58,20 @@
       <description>&lt;p&gt;&lt;strong&gt;SDR&lt;/strong&gt; (Software Defined Radio) - A radio receiver where signal processing is handled by software rather than dedicated hardware. Allows &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; to monitor aircraft transponders (ADS-B), decode weather satellite imagery, and receive emergency broadcasts using a single USB dongle.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>USB</title>
+      <link>http://localhost:1313/glossary/usb/</link>
+      <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
+      <guid>http://localhost:1313/glossary/usb/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;USB&lt;/strong&gt; (Universal Serial Bus) - A standard connector for peripherals and data transfer. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; uses USB ports to connect sensor modules, &lt;a href=&#34;http://localhost:1313/glossary/sdr&#34;&gt;SDR&lt;/a&gt; dongles, storage devices, and other expansion hardware—keeping the system modular and field-serviceable.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Wikipedia</title>
+      <link>http://localhost:1313/glossary/wikipedia/</link>
+      <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
+      <guid>http://localhost:1313/glossary/wikipedia/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Wikipedia&lt;/strong&gt; - A free, collaborative online encyclopedia. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; carries a compressed offline copy of Wikipedia, providing access to millions of articles without internet connectivity—because knowledge shouldn&amp;rsquo;t require a working cell tower.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>ZAC</title>
       <link>http://localhost:1313/glossary/zac/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
@@ -76,7 +90,7 @@
       <link>http://localhost:1313/glossary/zacos/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/zacos/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;ZACOS&lt;/strong&gt; (ZAC Operating System) - The custom operating system that powers &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt;. Provides a unified interface for offline AI, mesh communication, radio monitoring, navigation, and environmental sensing. Built to run entirely without internet connectivity.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;ZACOS&lt;/strong&gt; (ZAC Operating System) - The open-source application that powers &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt;. Provides a unified interface for offline AI, mesh communication, radio monitoring, navigation, and environmental sensing. Built to run entirely without internet connectivity.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

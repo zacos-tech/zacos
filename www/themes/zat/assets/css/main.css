@@ -35,8 +35,8 @@
   font-display: swap;
 }
 
-/* IBM Plex Mono - Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
+/* IBM Plex Fonts - Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
 
 /* ============================================
    Variables
@@ -64,7 +64,7 @@
   /* Typography */
   --zac-font-display: 'IBM 3270', 'IBM Plex Mono', monospace;
   --zac-font-mono: 'IBM Plex Mono', monospace;
-  --zac-font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --zac-font-body: 'IBM Plex Sans', sans-serif;
   
   /* Layout */
   --zac-max-width: 900px;

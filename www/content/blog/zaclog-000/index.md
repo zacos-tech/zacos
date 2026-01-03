@@ -12,13 +12,13 @@ Built around a [Raspberry Pi](/glossary/raspberry-pi) architecture, ZAC lives in
 [ZACOS](/glossary/zacos) is the application that brings ZAC to life, providing a unified interface for all system capabilities:
 
 - Ask questions and get answers from a [Local LLM](/glossary/llm)—no internet required
-- Access offline Wikipedia, survival references, and medical guides
+- Access offline [Wikipedia](/glossary/wikipedia), survival references, and medical guides
 - Communicate over [LoRa](/glossary/lora) mesh with any [Meshtastic](/glossary/meshtastic)-compatible device
 - Monitor aircraft, weather satellites, and emergency broadcasts via [SDR](/glossary/sdr)
 - Navigate anywhere with offline maps and [GPS](/glossary/gps)
 - Track environmental conditions: temperature, humidity, pressure
 - Activate emergency beacon mode when things go sideways
-- Expand functionality via USB sensor modules
+- Expand functionality via [USB](/glossary/usb) sensor modules
 
 Fully open source. Fully offline. Field-serviceable, with a printed manual including schematics and repair guides.
 
