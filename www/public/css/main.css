@@ -144,11 +144,11 @@
   --zac-bg-card: #1a1a1a;
   --zac-border: #282828;
   --zac-accent: #666666;
-  --zac-accent-bright: #808080;
-  --zac-accent-brighter: #a0a0a0;
+  --zac-accent-bright: #707070;
+  --zac-accent-brighter: #888888;
   --zac-accent-dim: rgba(102, 102, 102, 0.5);
   --zac-accent-glow: rgba(102, 102, 102, 0.35);
-  --zac-text-tinted: #efefefef;
+  --zac-text-tinted: #efefef;
 }
 
 /* Purple */
