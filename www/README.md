@@ -1,2 +1,3 @@
-# www
-Website for Zombie Apocalypse Tech
+# Zombie Apocalypse Tech
+
+Website for Zombie Apocalypse Tech. Implemented with [Hugo](https://gohugo.io/).
