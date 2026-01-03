@@ -459,7 +459,7 @@ li {
 }
 
 .github-link:hover {
-  color: var(--zac-accent-bright);
+  color: var(--zac-accent-brighter);
 }
 
 .site-logo {
@@ -467,7 +467,7 @@ li {
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: 400;
-  color: var(--zac-text);
+  color: var(--zac-accent-bright);
   text-shadow:
     0 0 calc(10px * var(--zac-glow-intensity)) var(--zac-accent),
     0 0 calc(25px * var(--zac-glow-intensity)) var(--zac-accent-glow),
@@ -942,7 +942,7 @@ main {
 }
 
 .embeddable-buttondown-form input[type="email"]::placeholder {
-  color: var(--zac-text-brighter);
+  color: var(--zac-accent-brighter);
 }
 
 .embeddable-buttondown-form input[type="submit"] {
@@ -1142,6 +1142,7 @@ main {
 
 .bracket {
   color: var(--zac-accent);
+  opacity: 0.5;
 }
 
 /* ============================================
