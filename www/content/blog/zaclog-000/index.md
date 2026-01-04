@@ -22,8 +22,6 @@ Built around a [Raspberry Pi](/glossary/raspberry-pi) architecture, ZAC lives in
 
 Fully open source. Fully offline. Field-serviceable, with a printed manual including schematics and repair guides.
 
-This post kicks off [ZACLOG](/glossary/zaclog), our build series documenting the ZAC project from first boot to field-ready. Join the email list to follow along.
-
 Until then...
 
 <a href="https://www.youtube.com/watch?v=mlqtx1UVpaM">
