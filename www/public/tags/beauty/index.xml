@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Beauty on Zombie Apocalypse Tech</title>
+    <link>http://localhost:1313/tags/beauty/</link>
+    <description>Recent content in Beauty on Zombie Apocalypse Tech</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 03 Jan 2026 22:58:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/beauty/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ZACLOG/001 - My Philosophy of Life</title>
+      <link>http://localhost:1313/blog/zaclog-001/</link>
+      <pubDate>Sat, 03 Jan 2026 22:58:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/zaclog-001/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;http://localhost:1313/glossary/zombie&#34;&gt;zombies&lt;/a&gt; aren’t just those monsters with rotten faces. They are any force destructive to our world. Eaters of the planet, the body, the mind, and the spirit. That’s why I like to make things beautiful. Especially now. It reminds me of the world we used to have, the world we lost, and the world as it could be again. Just because things have gone to hell in a handbasket, doesn’t mean we have to give in to the bastards. Don’t ever give in.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
