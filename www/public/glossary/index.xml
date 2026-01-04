@@ -6,8 +6,15 @@
     <description>Recent content in Glossary on Zombie Apocalypse Tech</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 31 Dec 2025 01:46:11 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 03 Jan 2026 22:58:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/glossary/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Zombie</title>
+      <link>http://localhost:1313/glossary/zombie/</link>
+      <pubDate>Sat, 03 Jan 2026 22:58:00 +0000</pubDate>
+      <guid>http://localhost:1313/glossary/zombie/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Zombie&lt;/strong&gt;  - Not just a monster with a rotten face, a zombie is any force destructive to our world. Eater of the planet, the body, the mind, and the spirit.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>GPS</title>
       <link>http://localhost:1313/glossary/gps/</link>

@@ -5,10 +5,13 @@
     <loc>http://localhost:1313/blog/</loc>
     <lastmod>2026-01-03T22:58:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/glossary/</loc>
+    <lastmod>2026-01-03T22:58:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/old-man-yells-at-cloud/</loc>
     <lastmod>2026-01-03T22:58:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/philosophy/</loc>
+    <loc>http://localhost:1313/tags/philosophy-of-life/</loc>
     <lastmod>2026-01-03T22:58:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
@@ -23,13 +26,13 @@
     <loc>http://localhost:1313/blog/zaclog-001/</loc>
     <lastmod>2026-01-03T22:58:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/zombie/</loc>
+    <loc>http://localhost:1313/glossary/zombie/</loc>
+    <lastmod>2026-01-03T22:58:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/zombies/</loc>
     <lastmod>2026-01-03T22:58:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/announcement/</loc>
-    <lastmod>2025-12-31T01:46:11+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/glossary/</loc>
     <lastmod>2025-12-31T01:46:11+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/glossary/gps/</loc>
