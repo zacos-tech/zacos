@@ -2,7 +2,7 @@
 title = 'ZACLOG/000 - The Zombie Apocalypse Computer'
 date = 2025-12-31T01:46:11+00:00
 draft = false
-tags = ['zac', 'zaclog', 'announcement']
+tags = ['zac', 'zaclog', 'announcement', 'build']
 +++
 
 [ZAC](/glossary/zac) is a self-contained, open-source survival computer designed to function completely off-grid.
