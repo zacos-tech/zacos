@@ -30,13 +30,6 @@
       <description></description>
     </item>
     <item>
-      <title>Zac</title>
-      <link>http://localhost:1313/tags/zac/</link>
-      <pubDate>Sat, 03 Jan 2026 22:58:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/zac/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Zaclog</title>
       <link>http://localhost:1313/tags/zaclog/</link>
       <pubDate>Sat, 03 Jan 2026 22:58:00 +0000</pubDate>
@@ -55,6 +48,13 @@
       <link>http://localhost:1313/tags/announcement/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/tags/announcement/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Zacbuild</title>
+      <link>http://localhost:1313/tags/zacbuild/</link>
+      <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
+      <guid>http://localhost:1313/tags/zacbuild/</guid>
       <description></description>
     </item>
   </channel>
