@@ -24,4 +24,8 @@ Fully open source. Fully offline. Field-serviceable, with a printed manual inclu
 
 That's what we're building. This thing is gonna be cool as hell, you'll see.
 
-To be continued...
+Until then...
+
+<a href="https://www.youtube.com/watch?v=mlqtx1UVpaM">
+  <img src="vaya-con-dios-keanu-reeves.gif" alt="Vaya Con Dios" style="width: 200px;">
+</a>
