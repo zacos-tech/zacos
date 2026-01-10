@@ -5,7 +5,7 @@ draft = false
 tags = ['announcement', 'zacbuild', 'zaclog']
 +++
 
-Or, the Zero-Infrastructure Autonomous Computer, if you got a stick up your ass.
+Or, the **Zero-Infrastructure Autonomous Computer**, if you prefer.
 
 [ZAC](/glossary/zac) is a self-contained, open-source survival computer designed to function completely off-grid.
 

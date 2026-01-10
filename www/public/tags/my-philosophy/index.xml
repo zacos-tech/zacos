@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Zombie on Zombie Apocalypse Tech</title>
-    <link>http://localhost:1313/tags/zombie/</link>
-    <description>Recent content in Zombie on Zombie Apocalypse Tech</description>
+    <title>My-Philosophy on Zombie Apocalypse Tech</title>
+    <link>http://localhost:1313/tags/my-philosophy/</link>
+    <description>Recent content in My-Philosophy on Zombie Apocalypse Tech</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 03 Jan 2026 22:58:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/zombie/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/my-philosophy/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ZACLOG/001 - My Philosophy</title>
       <link>http://localhost:1313/blog/zaclog-001/</link>
