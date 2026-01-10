@@ -13,21 +13,28 @@
       <link>http://localhost:1313/glossary/zombie/</link>
       <pubDate>Sat, 03 Jan 2026 22:58:00 +0000</pubDate>
       <guid>http://localhost:1313/glossary/zombie/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Zombie&lt;/strong&gt;  - Not merely the walking dead, a zombie is any force destructive to our world. Eater of the planet, the body, the mind, and the spirit. That’s why I still build things. Especially now. The things I create remind me of the world we lost, but also the world as it could be again. Just because everything has gone to hell in a handbasket, doesn’t mean we have to give in to the bastards. Don’t ever give in, kid.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;Zombie&lt;/strong&gt;  - A human that has become something not quite human. Their behavior is erratic and unpredictable, to a harmful degree. They retain memories and knowledge from their former lives, but nothing seems connected, nor has any meaning to them. A typical zombie follows the same routine as they did in life, but it&amp;rsquo;s all jumbled and wrong. Despite what popular media has shown, a zombie is not constantly hungry, but when they do need to feed, they have no understanding of nourishment. Consequently, they&amp;rsquo;ll eat anything and everything in sight. That includes you. See also, &lt;a href=&#34;http://localhost:1313/glossary/turning&#34;&gt;The Turning&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>GPS</title>
       <link>http://localhost:1313/glossary/gps/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/gps/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;GPS&lt;/strong&gt; (Global Positioning System) - A satellite-based navigation system that provides location and time information anywhere on Earth. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; uses GPS combined with offline maps to enable navigation without internet connectivity—satellites don&amp;rsquo;t care if civilization has collapsed.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;GPS&lt;/strong&gt; (Global Positioning System) - A satellite-based navigation system that provides location and time information anywhere on Earth. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; uses GPS combined with offline maps to enable navigation without internet connectivity.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Lazarus Internet Archive</title>
+      <link>http://localhost:1313/glossary/lazarus-internet-archive/</link>
+      <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
+      <guid>http://localhost:1313/glossary/lazarus-internet-archive/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Lazarus Internet Archive (LIA)&lt;/strong&gt; — A distributed network preserving a snapshot of the internet from before &lt;a href=&#34;http://localhost:1313/glossary/turning&#34;&gt;The Turning&lt;/a&gt;. Maintained by &lt;a href=&#34;http://localhost:1313/glossary/lazarus-collective&#34;&gt;The Lazarus Collective&lt;/a&gt;, LIA is available through both official and unofficial mirrors throughout the world. Once connected, you can access canonical urls through your browser of choice.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Local LLM</title>
       <link>http://localhost:1313/glossary/llm/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/llm/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Local LLM&lt;/strong&gt; (Large Language Model) - An AI system that runs entirely on-device, requiring no internet connection. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; uses a local LLM to answer questions, assist with survival scenarios, and provide information from its offline knowledge base—all without phoning home to the cloud.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;Local LLM&lt;/strong&gt; (Large Language Model) - An AI system that runs entirely on-device, requiring no internet connection. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; uses a local LLM to answer questions, assist with survival scenarios, and provide information from its offline knowledge base.&lt;/p&gt;</description>
     </item>
     <item>
       <title>LoRa</title>
@@ -65,6 +72,20 @@
       <description>&lt;p&gt;&lt;strong&gt;SDR&lt;/strong&gt; (Software Defined Radio) - A radio receiver where signal processing is handled by software rather than dedicated hardware. Allows &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; to monitor aircraft transponders (ADS-B), decode weather satellite imagery, and receive emergency broadcasts using a single USB dongle.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>The Lazarus Collective</title>
+      <link>http://localhost:1313/glossary/lazarus-collective/</link>
+      <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
+      <guid>http://localhost:1313/glossary/lazarus-collective/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;The Lazarus Collective&lt;/strong&gt; — An organization based in Columbus, Ohio, whose goal is to restore useful tools and technology from the old world. They maintain LIA, the &lt;a href=&#34;http://localhost:1313/glossary/lazarus-internet-archive&#34;&gt;Lazarus Internet Archive&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The Turning</title>
+      <link>http://localhost:1313/glossary/turning/</link>
+      <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
+      <guid>http://localhost:1313/glossary/turning/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;The Turning&lt;/strong&gt; - Refers to the worldwide phenomena of human beings changing into something not quite human. This ongoing transformation has been responsible for the utter collapse of the social infrastructure. To date, there is no real understanding for the root cause of this phenomenon, though many are working to discover a cure. See also, &lt;a href=&#34;http://localhost:1313/glossary/zombie&#34;&gt;Zombie&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>USB</title>
       <link>http://localhost:1313/glossary/usb/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
@@ -83,28 +104,28 @@
       <link>http://localhost:1313/glossary/zac/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/zac/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;ZAC&lt;/strong&gt; (Zombie Apocalypse Computer aka Zero-Infrastructure Autonomous Computer) - A resilient, off-grid computing system designed to survive and operate during catastrophic infrastructure collapse. Built with longevity, repairability, and energy independence as core principles.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;ZAC&lt;/strong&gt; (Zombie Apocalypse Computer aka Zero-Infrastructure Autonomous Computer) - A resilient, off-grid computing system designed to survive and operate during catastrophic infrastructure collapse. Built with longevity, repairability, and energy independence as core principles.&lt;/p&gt;&#xA;&lt;p&gt;ZAC runs &lt;a href=&#34;http://localhost:1313/glossary/zacos&#34;&gt;ZACOS&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>ZACLOG</title>
       <link>http://localhost:1313/glossary/zaclog/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/zaclog/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;ZACLOG&lt;/strong&gt; - The build series documenting the &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; project from concept to field-ready system. Each entry covers a specific aspect of the build: hardware assembly, software configuration, testing, and deployment. Follow along via the &lt;a href=&#34;http://localhost:1313/tags/zaclog&#34;&gt;#zaclog&lt;/a&gt; tag.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;ZACLOG&lt;/strong&gt; - The build series documenting the &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; project from concept to field-ready system. Each entry covers a specific aspect of the build: hardware assembly, software configuration, testing, and deployment.&lt;/p&gt;</description>
     </item>
     <item>
       <title>ZACLOG/000 - The Zombie Apocalypse Computer</title>
       <link>http://localhost:1313/blog/zaclog-000/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/blog/zaclog-000/</guid>
-      <description>&lt;p&gt;Or, the &lt;strong&gt;Zero-Infrastructure Autonomous Computer&lt;/strong&gt;, if you prefer.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; is a self-contained, open-source survival computer designed to function completely off-grid.&lt;/p&gt;&#xA;&lt;p&gt;Built around a &lt;a href=&#34;http://localhost:1313/glossary/raspberry-pi&#34;&gt;Raspberry Pi&lt;/a&gt; architecture, ZAC lives in a weatherproof &lt;a href=&#34;http://localhost:1313/glossary/pelican&#34;&gt;Pelican&lt;/a&gt; case. Solar and battery powered. No internet required. No cloud dependencies. No subscriptions. A standalone, civilization-in-a-box machine, constructed to outlast the &lt;a href=&#34;http://localhost:1313/glossary/zombie&#34;&gt;zombie&lt;/a&gt; apocalypse.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Or, the &lt;strong&gt;Zero-Infrastructure Autonomous Computer&lt;/strong&gt;, if you prefer.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; is a self-contained, open-source survival computer designed to function completely off-grid.&lt;/p&gt;&#xA;&lt;p&gt;Built around a &lt;a href=&#34;http://localhost:1313/glossary/raspberry-pi&#34;&gt;Raspberry Pi&lt;/a&gt; architecture, ZAC lives in a weatherproof &lt;a href=&#34;http://localhost:1313/glossary/pelican&#34;&gt;Pelican&lt;/a&gt; case. Solar and battery powered. No internet required. No cloud dependencies. No subscriptions. A standalone, civilization-in-a-box machine, constructed to outlast the zombie apocalypse.&lt;/p&gt;</description>
     </item>
     <item>
       <title>ZACOS</title>
       <link>http://localhost:1313/glossary/zacos/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/zacos/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;ZACOS&lt;/strong&gt; (ZAC Operating System) - The open-source application that powers &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt;. Provides a unified interface for offline AI, mesh communication, radio monitoring, navigation, and environmental sensing. Built to run entirely without internet connectivity.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;ZACOS&lt;/strong&gt; (ZAC Operating System) - The open-source application that powers &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt;. Provides a unified interface for offline AI, mesh communication, radio monitoring, navigation, and environmental sensing. Built to run entirely without internet connectivity.&lt;/p&gt;&#xA;&lt;p&gt;Note from the Old Man: The setup process currently requires access to &lt;a href=&#34;http://localhost:1313/glossary/lazarus-internet-archive&#34;&gt;LIA&lt;/a&gt; for certain software packages, though we are working on a way to distribute these files through local mesh networks. If you are unable to access LIA mirrors, or equivalent internet archives, please email &lt;a href=&#34;mailto:oldman@zombieapocalypse.tech&#34;&gt;oldman@zombieapocalypse.tech&lt;/a&gt; and we will find a way to get the necessary files to you.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
