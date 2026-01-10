@@ -5,6 +5,8 @@ draft = false
 tags = ['announcement', 'zacbuild', 'zaclog']
 +++
 
+Or, the Zero-Infrastructure Autonomous Computer, if you got a stick up your ass.
+
 [ZAC](/glossary/zac) is a self-contained, open-source survival computer designed to function completely off-grid.
 
 Built around a [Raspberry Pi](/glossary/raspberry-pi) architecture, ZAC lives in a weatherproof [Pelican](/glossary/pelican) case. Solar and battery powered. No internet required. No cloud dependencies. No subscriptions. A standalone, civilization-in-a-box machine, constructed to outlast the zombie apocalypse.
