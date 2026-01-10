@@ -6,14 +6,13 @@
     <description>Recent content in Announcement on Zombie Apocalypse Tech</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 31 Dec 2025 01:46:11 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/announcement/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ZACLOG/000 - The Zombie Apocalypse Computer</title>
       <link>http://localhost:1313/blog/zaclog-000/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/blog/zaclog-000/</guid>
-      <description>&lt;p&gt;Or, the &lt;strong&gt;Zero-Infrastructure Autonomous Computer&lt;/strong&gt;, if you prefer.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; is a self-contained, open-source survival computer designed to function completely off-grid.&lt;/p&gt;&#xA;&lt;p&gt;Built around a &lt;a href=&#34;http://localhost:1313/glossary/raspberry-pi&#34;&gt;Raspberry Pi&lt;/a&gt; architecture, ZAC lives in a weatherproof &lt;a href=&#34;http://localhost:1313/glossary/pelican&#34;&gt;Pelican&lt;/a&gt; case. Solar and battery powered. No internet required. No cloud dependencies. No subscriptions. A standalone, civilization-in-a-box machine, constructed to outlast the zombie apocalypse.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Or, the &lt;strong&gt;Zero-Infrastructure Autonomous Computer&lt;/strong&gt;, if you prefer.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; is a self-contained, open-source survival computer designed to function completely off-grid.&lt;/p&gt;&#xA;&lt;p&gt;Built around a &lt;a href=&#34;http://localhost:1313/glossary/raspberry-pi&#34;&gt;Raspberry Pi&lt;/a&gt; architecture, ZAC lives in a weatherproof &lt;a href=&#34;http://localhost:1313/glossary/pelican&#34;&gt;Pelican&lt;/a&gt; case. Solar and battery powered. No internet required. No cloud dependencies. No subscriptions. A standalone, civilization-in-a-box machine, constructed to outlast the &lt;a href=&#34;http://localhost:1313/glossary/zombie&#34;&gt;zombie&lt;/a&gt; apocalypse.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

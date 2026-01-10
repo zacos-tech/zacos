@@ -2,14 +2,14 @@
 title = 'ZACLOG/000 - The Zombie Apocalypse Computer'
 date = 2025-12-31T01:46:11+00:00
 draft = false
-tags = ['announcement', 'zacbuild', 'zaclog']
+tags = ['announcement', 'zaclog']
 +++
 
 Or, the **Zero-Infrastructure Autonomous Computer**, if you prefer.
 
 [ZAC](/glossary/zac) is a self-contained, open-source survival computer designed to function completely off-grid.
 
-Built around a [Raspberry Pi](/glossary/raspberry-pi) architecture, ZAC lives in a weatherproof [Pelican](/glossary/pelican) case. Solar and battery powered. No internet required. No cloud dependencies. No subscriptions. A standalone, civilization-in-a-box machine, constructed to outlast the zombie apocalypse.
+Built around a [Raspberry Pi](/glossary/raspberry-pi) architecture, ZAC lives in a weatherproof [Pelican](/glossary/pelican) case. Solar and battery powered. No internet required. No cloud dependencies. No subscriptions. A standalone, civilization-in-a-box machine, constructed to outlast the [zombie](/glossary/zombie) apocalypse.
 
 [ZACOS](/glossary/zacos) is the application that brings ZAC to life, providing a unified interface for all system capabilities:
 

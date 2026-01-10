@@ -1,7 +1,7 @@
 +++
 title = "ZACLOG/001 - My Philosophy"
 date = 2026-01-03T22:58:00+00:00
-draft = false
+draft = true
 tags = ['old-man-yells-at-cloud', 'zaclog', 'zombie']
 +++
 
