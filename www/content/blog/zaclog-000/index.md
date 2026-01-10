@@ -2,7 +2,7 @@
 title = 'ZACLOG/000 - The Zombie Apocalypse Computer'
 date = 2025-12-31T01:46:11+00:00
 draft = false
-tags = ['announcement', 'zacbuild', 'zaclog']
+tags = ['announcement', 'vaya-con-di0s', 'zacbuild', 'zaclog']
 +++
 
 [ZAC](/glossary/zac) is a self-contained, open-source survival computer designed to function completely off-grid.
@@ -26,6 +26,4 @@ That's what we're building. This thing is gonna be cool as hell, you'll see.
 
 Until then...
 
-<a href="https://www.youtube.com/watch?v=mlqtx1UVpaM">
-  <img src="vaya-con-dios-keanu-reeves.gif" alt="Vaya Con Dios" style="width: 200px;">
-</a>
+<img src="vaya-con-dios-keanu-reeves.gif" alt="Vaya Con Dios" style="width: 200px;">
