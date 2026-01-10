@@ -5,4 +5,4 @@ draft = false
 tags = ['old-man-yells-at-cloud', 'my-philosophy', 'zaclog', 'zombie']
 +++
 
-[Zombies](/glossary/zombie) aren’t only the walking dead. They are any force destructive to our world. Eaters of the planet, the body, the mind, and the spirit. That's why I still build things, and build with the utmost care. Especially now. The things I create remind me of the world we lost, but also the world as it could be again. Just because everything has gone to hell in a handbasket, doesn’t mean we have to give in to the bastards. Don’t ever give in, kid.
+[Zombies](/glossary/zombie) aren’t merely the walking dead. They are any force destructive to our world. Eaters of the planet, the body, the mind, and the spirit. That's why I still build things, and build them with the utmost care. Especially now. The things I create remind me of the world we lost, but also the world as it could be again. Just because everything has gone to hell in a handbasket, doesn’t mean we have to give in to the bastards. Don’t ever give in, kid.
