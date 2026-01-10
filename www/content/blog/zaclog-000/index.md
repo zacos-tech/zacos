@@ -22,6 +22,6 @@ Built around a [Raspberry Pi](/glossary/raspberry-pi) architecture, ZAC lives in
 
 Fully open source. Fully offline. Field-serviceable, with a printed manual including schematics and repair guides. 
 
-That's what we're gonna build...
+That's what we're gonna build. Until then...
 
 <img src="vaya-con-dios-keanu-reeves.gif" alt="Vaya Con Dios" style="width: 200px;">
