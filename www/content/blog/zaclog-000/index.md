@@ -2,7 +2,7 @@
 title = 'ZACLOG/000 - The Zombie Apocalypse Computer'
 date = 2025-12-31T01:46:11+00:00
 draft = false
-tags = ['announcement', 'vaya-con-di0s', 'zacbuild', 'zaclog']
+tags = ['announcement', 'zacbuild', 'zaclog']
 +++
 
 [ZAC](/glossary/zac) is a self-contained, open-source survival computer designed to function completely off-grid.
@@ -22,8 +22,6 @@ Built around a [Raspberry Pi](/glossary/raspberry-pi) architecture, ZAC lives in
 
 Fully open source. Fully offline. Field-serviceable, with a printed manual including schematics and repair guides. 
 
-That's what we're building. This thing is gonna be cool as hell, you'll see.
+That's what we're building. Until then...
 
-Until then...
-
-<img src="vaya-con-dios-keanu-reeves.gif" alt="Vaya Con Dios" style="width: 200px;">
+Vaya con Dios
