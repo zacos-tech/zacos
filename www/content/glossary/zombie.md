@@ -4,7 +4,7 @@ title = "Zombie"
 date = 2026-01-03T22:58:00+00:00
 +++
 
-**Zombie**  - A human who has become something not quite human. Their behavior is erratic to a harmful degree. They retain memories and knowledge from their former lives, but nothing connects. Nothing means anything. A typical zombie follows the same routine as they did in life, but it's all jumbled and wrong. Despite what popular media suggests, a zombie is not always hungry, but when it is, it has no concept of food. It will eat anything in sight. That includes you.
+**Zombie**  - A human who has become something not quite human. Their behavior is erratic to a harmful degree. They retain memories and knowledge from their former lives, but nothing connects. Nothing means anything. A typical zombie follows the same routine as they did in life, but it's all jumbled and wrong. Despite what popular media suggests, a zombie is not always hungry, but when it is, it has no understanding of food. It will eat anything and everything in sight. That includes you.
 
 See also, [The Turning](/glossary/turning).
 
