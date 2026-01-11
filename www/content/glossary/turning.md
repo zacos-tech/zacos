@@ -3,4 +3,6 @@ title = "The Turning"
 date = 2025-12-31T01:46:11+00:00
 +++
 
-**The Turning** - Refers to the worldwide phenomena of human beings changing into something not quite human. This ongoing transformation has been responsible for an utter collapse of the social order. To date, there is little understanding for the root cause of this phenomenon, though many research outposts have been diligiently working to discover a cure. See also, [Zombie](/glossary/zombie).
+**The Turning** - The worldwide phenomenon of human beings changing into something not quite human. This ongoing transformation has collapsed the social order. The root cause remains unknown, though research outposts continue working toward a cure.
+
+See also, [Zombie](/glossary/zombie).
