@@ -1,0 +1,30 @@
+{
+  "name": "zac",
+  "version": "1.0.0",
+  "description": "ZAC (Zombie Apocalypse Computer aka Zero-Infrastructure Autonomous Computer) is an open-source, offline-first survival computer. The software runs on a Raspberry Pi 5 with mesh radio, SDR, GPS, sensors, and a local LLM.",
+  "homepage": "https://github.com/ZombieApocalypseTech/zac#readme",
+  "bugs": {
+    "url": "https://github.com/ZombieApocalypseTech/zac/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZombieApocalypseTech/zac.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start",
+    "install:all": "cd server && npm install && cd ../client && npm install"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
