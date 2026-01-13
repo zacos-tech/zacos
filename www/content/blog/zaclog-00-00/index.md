@@ -27,6 +27,9 @@ Built around a [Raspberry Pi](/glossary/raspberry-pi) architecture, ZAC lives in
 
 Fully open source. Fully offline. Field-serviceable, with a printable manual, including schematics and repair guides.
 
-That's what we're gonna build. Sounds badass, right? When you're ready to begin, [let's fucking go](/blog/zaclog-01-01).
+That's what we're gonna build. Badass, right? 
 
-<img src="vaya-con-dios-keanu-reeves.gif" alt="Vaya con Dios" style="width: 200px;">
+When you're ready to start,
+
+<a href="/blog/zaclog-01-01"><img src="vaya-con-dios-keanu-reeves.gif" alt="Vaya con Dios" style="width: 200px;"></a>
+
