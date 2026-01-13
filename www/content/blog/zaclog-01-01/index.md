@@ -9,7 +9,7 @@ overview = 'Phase 01 begins. Setting up the Raspberry Pi with remote access and 
 
 ## Contents
 
-* [Introduction](#introduction)
+* [Overview](#overview)
 * [Goals](#goals)
 * [Inventory](#inventory)
 * [Walkthrough](#walkthrough)
@@ -18,11 +18,11 @@ overview = 'Phase 01 begins. Setting up the Raspberry Pi with remote access and 
 
 ---
 
-## Introduction
+## Overview
 
 Welcome to Phase 01 of the [ZAC](/glossary/zac) project. This is where it all begins, so if you can't tell a hawk from a handsaw, don't worry, you're in the right place.
 
-Phase 01 is building a functional POC (proof of concept) of ZAC. This serves two purposes. First is to give us a bird's-eye view of ZAC as an integrated system of hardware/software. Second is to make sure we're not crazy to even attempt building something this complex, because the jury's still out on that one.
+Phase 01 is building a functional POC (proof of concept) of ZAC. This serves two purposes. First is to give us a bird's-eye view of ZAC as an integrated system of hardware/software. Second is to make sure we're not crazy to even attempt building such a thing, because the jury's still out on that one.
 
 Phase 01 is a two-parter. This is Part One. A nice and easy introduction.
 
@@ -42,8 +42,6 @@ By the end of Part One, we're gonna have:
 - Remote access via VNC and SSH
 - A Node.js API serving "Hello, ZAC!"
 - A React app displaying it in the browser
-
-Simple.
 
 ---
 
