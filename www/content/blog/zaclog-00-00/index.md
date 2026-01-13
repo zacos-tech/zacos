@@ -8,7 +8,9 @@ overview = "ZAC is a self-contained survival computer designed to function compl
 
 Or, the *Zero-Infrastructure Autonomous Computer*, if you prefer.
 
-[ZAC](/glossary/zac) is a self-contained, open-source survival computer designed to function completely off-grid.
+I just call it [ZAC](/glossary/zac).
+
+A self-contained, open-source survival computer designed to function completely off-grid.
 
 Built around a [Raspberry Pi](/glossary/raspberry-pi) architecture, ZAC lives in a weatherproof [Pelican](/glossary/pelican) case. Solar and battery powered. No internet required. No cloud dependencies. No subscriptions. A standalone, civilization-in-a-box machine, constructed to outlast the zombie apocalypse.
 
@@ -23,8 +25,8 @@ Built around a [Raspberry Pi](/glossary/raspberry-pi) architecture, ZAC lives in
 - Activate emergency beacon mode when things go sideways
 - Expand functionality via [USB](/glossary/usb) sensor modules
 
-Fully open source. Fully offline. Field-serviceable, with a printed manual including schematics and repair guides.
+Fully open source. Fully offline. Field-serviceable, with a printable manual, including schematics and repair guides.
 
-That's what we're gonna build. When you're ready to start, click [here](/blog/zaclog-01-01).
+That's what we're gonna build. Sounds badass, right? When you're ready to begin, [let's fucking go](/blog/zaclog-01-01).
 
 <img src="vaya-con-dios-keanu-reeves.gif" alt="Vaya con Dios" style="width: 200px;">
