@@ -3,10 +3,10 @@ title = 'ZACLOG/00.00 - The Zombie Apocalypse Computer'
 date = 2025-12-31T01:46:11+00:00
 draft = false
 tags = ['announcement', 'zaclog']
-overview = 'Annoucing ZAC, a self-contained survival computer designed to function completely off-grid.'
+overview = "ZAC is a self-contained survival computer designed to function completely off-grid. We're building it."
 +++
 
-Or, the **Zero-Infrastructure Autonomous Computer**, if you prefer.
+Or, the *Zero-Infrastructure Autonomous Computer*, if you prefer.
 
 [ZAC](/glossary/zac) is a self-contained, open-source survival computer designed to function completely off-grid.
 
@@ -27,6 +27,6 @@ Fully open source. Fully offline. Field-serviceable, with a printed manual inclu
 
 That's what we're gonna build.
 
-Until next time...
+When you're ready to begin, click [here](/blog/zaclog-01-01).
 
-<img src="vaya-con-dios-keanu-reeves.gif" alt="Vaya con Dios" style="width: 25%;">
+<img src="vaya-con-dios-keanu-reeves.gif" alt="Vaya con Dios" style="width: 200px;">

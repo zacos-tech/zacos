@@ -3,7 +3,7 @@ title = "ZACLOG/01.01 - Hello, ZAC! (Part One)"
 date = 2026-01-12T22:58:00+00:00
 draft = false
 tags = ['zaclog', 'phase-01', 'raspberry-pi', 'nodejs', 'react', 'express', 'vite', 'hardware', 'software']
-overview = 'Phase 01 begins. Setting up the Raspberry Pi with remote access and a basic Node.js/React stack.'
+overview = 'Phase 01 begins. Setting up the Raspberry Pi with remote access and a basic web stack.'
 +++
 
 
@@ -20,11 +20,11 @@ overview = 'Phase 01 begins. Setting up the Raspberry Pi with remote access and 
 
 ## Introduction
 
-Welcome to Phase 01 of the [ZAC](/glossary/zac) project. This is where it all begins, so if you don't know what the hell's going on, don't worry, you're in the right place.
+Welcome to Phase 01 of the [ZAC](/glossary/zac) project. This is where it begins, so if you can't tell a hawk from a handsaw, don't worry, you're in the right place.
 
-Phase 01 is all about building a functional POC (proof of concept) of ZAC. This serves two purposes. First is to give us an overview of ZAC as a working system of hardware and software, reading input and displaying output. Second is to make sure we're not crazy, because the jury's still out on that one.
+Phase 01 is building a functional POC (proof of concept) of ZAC. This serves two purposes. First is to give us a bird's-eye view of ZAC as a system of hardware/software, working together. Second is to make sure we're not crazy to even attempt building something this complex, because the jury's still out on that one.
 
-This is a two-parter. When you're ready, continue to the [Goals](#goals) section to begin Part One — Hello, ZAC!
+There are two parts in Phase 01. When you're ready, continue on to the [Goals](#goals) for Part One, *Hello, ZAC!*
 
 Let's do this, amigo.
 
@@ -36,14 +36,14 @@ Journal: [The Micro Center at Crescent Hills](/journal/the-micro-center-at-cresc
 
 ## Goals
 
-By the end, we'll have:
+By the end, we're gonna have:
 
 - A running Raspberry Pi
 - Remote access via VNC and SSH
 - A Node.js API serving "Hello, ZAC!"
 - A React app displaying it in the browser
 
-Easy-peasy.
+Simple.
 
 ---
 
