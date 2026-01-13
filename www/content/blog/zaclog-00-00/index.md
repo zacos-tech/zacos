@@ -14,7 +14,7 @@ A self-contained, open-source survival computer designed to function completely 
 
 Built around a [Raspberry Pi](/glossary/raspberry-pi) architecture, ZAC lives in a weatherproof [Pelican](/glossary/pelican) case. Solar and battery powered. No internet required. No cloud dependencies. No subscriptions. A standalone, civilization-in-a-box machine, constructed to outlast the zombie apocalypse.
 
-[ZACOS](/glossary/zacos) is the application that brings ZAC to life, providing a unified interface for all system capabilities:
+[ZACOS](/glossary/zacos) is the mother brain of ZAC, providing a unified interface for all system capabilities:
 
 - Ask questions and get answers from a [Local LLM](/glossary/llm)—no internet required
 - Access offline [Wikipedia](/glossary/wikipedia), survival references, and medical guides
