@@ -24,7 +24,7 @@ Welcome to Phase 01 of the [ZAC](/glossary/zac) project. This is where it begins
 
 Phase 01 is building a functional POC (proof of concept) of ZAC. This serves two purposes. First is to give us a bird's-eye view of ZAC as a system of hardware/software, working together. Second is to make sure we're not crazy to even attempt building something this complex, because the jury's still out on that one.
 
-There are two parts in Phase 01. When you're ready, continue on to the [Goals](#goals) for Part One, *Hello, ZAC!*
+Phase 01 is a two-parter. When you're ready, continue to [Goals](#goals) to kick off Part One — *Hello, ZAC!*
 
 Let's do this, amigo.
 
@@ -36,7 +36,7 @@ Journal: [The Micro Center at Crescent Hills](/journal/the-micro-center-at-cresc
 
 ## Goals
 
-By the end, we're gonna have:
+By the end of Part One, we're gonna have:
 
 - A running Raspberry Pi
 - Remote access via VNC and SSH
