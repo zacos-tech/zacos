@@ -30,7 +30,7 @@ Let's do this, amigo.
 
 ---
 
-Journal: [The Micro Center at Crescent Hills](/journal/micro-center-at-crescent-hills)
+Journal: [The Micro Center at Crescent Hills](/journal/the-micro-center-at-crescent-hills)
 
 ---
 
