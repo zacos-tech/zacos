@@ -22,9 +22,9 @@ overview = 'Phase 01 begins. Setting up the Raspberry Pi with remote access and 
 
 Welcome to Phase 01 of the [ZAC](/glossary/zac) project. This is where it begins, so if you can't tell a hawk from a handsaw, don't worry, you're in the right place.
 
-Phase 01 is building a functional POC (proof of concept) of ZAC. This serves two purposes. First is to give us a bird's-eye view of ZAC as a system of hardware/software, working together. Second is to make sure we're not crazy to even attempt building something this complex, because the jury's still out on that one.
+Phase 01 is building a functional POC (proof of concept) of ZAC. This serves two purposes. First is to give us a bird's-eye view of ZAC as an integrated system of hardware/software. Second is to make sure we're not crazy to even attempt building something this complex, because the jury's still out on that one.
 
-Phase 01 is a two-parter. When you're ready, continue to [Goals](#goals) to kick off Part One — *Hello, ZAC!*
+Phase 01 is a two-parter. A nice and easy introduction. When you think you're ready, continue to [Goals](#goals) to kick off Part One — *Hello, ZAC!*
 
 Let's do this, amigo.
 
