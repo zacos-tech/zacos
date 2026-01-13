@@ -25,8 +25,6 @@ Built around a [Raspberry Pi](/glossary/raspberry-pi) architecture, ZAC lives in
 - Activate emergency beacon mode when things go sideways
 - Expand functionality via [USB](/glossary/usb) sensor modules
 
-Fully open source. Fully offline. Field-serviceable, with a printable manual, including schematics and repair guides. That's what we're gonna build together.
-
-Whether you're ready or not,
+Fully open source. Fully offline. Field-serviceable, with a printable manual, including schematics and repair guides. That's what we're gonna build together, so ready or not,
 
 <a href="/blog/zaclog-01-01"><img src="vaya-con-dios-keanu-reeves.gif" alt="Vaya con Dios" style="width: 200px;"></a>
