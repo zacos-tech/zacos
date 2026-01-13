@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Software on Zombie Apocalypse Tech</title>
+    <link>http://localhost:1313/tags/software/</link>
+    <description>Recent content in Software on Zombie Apocalypse Tech</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 12 Jan 2026 22:58:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/software/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ZACLOG/01.01 - Hello, ZAC! (Part One)</title>
+      <link>http://localhost:1313/blog/zaclog-01-01/</link>
+      <pubDate>Mon, 12 Jan 2026 22:58:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/zaclog-01-01/</guid>
+      <description>&lt;h2 id=&#34;contents&#34;&gt;Contents&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#goals&#34;&gt;Goals&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#inventory&#34;&gt;Inventory&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#walkthrough&#34;&gt;Walkthrough&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;Summary&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#next&#34;&gt;Next&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Welcome to Phase 01 of the &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; project. This is where it all begins, so if you don&amp;rsquo;t know what the hell&amp;rsquo;s going on, don&amp;rsquo;t worry, you&amp;rsquo;re in the right place.&lt;/p&gt;&#xA;&lt;p&gt;Phase 01 is all about building a functional POC (proof of concept) of ZAC. This serves two purposes. First is to give us an overview of ZAC as a working system of hardware and software, reading input and displaying output. Second is to make sure we&amp;rsquo;re not crazy, because the jury&amp;rsquo;s still out on that one.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

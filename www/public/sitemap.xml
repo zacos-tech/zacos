@@ -2,6 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/blog/</loc>
+    <lastmod>2026-01-12T22:58:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/express/</loc>
+    <lastmod>2026-01-12T22:58:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/hardware/</loc>
+    <lastmod>2026-01-12T22:58:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/nodejs/</loc>
+    <lastmod>2026-01-12T22:58:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/phase-01/</loc>
+    <lastmod>2026-01-12T22:58:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/raspberry-pi/</loc>
+    <lastmod>2026-01-12T22:58:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/react/</loc>
+    <lastmod>2026-01-12T22:58:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/software/</loc>
+    <lastmod>2026-01-12T22:58:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-01-12T22:58:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/vite/</loc>
+    <lastmod>2026-01-12T22:58:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/zaclog/</loc>
+    <lastmod>2026-01-12T22:58:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/zaclog-01-01/</loc>
+    <lastmod>2026-01-12T22:58:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/glossary/</loc>
     <lastmod>2026-01-03T22:58:00+00:00</lastmod>
   </url><url>
@@ -9,9 +45,6 @@
     <lastmod>2026-01-03T22:58:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/announcement/</loc>
-    <lastmod>2025-12-31T01:46:11+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/</loc>
     <lastmod>2025-12-31T01:46:11+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/glossary/gps/</loc>
@@ -38,9 +71,6 @@
     <loc>http://localhost:1313/glossary/sdr/</loc>
     <lastmod>2025-12-31T01:46:11+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-12-31T01:46:11+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/glossary/lazarus-collective/</loc>
     <lastmod>2025-12-31T01:46:11+00:00</lastmod>
   </url><url>
@@ -56,13 +86,10 @@
     <loc>http://localhost:1313/glossary/zac/</loc>
     <lastmod>2025-12-31T01:46:11+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/zaclog/</loc>
-    <lastmod>2025-12-31T01:46:11+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/glossary/zaclog/</loc>
     <lastmod>2025-12-31T01:46:11+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/zaclog-000/</loc>
+    <loc>http://localhost:1313/blog/zaclog-00-00/</loc>
     <lastmod>2025-12-31T01:46:11+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/glossary/zacos/</loc>
@@ -72,5 +99,9 @@
     <lastmod>2025-12-30T18:11:26-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
+  </url><url>
+    <loc>http://localhost:1313/journal/</loc>
+  </url><url>
+    <loc>http://localhost:1313/journal/micro-center-at-crescent-hills/</loc>
   </url>
 </urlset>

@@ -6,14 +6,28 @@
     <description>Recent content on Zombie Apocalypse Tech</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 03 Jan 2026 22:58:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 12 Jan 2026 22:58:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Micro Center at Crescent Hills</title>
+      <link>http://localhost:1313/journal/micro-center-at-crescent-hills/</link>
+      <pubDate>Mon, 12 Jan 2026 22:58:00 +0000</pubDate>
+      <guid>http://localhost:1313/journal/micro-center-at-crescent-hills/</guid>
+      <description>&lt;p&gt;Jan 12&lt;/p&gt;&#xA;&lt;p&gt;If you&amp;rsquo;re near a city, Micro Centers are good places to find computer parts. I&amp;rsquo;ve been eyeing this place on RR patrols for a while. Tucked back in the Crescent Hills shopping center off Highway 57. Looks to have been totally forgotten. No signs of vandalism or destruction. Full inventory. Here I was able to acquire a Raspberry Pi 5, monitor, keyboard, and a 32GB microSD card. All brand new.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ZACLOG/01.01 - Hello, ZAC! (Part One)</title>
+      <link>http://localhost:1313/blog/zaclog-01-01/</link>
+      <pubDate>Mon, 12 Jan 2026 22:58:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/zaclog-01-01/</guid>
+      <description>&lt;h2 id=&#34;contents&#34;&gt;Contents&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#goals&#34;&gt;Goals&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#inventory&#34;&gt;Inventory&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#walkthrough&#34;&gt;Walkthrough&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;Summary&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#next&#34;&gt;Next&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Welcome to Phase 01 of the &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; project. This is where it all begins, so if you don&amp;rsquo;t know what the hell&amp;rsquo;s going on, don&amp;rsquo;t worry, you&amp;rsquo;re in the right place.&lt;/p&gt;&#xA;&lt;p&gt;Phase 01 is all about building a functional POC (proof of concept) of ZAC. This serves two purposes. First is to give us an overview of ZAC as a working system of hardware and software, reading input and displaying output. Second is to make sure we&amp;rsquo;re not crazy, because the jury&amp;rsquo;s still out on that one.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Zombie</title>
       <link>http://localhost:1313/glossary/zombie/</link>
       <pubDate>Sat, 03 Jan 2026 22:58:00 +0000</pubDate>
       <guid>http://localhost:1313/glossary/zombie/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Zombie&lt;/strong&gt;  - A human that has become something not quite human. Their behavior is erratic and unpredictable, to a harmful degree. They retain memories and knowledge from their former lives, but nothing seems connected, nor has any meaning to them. A typical zombie follows the same routine as they did in life, but it&amp;rsquo;s all jumbled and wrong. Despite what popular media has shown, a zombie is not constantly hungry, but when they do need to feed, they have no understanding of nourishment. Consequently, they&amp;rsquo;ll eat anything and everything in sight. That includes you. See also, &lt;a href=&#34;http://localhost:1313/glossary/turning&#34;&gt;The Turning&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;Zombie&lt;/strong&gt;  - A human who has become something not quite human. The zombie&amp;rsquo;s behavior is erratic to a harmful degree. It retains memories and knowledge from its former life, but no connections. Nothing means anything. It follows the same routine as it did in life, but everything is jumbled and wrong somehow. Despite what popular media has suggested, a zombie is not always hungry, but when so, it seems to have no comprehension of food. It will consume anything and everything in sight. That includes other zombies. And you. Because of this, a zombie more often than not succumbs to starvation eventually, though increasingly ravenous to the end.&lt;/p&gt;</description>
     </item>
     <item>
       <title>GPS</title>
@@ -55,7 +69,7 @@
       <link>http://localhost:1313/glossary/pelican/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/pelican/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Pelican&lt;/strong&gt; - A brand of rugged, watertight, crushproof protective cases originally designed for sensitive equipment. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; lives inside a Pelican case to ensure survival in harsh conditions—dust, water, impact, and the general chaos of civilization&amp;rsquo;s end.&lt;/p&gt;&#xA;&lt;img src=&#34;pelican_1450.png&#34; alt=&#34;Pelican Case&#34; style=&#34;width: 200px;&#34;&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;Pelican&lt;/strong&gt; - A brand of rugged, watertight, crushproof protective cases originally designed for sensitive equipment. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; lives inside a Pelican case to ensure survival in harsh conditions—dust, water, and impact.&lt;/p&gt;&#xA;&lt;img src=&#34;pelican_1450.png&#34; alt=&#34;Pelican Case&#34; style=&#34;width: 200px;&#34;&gt;</description>
     </item>
     <item>
       <title>Raspberry Pi</title>
@@ -83,7 +97,7 @@
       <link>http://localhost:1313/glossary/turning/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/turning/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;The Turning&lt;/strong&gt; - Refers to the worldwide phenomena of human beings changing into something not quite human. This ongoing transformation has been responsible for an utter collapse of the social order. To date, there is little understanding for the root cause of this phenomenon, though many research outposts have been diligiently working to discover a cure. See also, &lt;a href=&#34;http://localhost:1313/glossary/zombie&#34;&gt;Zombie&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;The Turning&lt;/strong&gt; - The worldwide phenomenon of human beings changing into something not quite human. This ongoing transformation has collapsed the social order. The root cause remains unknown, though research outposts continue working toward a cure.&lt;/p&gt;&#xA;&lt;p&gt;See also, &lt;a href=&#34;http://localhost:1313/glossary/zombie&#34;&gt;Zombie&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>USB</title>
@@ -97,7 +111,7 @@
       <link>http://localhost:1313/glossary/wikipedia/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/wikipedia/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Wikipedia&lt;/strong&gt; - A free, collaborative online encyclopedia. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; carries a compressed offline copy of Wikipedia, providing access to millions of articles without internet connectivity—because knowledge shouldn&amp;rsquo;t require a working cell tower.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;Wikipedia&lt;/strong&gt; - A free, collaborative online encyclopedia. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; carries a compressed offline copy of Wikipedia, providing access to millions of articles without internet connectivity.&lt;/p&gt;</description>
     </item>
     <item>
       <title>ZAC</title>
@@ -114,10 +128,10 @@
       <description>&lt;p&gt;&lt;strong&gt;ZACLOG&lt;/strong&gt; - The build series documenting the &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; project from concept to field-ready system. Each entry covers a specific aspect of the build: hardware assembly, software configuration, testing, and deployment.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>ZACLOG/000 - The Zombie Apocalypse Computer</title>
-      <link>http://localhost:1313/blog/zaclog-000/</link>
+      <title>ZACLOG/00.00 - The Zombie Apocalypse Computer</title>
+      <link>http://localhost:1313/blog/zaclog-00-00/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
-      <guid>http://localhost:1313/blog/zaclog-000/</guid>
+      <guid>http://localhost:1313/blog/zaclog-00-00/</guid>
       <description>&lt;p&gt;Or, the &lt;strong&gt;Zero-Infrastructure Autonomous Computer&lt;/strong&gt;, if you prefer.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; is a self-contained, open-source survival computer designed to function completely off-grid.&lt;/p&gt;&#xA;&lt;p&gt;Built around a &lt;a href=&#34;http://localhost:1313/glossary/raspberry-pi&#34;&gt;Raspberry Pi&lt;/a&gt; architecture, ZAC lives in a weatherproof &lt;a href=&#34;http://localhost:1313/glossary/pelican&#34;&gt;Pelican&lt;/a&gt; case. Solar and battery powered. No internet required. No cloud dependencies. No subscriptions. A standalone, civilization-in-a-box machine, constructed to outlast the zombie apocalypse.&lt;/p&gt;</description>
     </item>
     <item>
@@ -125,7 +139,7 @@
       <link>http://localhost:1313/glossary/zacos/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/zacos/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;ZACOS&lt;/strong&gt; (ZAC Operating System) - The open-source application that powers &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt;. Provides a unified interface for offline AI, mesh communication, radio monitoring, navigation, and environmental sensing. Built to run entirely without internet connectivity.&lt;/p&gt;&#xA;&lt;p&gt;Note from the Old Man: The setup process currently requires access to &lt;a href=&#34;http://localhost:1313/glossary/lazarus-internet-archive&#34;&gt;LIA&lt;/a&gt; for certain software packages, though we are working on a way to distribute these files through local mesh networks. If you are unable to access LIA mirrors, or equivalent internet archives, please email &lt;a href=&#34;mailto:oldman@zombieapocalypse.tech&#34;&gt;oldman@zombieapocalypse.tech&lt;/a&gt; and we will find a way to get the necessary files to you.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;ZACOS&lt;/strong&gt; (ZAC Operating System) - The open-source application that powers &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt;. Provides a unified interface for offline AI, mesh communication, radio monitoring, navigation, and environmental sensing. Built to run entirely without internet connectivity.&lt;/p&gt;&#xA;&lt;p&gt;Old Man: The ZACOS setup process currently requires access to &lt;a href=&#34;http://localhost:1313/glossary/lazarus-internet-archive&#34;&gt;LIA&lt;/a&gt; to download software packages. Knowing this is not ideal for fully-autonomous bootstrapping, we have been working on ways to distribute these files with ZACOS itself. In the meantime, if you are unable to access LIA mirrors, email &lt;a href=&#34;mailto:oldman@zombieapocalypse.tech&#34;&gt;oldman@zombieapocalypse.tech&lt;/a&gt; and we&amp;rsquo;ll find a way to get the setup packages to you.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
