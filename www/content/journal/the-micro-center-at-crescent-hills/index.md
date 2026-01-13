@@ -10,3 +10,11 @@ If you're near a city, Micro Centers are good places to find computer parts. I'v
 ...
 
 <img src="microcenter.jpg" alt="Micro Center" style="width: 100%;">
+
+...
+
+They reach for me, because they don’t know I’m not really here. 
+
+I’m alone at the bottom of the Bermuda Triangle. 
+
+Dreaming of you.

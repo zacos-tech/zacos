@@ -13,119 +13,119 @@
       <link>http://localhost:1313/journal/the-micro-center-at-crescent-hills/</link>
       <pubDate>Mon, 12 Jan 2026 22:58:00 +0000</pubDate>
       <guid>http://localhost:1313/journal/the-micro-center-at-crescent-hills/</guid>
-      <description>&lt;p&gt;Jan 12&lt;/p&gt;&#xA;&lt;p&gt;If you&amp;rsquo;re near a city, Micro Centers are good places to find computer parts. I&amp;rsquo;ve been eyeing this place on RR patrols for a while. Tucked back in the Crescent Hills shopping center off Highway 57, seventeen miles due west of Heron Outpost, RU-20. Looks to have been totally forgotten. No signs of vandalism or destruction. Full inventory. Here I was able to acquire a Raspberry Pi 5, monitor, keyboard, and a 32GB microSD card. All brand new.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Jan 12&lt;/p&gt;&#xA;&lt;p&gt;If you&amp;rsquo;re near a city, Micro Centers are good places to find computer parts. I&amp;rsquo;ve been eyeing this place on RR patrols for a while. Tucked back in the Crescent Hills shopping center off Highway 57, seventeen miles due west of Heron Outpost, RU-20. Looks to have been totally forgotten. No signs of vandalism or destruction. Full inventory. Here I was able to acquire a Raspberry Pi 5, monitor, keyboard, and a 32GB microSD card. Brand new in box.&lt;/p&gt;</description>
     </item>
     <item>
       <title>ZACLOG/01.01 - Hello, ZAC! (Part One)</title>
       <link>http://localhost:1313/blog/zaclog-01-01/</link>
       <pubDate>Mon, 12 Jan 2026 22:58:00 +0000</pubDate>
       <guid>http://localhost:1313/blog/zaclog-01-01/</guid>
-      <description>&lt;h2 id=&#34;contents&#34;&gt;Contents&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#goals&#34;&gt;Goals&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#inventory&#34;&gt;Inventory&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#walkthrough&#34;&gt;Walkthrough&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;Summary&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#next&#34;&gt;Next&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Welcome to Phase 01 of the &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; project. This is where it all begins, so if you can&amp;rsquo;t tell a hawk from a handsaw, don&amp;rsquo;t worry, you&amp;rsquo;re in the right place.&lt;/p&gt;&#xA;&lt;p&gt;Phase 01 is building a functional POC (proof of concept) of ZAC. This serves two purposes. First is to give us a bird&amp;rsquo;s-eye view of ZAC as an integrated system of hardware/software. Second is to make sure we&amp;rsquo;re not crazy to even attempt building something this complex, because the jury&amp;rsquo;s still out on that one.&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;contents&#34;&gt;Contents&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;Overview&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#goals&#34;&gt;Goals&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#inventory&#34;&gt;Inventory&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#walkthrough&#34;&gt;Walkthrough&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;Summary&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#next&#34;&gt;Next&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;Welcome to Phase 01 of the &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; project. This is where it all begins, so if you can&amp;rsquo;t tell a hawk from a handsaw, don&amp;rsquo;t worry, you&amp;rsquo;re in the right place.&lt;/p&gt;&#xA;&lt;p&gt;Phase 01 is building a functional POC (proof of concept) of ZAC. This serves two purposes. First is to give us a bird&amp;rsquo;s-eye view of ZAC as an integrated system of hardware/software. Second is to make sure we&amp;rsquo;re not crazy to even attempt building such a thing, because the jury&amp;rsquo;s still out on that one.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Zombie</title>
       <link>http://localhost:1313/glossary/zombie/</link>
       <pubDate>Sat, 03 Jan 2026 22:58:00 +0000</pubDate>
       <guid>http://localhost:1313/glossary/zombie/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Zombie&lt;/strong&gt;  - A human who has become something not quite human. The zombie&amp;rsquo;s behavior is erratic to a harmful degree. It retains memories and knowledge from its former life, but no connections. Nothing means anything. It follows the same routine as it did in life, but everything is jumbled and wrong somehow. Despite what popular media has suggested, a zombie is not always hungry, but when so, it seems to have no comprehension of food. It will consume anything and everything in sight. That includes other zombies. And you. Because of this, a zombie more often than not succumbs to starvation eventually, though increasingly ravenous to the end.&lt;/p&gt;</description>
+      <description>&lt;p&gt;A human who has become something not quite human.&lt;/p&gt;&#xA;&lt;p&gt;The zombie&amp;rsquo;s behavior is erratic to a harmful degree, retaining knowledge and memories from before the turn, but disconnected. It generally follows the same routine as it did in life, but its actions have been described as &amp;ldquo;jumbled and wrong somehow&amp;rdquo;. Absurd.&lt;/p&gt;</description>
     </item>
     <item>
       <title>GPS</title>
       <link>http://localhost:1313/glossary/gps/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/gps/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;GPS&lt;/strong&gt; (Global Positioning System) - A satellite-based navigation system that provides location and time information anywhere on Earth. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; uses GPS combined with offline maps to enable navigation without internet connectivity.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Global Positioning System&lt;/p&gt;&#xA;&lt;p&gt;A satellite-based navigation system that provides location and time information anywhere on Earth. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; uses GPS combined with offline maps to enable navigation without internet connectivity.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Lazarus Internet Archive</title>
       <link>http://localhost:1313/glossary/lazarus-internet-archive/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/lazarus-internet-archive/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Lazarus Internet Archive (LIA)&lt;/strong&gt; — A distributed network preserving a snapshot of the internet from before &lt;a href=&#34;http://localhost:1313/glossary/turning&#34;&gt;The Turning&lt;/a&gt;. Maintained by &lt;a href=&#34;http://localhost:1313/glossary/lazarus-collective&#34;&gt;The Lazarus Collective&lt;/a&gt;, LIA is available through both official and unofficial mirrors throughout the world. Once connected, you can access canonical urls through your browser of choice.&lt;/p&gt;</description>
+      <description>&lt;p&gt;LIA&lt;/p&gt;&#xA;&lt;p&gt;A distributed network preserving a snapshot of the internet from before &lt;a href=&#34;http://localhost:1313/glossary/turning&#34;&gt;The Turning&lt;/a&gt;. Maintained by &lt;a href=&#34;http://localhost:1313/glossary/lazarus-collective&#34;&gt;The Lazarus Collective&lt;/a&gt;, LIA is available through both official and unofficial mirrors throughout the world. Once connected, you can access canonical urls through your browser of choice.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Local LLM</title>
       <link>http://localhost:1313/glossary/llm/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/llm/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Local LLM&lt;/strong&gt; (Large Language Model) - An AI system that runs entirely on-device, requiring no internet connection. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; uses a local LLM to answer questions, assist with survival scenarios, and provide information from its offline knowledge base.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Large Language Model&lt;/p&gt;&#xA;&lt;p&gt;An AI system that runs entirely on-device, requiring no internet connection. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; uses a local LLM to answer questions, assist with survival scenarios, and provide information from its offline knowledge base.&lt;/p&gt;</description>
     </item>
     <item>
       <title>LoRa</title>
       <link>http://localhost:1313/glossary/lora/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/lora/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;LoRa&lt;/strong&gt; (Long Range) - A low-power, long-range radio communication protocol ideal for off-grid messaging. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; uses LoRa via &lt;a href=&#34;http://localhost:1313/glossary/meshtastic&#34;&gt;Meshtastic&lt;/a&gt;-compatible devices to form mesh networks that can relay messages across kilometers without cellular or internet infrastructure.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Long Range&lt;/p&gt;&#xA;&lt;p&gt;A low-power, long-range radio communication protocol ideal for off-grid messaging. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; uses LoRa via &lt;a href=&#34;http://localhost:1313/glossary/meshtastic&#34;&gt;Meshtastic&lt;/a&gt;-compatible devices to form mesh networks that can relay messages across kilometers without cellular or internet infrastructure.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Meshtastic</title>
       <link>http://localhost:1313/glossary/meshtastic/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/meshtastic/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Meshtastic&lt;/strong&gt; - An open-source mesh networking project that runs on &lt;a href=&#34;http://localhost:1313/glossary/lora&#34;&gt;LoRa&lt;/a&gt; radio hardware. Enables off-grid text messaging, GPS location sharing, and telemetry between devices over distances of several kilometers. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; communicates with any Meshtastic-compatible device, creating decentralized communication networks that don&amp;rsquo;t rely on cell towers or internet.&lt;/p&gt;</description>
+      <description>&lt;p&gt;An open-source mesh networking project that runs on &lt;a href=&#34;http://localhost:1313/glossary/lora&#34;&gt;LoRa&lt;/a&gt; radio hardware. Enables off-grid text messaging, GPS location sharing, and telemetry between devices over distances of several kilometers. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; communicates with any Meshtastic-compatible device, creating decentralized communication networks that don&amp;rsquo;t rely on cell towers or internet.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Pelican</title>
       <link>http://localhost:1313/glossary/pelican/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/pelican/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Pelican&lt;/strong&gt; - A brand of rugged, watertight, crushproof protective cases originally designed for sensitive equipment. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; lives inside a Pelican case to ensure survival in harsh conditions—dust, water, and impact.&lt;/p&gt;&#xA;&lt;img src=&#34;pelican_1450.png&#34; alt=&#34;Pelican Case&#34; style=&#34;width: 200px;&#34;&gt;</description>
+      <description>&lt;p&gt;A brand of rugged, watertight, crushproof protective cases originally designed for sensitive equipment. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; lives inside a Pelican case to ensure survival in harsh conditions—dust, water, and impact.&lt;/p&gt;&#xA;&lt;img src=&#34;pelican_1450.png&#34; alt=&#34;Pelican Case&#34; style=&#34;width: 200px;&#34;&gt;</description>
     </item>
     <item>
       <title>Raspberry Pi</title>
       <link>http://localhost:1313/glossary/raspberry-pi/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/raspberry-pi/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Raspberry Pi&lt;/strong&gt; - A low-cost, credit card-sized single-board computer developed by the Raspberry Pi Foundation. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; is built around the Raspberry Pi 5, chosen for its balance of performance, power efficiency, and widespread availability of replacement parts.&lt;/p&gt;&#xA;&lt;img src=&#34;raspberry_pi.png&#34; alt=&#34;Raspberry Pi&#34; style=&#34;width: 200px;&#34;&gt;</description>
+      <description>&lt;p&gt;A low-cost, credit card-sized single-board computer developed by the Raspberry Pi Foundation. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; is built around the Raspberry Pi 5, chosen for its balance of performance, power efficiency, and widespread availability of replacement parts.&lt;/p&gt;&#xA;&lt;img src=&#34;raspberry_pi.png&#34; alt=&#34;Raspberry Pi&#34; style=&#34;width: 200px;&#34;&gt;</description>
     </item>
     <item>
       <title>SDR</title>
       <link>http://localhost:1313/glossary/sdr/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/sdr/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;SDR&lt;/strong&gt; (Software Defined Radio) - A radio receiver where signal processing is handled by software rather than dedicated hardware. Allows &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; to monitor aircraft transponders (ADS-B), decode weather satellite imagery, and receive emergency broadcasts using a single USB dongle.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Software Defined Radio&lt;/p&gt;&#xA;&lt;p&gt;A radio receiver where signal processing is handled by software rather than dedicated hardware. Allows &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; to monitor aircraft transponders (ADS-B), decode weather satellite imagery, and receive emergency broadcasts using a single USB dongle.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The Lazarus Collective</title>
       <link>http://localhost:1313/glossary/lazarus-collective/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/lazarus-collective/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;The Lazarus Collective&lt;/strong&gt; — An organization based in Columbus, Ohio, whose goal is to restore useful tools and technology from the old world. They maintain LIA, the &lt;a href=&#34;http://localhost:1313/glossary/lazarus-internet-archive&#34;&gt;Lazarus Internet Archive&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;An organization based in Asheville, North Carolina, whose goal is to restore useful tools and technology from the old world. They maintain LIA, the &lt;a href=&#34;http://localhost:1313/glossary/lazarus-internet-archive&#34;&gt;Lazarus Internet Archive&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The Turning</title>
       <link>http://localhost:1313/glossary/turning/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/turning/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;The Turning&lt;/strong&gt; - The worldwide phenomenon of human beings changing into something not quite human. This ongoing transformation has collapsed the social order. The root cause remains unknown, though research outposts continue working toward a cure.&lt;/p&gt;&#xA;&lt;p&gt;See also, &lt;a href=&#34;http://localhost:1313/glossary/zombie&#34;&gt;Zombie&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The worldwide phenomenon of human beings changing into something not quite human. This ongoing transformation has collapsed the social order. The root cause remains unknown, though scientists throughout the world continue to seek a cure.&lt;/p&gt;&#xA;&lt;p&gt;See also, &lt;a href=&#34;http://localhost:1313/glossary/zombie&#34;&gt;Zombie&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>USB</title>
       <link>http://localhost:1313/glossary/usb/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/usb/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;USB&lt;/strong&gt; (Universal Serial Bus) - A standard connector for peripherals and data transfer. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; uses USB ports to connect sensor modules, &lt;a href=&#34;http://localhost:1313/glossary/sdr&#34;&gt;SDR&lt;/a&gt; dongles, storage devices, and other expansion hardware—keeping the system modular and field-serviceable.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Universal Serial Bus&lt;/p&gt;&#xA;&lt;p&gt;A standard connector for peripherals and data transfer. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; uses USB ports to connect sensor modules, &lt;a href=&#34;http://localhost:1313/glossary/sdr&#34;&gt;SDR&lt;/a&gt; dongles, storage devices, and other expansion hardware—keeping the system modular and field-serviceable.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Wikipedia</title>
       <link>http://localhost:1313/glossary/wikipedia/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/wikipedia/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Wikipedia&lt;/strong&gt; - A free, collaborative online encyclopedia. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; carries a compressed offline copy of Wikipedia, providing access to millions of articles without internet connectivity.&lt;/p&gt;</description>
+      <description>&lt;p&gt;A free, collaborative online encyclopedia. &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; carries a compressed offline copy of Wikipedia, providing access to millions of articles without internet connectivity.&lt;/p&gt;</description>
     </item>
     <item>
       <title>ZAC</title>
       <link>http://localhost:1313/glossary/zac/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/zac/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;ZAC&lt;/strong&gt; (Zombie Apocalypse Computer aka Zero-Infrastructure Autonomous Computer) - A resilient, off-grid computing system designed to survive and operate during catastrophic infrastructure collapse. Built with longevity, repairability, and energy independence as core principles.&lt;/p&gt;&#xA;&lt;p&gt;ZAC runs &lt;a href=&#34;http://localhost:1313/glossary/zacos&#34;&gt;ZACOS&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Zombie Apocalypse Computer aka Zero-Infrastructure Autonomous Computer&lt;/p&gt;&#xA;&lt;p&gt;A resilient, off-grid computing system designed to survive and operate during catastrophic infrastructure collapse. Built with longevity, repairability, and energy independence as core principles.&lt;/p&gt;&#xA;&lt;p&gt;ZAC runs &lt;a href=&#34;http://localhost:1313/glossary/zacos&#34;&gt;ZACOS&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>ZACLOG</title>
       <link>http://localhost:1313/glossary/zaclog/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/zaclog/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;ZACLOG&lt;/strong&gt; - The build series documenting the &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; project from concept to field-ready system. Each entry covers a specific aspect of the build: hardware assembly, software configuration, testing, and deployment.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The build series documenting the &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt; project from concept to field-ready system. Each entry covers a specific aspect of the build: hardware assembly, software configuration, testing, and deployment.&lt;/p&gt;</description>
     </item>
     <item>
       <title>ZACLOG/00.00 - The Zombie Apocalypse Computer</title>
@@ -139,7 +139,7 @@
       <link>http://localhost:1313/glossary/zacos/</link>
       <pubDate>Wed, 31 Dec 2025 01:46:11 +0000</pubDate>
       <guid>http://localhost:1313/glossary/zacos/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;ZACOS&lt;/strong&gt; (ZAC Operating System) - The open-source application that powers &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt;. Provides a unified interface for offline AI, mesh communication, radio monitoring, navigation, and environmental sensing. Built to run entirely without internet connectivity.&lt;/p&gt;&#xA;&lt;p&gt;Old Man: The ZACOS setup process currently requires access to &lt;a href=&#34;http://localhost:1313/glossary/lazarus-internet-archive&#34;&gt;LIA&lt;/a&gt; to download software packages. Knowing this is not ideal for fully-autonomous bootstrapping, we have been working on ways to distribute these files with ZACOS itself. In the meantime, if you are unable to access LIA mirrors, email &lt;a href=&#34;mailto:oldman@zombieapocalypse.tech&#34;&gt;oldman@zombieapocalypse.tech&lt;/a&gt; and we&amp;rsquo;ll find a way to get the setup packages to you.&lt;/p&gt;</description>
+      <description>&lt;p&gt;ZAC Operating System&lt;/p&gt;&#xA;&lt;p&gt;The open-source application that powers &lt;a href=&#34;http://localhost:1313/glossary/zac&#34;&gt;ZAC&lt;/a&gt;. Mother brain. Provides a unified interface for offline AI, mesh communication, radio monitoring, navigation, and environmental sensing. Built to run entirely without internet connectivity.&lt;/p&gt;&#xA;&lt;p&gt;Old Man: The ZACOS setup process currently requires access to &lt;a href=&#34;http://localhost:1313/glossary/lazarus-internet-archive&#34;&gt;LIA&lt;/a&gt; in order to download software packages. Realizing this is not ideal for fully-autonomous bootstrapping, I have been working on ways to distribute these files with ZACOS itself. In the meantime, if you are unable to access LIA mirrors, email &lt;a href=&#34;mailto:oldman@zombieapocalypse.tech&#34;&gt;oldman@zombieapocalypse.tech&lt;/a&gt; and I&amp;rsquo;ll find a way to get the files to you.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
