@@ -2,4 +2,4 @@
 
 Website for Zombie Apocalypse Tech. Implemented with [Hugo](https://gohugo.io/).
 
-Vaya con Dios.
+Vaya con Dios...
