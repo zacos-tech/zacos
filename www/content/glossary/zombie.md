@@ -5,7 +5,7 @@ date = 2026-01-03T22:58:00+00:00
 
 A human who has become something not quite human.
 
-The zombie's behavior is erratic to a harmful degree, retaining memories and knowledge from its former life, but disconnected. It generally follows the same routines as it did in life, but everything is jumbled and wrong somehow. Absurd.
+The zombie's behavior is erratic to a harmful degree, retaining the memories and knowledge from its former life, but disconnected. It generally follows the same routines as it did when alive, but everything is jumbled and wrong somehow. Absurd.
 
 A zombie is always starving, because it seems unable to distinguish food from non-food. Consequently, it will consume anything and everything in sight. That includes other zombies. Other humans. You.
 
