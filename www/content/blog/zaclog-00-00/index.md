@@ -29,4 +29,6 @@ That's what we're gonna build.
 
 When you're ready to begin, click [here](/blog/zaclog-01-01).
 
+And don't forget...
+
 <img src="vaya-con-dios-keanu-reeves.gif" alt="Vaya con Dios" style="width: 200px;">
