@@ -20,13 +20,15 @@ overview = 'Phase 01 begins. Setting up the Raspberry Pi with remote access and 
 
 ## Overview
 
-Welcome to Phase 01 of the [ZAC](/glossary/zac) project. This is where it all begins, so if you can't tell a hawk from a handsaw, don't worry, you're in the right place.
+Welcome to Phase 01 of the [ZAC](/glossary/zac) project. 
 
-Phase 01 is building a functional POC (proof of concept) of ZAC. This serves two purposes. First is to give us a bird's-eye view of ZAC as an integrated system of hardware/software. Second is to make sure we're not crazy to even attempt building such a thing, because the jury's still out on that one.
+This is where it starts, so if you don't know your ass from your elbow, you're in the right place.
+
+The goal of Phase 01 is to build a functional POC (proof of concept) of ZAC. This serves two purposes. First is to give us a bird's-eye view of ZAC as an integrated system of hardware and software. Second is to make sure this idea can even work. Yet to be decided, but that's what makes life interesting, don't you think?
 
 Phase 01 is a two-parter. This is Part One. A nice and easy introduction.
 
-Let's do this, amigo.
+Good luck to you, my friend.
 
 ---
 
@@ -48,25 +50,277 @@ By the end of Part One, we're gonna have:
 ## Inventory
 
 ### Equipment
-- Raspberry Pi 5
-- MicroSD card (32GB+)
-- Power supply
-- Monitor and keyboard
+- Raspberry Pi - Raspberry Pi 5 8GB (SC1112)
+- MicroSD card - SanDisk 32GB Ultra microSDHC 120MB/s A1 Class 10 UHS-I (SDSQUA4-032G-GN6MN)
+- Power supply - RasTech Pi 5 Power Supply (XS-GaN-27W)
+- Monitor - ELECROW 10.1 Inch Portable Monitor (602914362078)
+- Keyboard - Logitech K400 Plus Wireless Keyboard (920-007119)
 
 ### Tools
-- Another computer on same network
-- MicroSD card reader
+- Another computer on same network - Macbook Pro 16-inch, Nov 2023
+- MicroSD card reader - Macbook Pro 16-inch, Nov 2023 (and SD card adapter for MicroSD)
 
 ---
 
 ## Walkthrough
 
-1. Download Raspberry Pi OS and flash microSD card
-2. Power up the Raspberry Pi with external monitor and keyboard
-3. Install Raspberry Pi OS onto the Raspberry Pi
-4. Configure Raspberry Pi for VNC and SSH access
+### 1. Flash the microSD Card
 
-...
+This step happens on your dev computer (not the Raspberry Pi).
+
+You need a microSD card of at least 16GB. Raspberry Pi Imager is an official tool that writes (or "flashes") the Raspberry Pi OS onto your microSD card so the Pi can boot from it.
+
+Download and install [Raspberry Pi Imager](https://www.raspberrypi.com/software/) on your dev computer.
+
+Insert your microSD card into your dev computer (using an SD card adapter if needed), then run the Imager tool.
+
+<img src="rp-imager.png" alt="Raspberry Pi Imager" style="width: 100%;">
+
+1. For the device, select your Raspberry Pi model (Raspberry Pi 5)
+2. For the operating system, select **Raspberry Pi OS (64-bit)** — this is the Desktop version, which we need for VNC later. The Imager will download it for you. (You can also download it manually from the [Raspberry Pi OS page](https://www.raspberrypi.com/software/operating-systems/) if you prefer, but letting the Imager handle it is easier.)
+3. For storage, select your microSD card
+4. Click **Next**. You'll see a popup asking "Would you like to apply OS customisation settings?" — click **No** for now (we'll configure everything after boot). Then click **Yes** to confirm and flash it
+
+---
+
+### 2. Boot the Raspberry Pi
+
+Now we move to the Raspberry Pi itself. Hook everything up and power it on:
+
+<img src="rp-hardware.png" alt="Raspberry Pi 5" style="width: 100%;">
+
+1. Connect the monitor to the RPI5 — HDMI end into the monitor, miniHDMI end into the RPI5
+2. Connect the keyboard to the RPI5 via USB
+3. Insert the freshly flashed microSD card into the RPI5
+4. Plug the power supply into the RPI5 and into a wall outlet to power it on
+5. The Pi will boot into the Raspberry Pi OS setup wizard — follow the prompts to select your language, timezone, create a user account (remember your username and password!), and connect to your Wi-Fi network
+
+<img src="rp-os-setup.png" alt="Raspberry Pi OS setup wizard" style="width: 100%;">
+
+---
+
+### 3. Find Your Raspberry Pi's IP Address
+
+Before we can connect to the Pi remotely, we need to know its IP address on the local network. You'll need this for both SSH and VNC in the next steps.
+
+Open a terminal on your Raspberry Pi. You can find it in the taskbar at the top of the screen (look for the black rectangle icon), or right-click the desktop and select "Open Terminal". Then run:
+
+```bash
+nmcli device show
+```
+
+You'll see a lot of output — don't worry, you only need one line from it. Here's an example of what it looks like:
+
+```text
+GENERAL.DEVICE:                         wlan0
+GENERAL.TYPE:                           wifi
+GENERAL.HWADDR:                         D0:3B:FF:41:AB:8A
+GENERAL.MTU:                            1500
+GENERAL.STATE:                          100 (connected)
+GENERAL.CONNECTION:                     exampleNetworkName
+GENERAL.CON-PATH:                       /org/freedesktop/NetworkManager/ActiveConnection/2
+IP4.ADDRESS[1]:                         192.168.1.42/24
+IP4.GATEWAY:                            192.168.1.1
+IP4.ROUTE[1]:                           dst = 192.168.1.0/24, nh = 0.0.0.0, mt = 600
+IP4.ROUTE[2]:                           dst = 0.0.0.0/0, nh = 192.168.1.1, mt = 600
+IP4.DNS[1]:                             192.168.1.3
+IP6.ADDRESS[1]:                         ab80::11ab:b1fc:bb7e:a8a5/64
+IP6.GATEWAY:                            --
+IP6.ROUTE[1]:                           dst = ab80::/64, nh = ::, mt = 1024
+
+GENERAL.DEVICE:                         lo
+GENERAL.TYPE:                           loopback
+GENERAL.HWADDR:                         00:00:00:00:00:00
+GENERAL.MTU:                            65536
+GENERAL.STATE:                          100 (connected (externally))
+GENERAL.CONNECTION:                     lo
+GENERAL.CON-PATH:                       /org/freedesktop/NetworkManager/ActiveConnection/1
+IP4.ADDRESS[1]:                         127.0.0.1/8
+IP4.GATEWAY:                            --
+IP6.ADDRESS[1]:                         ::1/128
+IP6.GATEWAY:                            --
+
+GENERAL.DEVICE:                         p2p-dev-wlan0
+GENERAL.TYPE:                           wifi-p2p
+GENERAL.HWADDR:                         (unknown)
+GENERAL.MTU:                            0
+GENERAL.STATE:                          30 (disconnected)
+GENERAL.CONNECTION:                     --
+GENERAL.CON-PATH:                       --
+
+GENERAL.DEVICE:                         eth0
+GENERAL.TYPE:                           ethernet
+GENERAL.HWADDR:                         D0:3B:FF:41:AB:89
+GENERAL.MTU:                            1500
+GENERAL.STATE:                          20 (unavailable)
+GENERAL.CONNECTION:                     --
+GENERAL.CON-PATH:                       --
+WIRED-PROPERTIES.CARRIER:               off
+IP4.GATEWAY:                            --
+IP6.GATEWAY:                            --
+```
+
+This command outputs information about the various network interfaces on your Raspberry Pi. Check the `GENERAL.TYPE` row to see which kind of network interface each block describes. For example, "ethernet" is the Ethernet port on your device, and "wifi" refers to the Wi-Fi chip built into some devices. You'll look at different blocks of output to find your IP address depending on how your device connects to the internet:
+
+* If your device connects via Wi-Fi, check the "wifi" block
+* If your device connects via the Ethernet port, check the "ethernet" block
+
+Once you've identified the correct block, look for the field named `IP4.ADDRESS[1]` for an IPv4 address or `IP6.ADDRESS[1]` for an IPv6 address. Ignore the trailing slash and number (e.g. `/24`) in those fields.
+
+In the example above, the Raspberry Pi uses Wi-Fi. The block where `GENERAL.TYPE` reads "wifi" shows `IP4.ADDRESS[1]: 192.168.1.42/24`, so the IP address is `192.168.1.42`.
+
+---
+
+### 4. Enable SSH
+
+SSH (Secure Shell) lets you open a terminal session on the Raspberry Pi from your dev computer over the network — no monitor or keyboard needed.
+
+The easiest way to enable it is from the Raspberry Pi desktop:
+
+<img src="rp-control-centre.png" alt="Raspberry Pi Control Centre — Interfaces tab" style="width: 100%;">
+
+1. From the Preferences menu, launch Control Centre.
+2. Navigate to the Interfaces tab.
+3. Toggle the radio button next to SSH into the active position.
+4. Click OK to save your configuration changes.
+
+#### Other ways to enable SSH
+
+**From Imager Tool (during Step 1, before booting the Pi):**
+
+1. In the Customisation > Remote Access tab, toggle the Enable SSH switch to the active position.
+2. Select **Use password authentication** to log in using the same username and password you use while physically using your Raspberry Pi.
+3. OR, Select **Use public key authentication** to configure an SSH key for login with SSH key-based authentication.
+
+**From Raspberry Pi OS Terminal:**
+
+<img src="rp-raspi-config.png" alt="raspi-config Interface Options" style="width: 100%;">
+
+1. Open a terminal on the Raspberry Pi and enter `sudo raspi-config`.
+2. Select Interface Options.
+3. Navigate to and select SSH.
+4. Choose Yes.
+5. Select Ok.
+6. Choose Finish.
+
+**Manually:**
+
+Create an empty file named `ssh` in the boot partition. Open a terminal on the Raspberry Pi and run:
+
+```bash
+sudo touch /boot/firmware/ssh
+```
+
+Reboot the machine:
+
+```bash
+sudo reboot
+```
+
+---
+
+### 5. Enable VNC
+
+VNC (Virtual Network Computing) lets you see and control the Raspberry Pi's full graphical desktop from your dev computer — like remote desktop. This is useful when you need more than just a terminal.
+
+The easiest way to enable it is from the same Control Centre you used in Step 4:
+
+<img src="rp-control-centre.png" alt="Raspberry Pi Control Centre — Interfaces tab" style="width: 100%;">
+
+1. From the Preferences menu, launch Control Centre.
+2. Navigate to the Interfaces tab.
+3. Toggle the radio button next to VNC into the active position.
+4. Click OK to save your configuration changes.
+
+#### Other ways to enable VNC
+
+**From Raspberry Pi OS Terminal:**
+
+1. Open a terminal on the Raspberry Pi and run: `sudo raspi-config`
+2. Navigate to Interface Options. Press Enter to select.
+3. Select VNC. Press Enter to select.
+4. Under "Would you like the VNC Server to be enabled?", highlight \<Yes\> and press Enter.
+5. Press Enter to return to the menu. Press Esc to exit raspi-config.
+
+---
+
+### 6. Connect to the Raspberry Pi Remotely
+
+Now that SSH and VNC are enabled, we can ditch the monitor and keyboard and control the Pi entirely from the dev computer. This is how we'll be working with the Pi from here on out.
+
+Everything in this step happens on your dev computer. You'll need to open a terminal:
+
+* **macOS:** Open Terminal (search for "Terminal" in Spotlight, or find it in Applications > Utilities)
+* **Windows:** Open PowerShell (search for "PowerShell" in the Start menu)
+* **Linux:** Open your terminal emulator (usually Ctrl+Alt+T, or find it in your application menu)
+
+#### Connect via SSH
+
+In your dev computer's terminal, run the following command. Replace `<username>` with the user account you created during OS setup, and `<ip address>` with the IP address from Step 3:
+
+```bash
+ssh <username>@<ip address>
+```
+
+For example:
+
+```bash
+ssh zac@192.168.1.42
+```
+
+The first time you connect, you'll see a message asking you to confirm the host's authenticity — type `yes` and press Enter. Then enter your password when prompted. **Note:** your password won't show on screen as you type — no dots, no asterisks, nothing. That's normal. Just type it and press Enter.
+
+You should now have a terminal session running on the Raspberry Pi. You can run commands as if you were sitting in front of it. Type `exit` to disconnect.
+
+#### Connect via VNC
+
+Download and install [RealVNC Viewer](https://www.realvnc.com/en/connect/download/viewer/) for your platform:
+
+* **macOS:** Download the `.dmg`, open it, and drag VNC Viewer into your Applications folder. Launch it from Applications or Spotlight.
+* **Windows:** Download the `.exe` installer and run it. Launch VNC Viewer from the Start menu.
+* **Linux:** Download the `.deb` or `.rpm` package and install it with your package manager (e.g. `sudo dpkg -i VNC-Viewer-*.deb` on Debian/Ubuntu or `sudo rpm -i VNC-Viewer-*.rpm` on Fedora/RHEL). Launch it from your application menu or by running `vncviewer` in a terminal.
+
+Once installed:
+
+<img src="macos-vnc-viewer.png" alt="RealVNC Viewer on macOS" style="width: 100%;">
+
+1. Open VNC Viewer on your dev computer
+2. Enter the IP address from Step 3 (e.g. `192.168.1.42`) and hit Connect
+3. Enter the username and password you created during OS setup
+4. You should see the Raspberry Pi's full desktop in a window on your dev computer
+
+You now have both a terminal (SSH) and a graphical desktop (VNC) connection to the Pi, all over the network. The monitor and keyboard can be disconnected from the RPI5 — you won't need them anymore.
+
+---
+
+### Troubleshooting
+
+**The Pi won't boot / no display:**
+
+* Make sure the microSD card is fully inserted — it should click into place.
+* Try re-flashing the microSD card. A bad flash is the most common cause.
+* Double-check the monitor cable — miniHDMI end goes into the Pi, HDMI end into the monitor. The RPI5 has two miniHDMI ports; try the one closest to the USB-C power port.
+* Make sure the power supply provides enough power. The RPI5 needs at least 5V/5A (25W). An underpowered supply can cause boot failures or random crashes.
+
+**SSH says "Connection refused":**
+
+* SSH isn't enabled yet. Go back to Step 4 and enable it.
+* Double-check the IP address — it may have changed. Re-run `nmcli device show` on the Pi to confirm.
+
+**SSH says "No route to host" or "Connection timed out":**
+
+* Your dev computer and the Pi aren't on the same network. Make sure both are connected to the same Wi-Fi network.
+* The IP address may be wrong. Re-run `nmcli device show` on the Pi.
+
+**VNC shows a black screen or won't connect:**
+
+* Make sure VNC is enabled on the Pi (Step 5).
+* If you see a black screen, the Pi may be set to a resolution your VNC client can't handle. Connect via SSH and run `sudo raspi-config`, then go to Display Options > VNC Resolution and pick a standard resolution like 1280x720.
+* Make sure both devices are on the same network.
+
+**"Permission denied" when using SSH or VNC:**
+
+* Double-check your username and password — these are the credentials you created during the Raspberry Pi OS setup wizard in Step 2.
 
 ---
 
