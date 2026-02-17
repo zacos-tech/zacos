@@ -22,13 +22,13 @@ overview = 'Phase 01 begins. Setting up the Raspberry Pi with remote access and 
 
 Welcome to Phase 01 of the [ZAC](/glossary/zac) project. 
 
-This is where it starts, so if you don't know your ass from your elbow, you're in the right place.
+This is where it all begins, so if you don't know your ass from your elbow, don't worry, you're in the right place.
 
-The goal of Phase 01 is to build a functional POC (proof of concept) of ZAC. This serves two purposes. First is to give us a bird's-eye view of ZAC as an integrated system of hardware and software. Second is to make sure this idea can even work. Yet to be decided, but that's what makes life interesting, don't you think?
+The goal of Phase 01 is to build a proof of concept (POC) — a small, working version of ZAC that shows us how all the hardware and software pieces fit together. It also lets us sanity-check the whole idea, because the jury's still out on that one.
 
 Phase 01 is a two-parter. This is Part One. A nice and easy introduction.
 
-Good luck to you, my friend.
+Good luck, amigo.
 
 ---
 
@@ -93,7 +93,9 @@ Now we move to the Raspberry Pi itself. Hook everything up and power it on:
 2. Connect the keyboard to the RPI5 via USB
 3. Insert the freshly flashed microSD card into the RPI5
 4. Plug the power supply into the RPI5 and into a wall outlet to power it on
-5. The Pi will boot into the Raspberry Pi OS setup wizard — follow the prompts to select your language, timezone, create a user account (remember your username and password!), and connect to your Wi-Fi network
+5. The Pi will boot into the Raspberry Pi OS setup wizard — follow the prompts to select your language, timezone, create a user account, and connect to your Wi-Fi network
+
+**Important:** Write down the username and password you create during this step. You'll need them for SSH and VNC later.
 
 <img src="rp-os-setup.png" alt="Raspberry Pi OS setup wizard" style="width: 100%;">
 
@@ -109,7 +111,15 @@ Open a terminal on your Raspberry Pi. You can find it in the taskbar at the top 
 nmcli device show
 ```
 
-You'll see a lot of output — don't worry, you only need one line from it. Here's an example of what it looks like:
+This command lists every network interface on your Pi. You'll see a lot of output — don't worry, you only need one piece of information from it: the `IP4.ADDRESS[1]` field from the block that matches your network connection.
+
+Here's how to find it:
+
+1. The output is split into blocks, one per network interface. Each block has a `GENERAL.TYPE` row that tells you what kind of interface it is — `wifi`, `ethernet`, `loopback`, etc.
+2. Find the block that matches how your Pi connects to the internet — `wifi` if you're on Wi-Fi, or `ethernet` if you're using a cable.
+3. In that block, look for the `IP4.ADDRESS[1]` field — that's your IP address. Ignore the trailing slash and number (e.g. the `/24` part).
+
+Here's an example. This Pi is on Wi-Fi, so we look at the block where `GENERAL.TYPE` is `wifi` and find `IP4.ADDRESS[1]: 192.168.1.42/24` — making the IP address `192.168.1.42`:
 
 ```text
 GENERAL.DEVICE:                         wlan0
@@ -160,15 +170,6 @@ IP4.GATEWAY:                            --
 IP6.GATEWAY:                            --
 ```
 
-This command outputs information about the various network interfaces on your Raspberry Pi. Check the `GENERAL.TYPE` row to see which kind of network interface each block describes. For example, "ethernet" is the Ethernet port on your device, and "wifi" refers to the Wi-Fi chip built into some devices. You'll look at different blocks of output to find your IP address depending on how your device connects to the internet:
-
-* If your device connects via Wi-Fi, check the "wifi" block
-* If your device connects via the Ethernet port, check the "ethernet" block
-
-Once you've identified the correct block, look for the field named `IP4.ADDRESS[1]` for an IPv4 address or `IP6.ADDRESS[1]` for an IPv6 address. Ignore the trailing slash and number (e.g. `/24`) in those fields.
-
-In the example above, the Raspberry Pi uses Wi-Fi. The block where `GENERAL.TYPE` reads "wifi" shows `IP4.ADDRESS[1]: 192.168.1.42/24`, so the IP address is `192.168.1.42`.
-
 ---
 
 ### 4. Enable SSH
@@ -185,6 +186,8 @@ The easiest way to enable it is from the Raspberry Pi desktop:
 4. Click OK to save your configuration changes.
 
 #### Other ways to enable SSH
+
+> If you already enabled SSH through Control Centre above, skip ahead to [Step 5](#5-enable-vnc). These alternatives are just here for reference.
 
 **From Imager Tool (during Step 1, before booting the Pi):**
 
@@ -233,6 +236,8 @@ The easiest way to enable it is from the same Control Centre you used in Step 4:
 4. Click OK to save your configuration changes.
 
 #### Other ways to enable VNC
+
+> If you already enabled VNC through Control Centre above, skip ahead to [Step 6](#6-connect-to-the-raspberry-pi-remotely). This alternative is just here for reference.
 
 **From Raspberry Pi OS Terminal:**
 
