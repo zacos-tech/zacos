@@ -74,12 +74,14 @@ Download and install [Raspberry Pi Imager](https://www.raspberrypi.com/software/
 
 Insert your microSD card into your dev computer (using an SD card adapter if needed), then run the Imager tool.
 
-<img src="rp-imager.png" alt="Raspberry Pi Imager" style="width: 100%;">
+**Tip:** If you're using an SD card adapter, make sure it's not in read-only mode — there's usually a small slider on the side that needs to be pushed towards the contacts.
 
 1. For the device, select your Raspberry Pi model (Raspberry Pi 5)
 2. For the operating system, select **Raspberry Pi OS (64-bit)** — this is the Desktop version, which we need for VNC later. The Imager will download it for you. (You can also download it manually from the [Raspberry Pi OS page](https://www.raspberrypi.com/software/operating-systems/) if you prefer, but letting the Imager handle it is easier.)
 3. For storage, select your microSD card
 4. Click **Next**. You'll see a popup asking "Would you like to apply OS customisation settings?" — click **No** for now (we'll configure everything after boot). Then click **Yes** to confirm and flash it
+
+<a href="rp-imager.png" target="_blank"><img src="rp-imager.png" alt="Raspberry Pi Imager" style="width: 100%;"></a>
 
 ---
 
@@ -87,7 +89,7 @@ Insert your microSD card into your dev computer (using an SD card adapter if nee
 
 Now we move to the Raspberry Pi itself. Hook everything up and power it on:
 
-<img src="rp-hardware.png" alt="Raspberry Pi 5" style="width: 100%;">
+<a href="rp-hardware.png" target="_blank"><img src="rp-hardware.png" alt="Raspberry Pi 5" style="width: 100%;"></a>
 
 1. Connect the monitor to the RPI5 — HDMI end into the monitor, miniHDMI end into the RPI5
 2. Connect the keyboard to the RPI5 via USB
@@ -97,7 +99,7 @@ Now we move to the Raspberry Pi itself. Hook everything up and power it on:
 
 **Important:** Write down the username and password you create during this step. You'll need them for SSH and VNC later.
 
-<img src="rp-os-setup.png" alt="Raspberry Pi OS setup wizard" style="width: 100%;">
+<a href="rp-os-setup.png" target="_blank"><img src="rp-os-setup.png" alt="Raspberry Pi OS setup wizard" style="width: 100%;"></a>
 
 ---
 
@@ -178,12 +180,12 @@ SSH (Secure Shell) lets you open a terminal session on the Raspberry Pi from you
 
 The easiest way to enable it is from the Raspberry Pi desktop:
 
-<img src="rp-control-centre.png" alt="Raspberry Pi Control Centre — Interfaces tab" style="width: 100%;">
-
-1. From the Preferences menu, launch Control Centre.
+1. Click the Raspberry Pi icon in the top left corner of the screen to open the main menu, then navigate to Preferences and launch Control Centre.
 2. Navigate to the Interfaces tab.
 3. Toggle the radio button next to SSH into the active position.
 4. Click OK to save your configuration changes.
+
+<a href="rp-control-centre.png" target="_blank"><img src="rp-control-centre.png" alt="Raspberry Pi Control Centre — Interfaces tab" style="width: 100%;"></a>
 
 #### Other ways to enable SSH
 
@@ -197,14 +199,14 @@ The easiest way to enable it is from the Raspberry Pi desktop:
 
 **From Raspberry Pi OS Terminal:**
 
-<img src="rp-raspi-config.png" alt="raspi-config Interface Options" style="width: 100%;">
-
 1. Open a terminal on the Raspberry Pi and enter `sudo raspi-config`.
 2. Select Interface Options.
 3. Navigate to and select SSH.
 4. Choose Yes.
 5. Select Ok.
 6. Choose Finish.
+
+<a href="rp-raspi-config.png" target="_blank"><img src="rp-raspi-config.png" alt="raspi-config Interface Options" style="width: 100%;"></a>
 
 **Manually:**
 
@@ -228,12 +230,12 @@ VNC (Virtual Network Computing) lets you see and control the Raspberry Pi's full
 
 The easiest way to enable it is from the same Control Centre you used in Step 4:
 
-<img src="rp-control-centre.png" alt="Raspberry Pi Control Centre — Interfaces tab" style="width: 100%;">
-
-1. From the Preferences menu, launch Control Centre.
+1. Click the Raspberry Pi icon in the top left corner of the screen to open the main menu, then navigate to Preferences and launch Control Centre.
 2. Navigate to the Interfaces tab.
 3. Toggle the radio button next to VNC into the active position.
 4. Click OK to save your configuration changes.
+
+<a href="rp-control-centre.png" target="_blank"><img src="rp-control-centre.png" alt="Raspberry Pi Control Centre — Interfaces tab" style="width: 100%;"></a>
 
 #### Other ways to enable VNC
 
@@ -252,6 +254,8 @@ The easiest way to enable it is from the same Control Centre you used in Step 4:
 ### 6. Connect to the Raspberry Pi Remotely
 
 Now that SSH and VNC are enabled, we can ditch the monitor and keyboard and control the Pi entirely from the dev computer. This is how we'll be working with the Pi from here on out.
+
+**Important:** Make sure both your dev computer and the Raspberry Pi are connected to the same Wi-Fi network. If they're on different networks, they won't be able to see each other.
 
 Everything in this step happens on your dev computer. You'll need to open a terminal:
 
@@ -287,12 +291,12 @@ Download and install [RealVNC Viewer](https://www.realvnc.com/en/connect/downloa
 
 Once installed:
 
-<img src="macos-vnc-viewer.png" alt="RealVNC Viewer on macOS" style="width: 100%;">
-
 1. Open VNC Viewer on your dev computer
 2. Enter the IP address from Step 3 (e.g. `192.168.1.42`) and hit Connect
 3. Enter the username and password you created during OS setup
 4. You should see the Raspberry Pi's full desktop in a window on your dev computer
+
+<a href="macos-vnc-viewer.png" target="_blank"><img src="macos-vnc-viewer.png" alt="RealVNC Viewer on macOS" style="width: 100%;"></a>
 
 You now have both a terminal (SSH) and a graphical desktop (VNC) connection to the Pi, all over the network. The monitor and keyboard can be disconnected from the RPI5 — you won't need them anymore.
 
@@ -363,7 +367,7 @@ Now open the Raspberry Pi's desktop via VNC (from Step 6). Open the Chromium bro
 http://localhost:5173
 ```
 
-<img src="rp-hello-zac.png" alt="Chromium browser on Raspberry Pi showing Hello from ZAC" style="width: 100%;">
+<a href="rp-hello-zac.png" target="_blank"><img src="rp-hello-zac.png" alt="Chromium browser on Raspberry Pi showing Hello from ZAC" style="width: 100%;"></a>
 
 You should see **"Hello from ZAC"** displayed in the browser. That's the React app fetching from the Express API and rendering the response.
 

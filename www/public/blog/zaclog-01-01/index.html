@@ -45,10 +45,10 @@
 <hr>
 <h2 id="overview">Overview</h2>
 <p>Welcome to Phase 01 of the <a href="/glossary/zac">ZAC</a> project.</p>
-<p>This is where it starts, so if you don&rsquo;t know your ass from your elbow, you&rsquo;re in the right place.</p>
-<p>The goal of Phase 01 is to build a functional POC (proof of concept) of ZAC. This serves two purposes. First is to give us a bird&rsquo;s-eye view of ZAC as an integrated system of hardware and software. Second is to make sure this idea can even work. Yet to be decided, but that&rsquo;s what makes life interesting, don&rsquo;t you think?</p>
+<p>This is where it all begins, so if you don&rsquo;t know your ass from your elbow, don&rsquo;t worry, you&rsquo;re in the right place.</p>
+<p>The goal of Phase 01 is to build a proof of concept (POC) — a small, working version of ZAC that shows us how all the hardware and software pieces fit together. It also lets us sanity-check the whole idea, because the jury&rsquo;s still out on that one.</p>
 <p>Phase 01 is a two-parter. This is Part One. A nice and easy introduction.</p>
-<p>Good luck to you, my friend.</p>
+<p>Good luck, amigo.</p>
 <hr>
 <p>Journal: <a href="/journal/the-micro-center-at-crescent-hills">The Micro Center at Crescent Hills</a></p>
 <hr>
@@ -82,31 +82,40 @@
 <p>You need a microSD card of at least 16GB. Raspberry Pi Imager is an official tool that writes (or &ldquo;flashes&rdquo;) the Raspberry Pi OS onto your microSD card so the Pi can boot from it.</p>
 <p>Download and install <a href="https://www.raspberrypi.com/software/">Raspberry Pi Imager</a> on your dev computer.</p>
 <p>Insert your microSD card into your dev computer (using an SD card adapter if needed), then run the Imager tool.</p>
-<img src="rp-imager.png" alt="Raspberry Pi Imager" style="width: 100%;">
+<p><strong>Tip:</strong> If you&rsquo;re using an SD card adapter, make sure it&rsquo;s not in read-only mode — there&rsquo;s usually a small slider on the side that needs to be pushed towards the contacts.</p>
 <ol>
 <li>For the device, select your Raspberry Pi model (Raspberry Pi 5)</li>
 <li>For the operating system, select <strong>Raspberry Pi OS (64-bit)</strong> — this is the Desktop version, which we need for VNC later. The Imager will download it for you. (You can also download it manually from the <a href="https://www.raspberrypi.com/software/operating-systems/">Raspberry Pi OS page</a> if you prefer, but letting the Imager handle it is easier.)</li>
 <li>For storage, select your microSD card</li>
 <li>Click <strong>Next</strong>. You&rsquo;ll see a popup asking &ldquo;Would you like to apply OS customisation settings?&rdquo; — click <strong>No</strong> for now (we&rsquo;ll configure everything after boot). Then click <strong>Yes</strong> to confirm and flash it</li>
 </ol>
+<p><a href="rp-imager.png" target="_blank"><img src="rp-imager.png" alt="Raspberry Pi Imager" style="width: 100%;"></a></p>
 <hr>
 <h3 id="2-boot-the-raspberry-pi">2. Boot the Raspberry Pi</h3>
 <p>Now we move to the Raspberry Pi itself. Hook everything up and power it on:</p>
-<img src="rp-hardware.png" alt="Raspberry Pi 5" style="width: 100%;">
+<p><a href="rp-hardware.png" target="_blank"><img src="rp-hardware.png" alt="Raspberry Pi 5" style="width: 100%;"></a></p>
 <ol>
 <li>Connect the monitor to the RPI5 — HDMI end into the monitor, miniHDMI end into the RPI5</li>
 <li>Connect the keyboard to the RPI5 via USB</li>
 <li>Insert the freshly flashed microSD card into the RPI5</li>
 <li>Plug the power supply into the RPI5 and into a wall outlet to power it on</li>
-<li>The Pi will boot into the Raspberry Pi OS setup wizard — follow the prompts to select your language, timezone, create a user account (remember your username and password!), and connect to your Wi-Fi network</li>
+<li>The Pi will boot into the Raspberry Pi OS setup wizard — follow the prompts to select your language, timezone, create a user account, and connect to your Wi-Fi network</li>
 </ol>
-<img src="rp-os-setup.png" alt="Raspberry Pi OS setup wizard" style="width: 100%;">
+<p><strong>Important:</strong> Write down the username and password you create during this step. You&rsquo;ll need them for SSH and VNC later.</p>
+<p><a href="rp-os-setup.png" target="_blank"><img src="rp-os-setup.png" alt="Raspberry Pi OS setup wizard" style="width: 100%;"></a></p>
 <hr>
 <h3 id="3-find-your-raspberry-pis-ip-address">3. Find Your Raspberry Pi&rsquo;s IP Address</h3>
 <p>Before we can connect to the Pi remotely, we need to know its IP address on the local network. You&rsquo;ll need this for both SSH and VNC in the next steps.</p>
 <p>Open a terminal on your Raspberry Pi. You can find it in the taskbar at the top of the screen (look for the black rectangle icon), or right-click the desktop and select &ldquo;Open Terminal&rdquo;. Then run:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmcli device show
-</span></span></code></pre></div><p>You&rsquo;ll see a lot of output — don&rsquo;t worry, you only need one line from it. Here&rsquo;s an example of what it looks like:</p>
+</span></span></code></pre></div><p>This command lists every network interface on your Pi. You&rsquo;ll see a lot of output — don&rsquo;t worry, you only need one piece of information from it: the <code>IP4.ADDRESS[1]</code> field from the block that matches your network connection.</p>
+<p>Here&rsquo;s how to find it:</p>
+<ol>
+<li>The output is split into blocks, one per network interface. Each block has a <code>GENERAL.TYPE</code> row that tells you what kind of interface it is — <code>wifi</code>, <code>ethernet</code>, <code>loopback</code>, etc.</li>
+<li>Find the block that matches how your Pi connects to the internet — <code>wifi</code> if you&rsquo;re on Wi-Fi, or <code>ethernet</code> if you&rsquo;re using a cable.</li>
+<li>In that block, look for the <code>IP4.ADDRESS[1]</code> field — that&rsquo;s your IP address. Ignore the trailing slash and number (e.g. the <code>/24</code> part).</li>
+</ol>
+<p>Here&rsquo;s an example. This Pi is on Wi-Fi, so we look at the block where <code>GENERAL.TYPE</code> is <code>wifi</code> and find <code>IP4.ADDRESS[1]: 192.168.1.42/24</code> — making the IP address <code>192.168.1.42</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>GENERAL.DEVICE:                         wlan0
 </span></span><span style="display:flex;"><span>GENERAL.TYPE:                           wifi
 </span></span><span style="display:flex;"><span>GENERAL.HWADDR:                         D0:3B:FF:41:AB:8A
@@ -153,25 +162,21 @@
 </span></span><span style="display:flex;"><span>WIRED-PROPERTIES.CARRIER:               off
 </span></span><span style="display:flex;"><span>IP4.GATEWAY:                            --
 </span></span><span style="display:flex;"><span>IP6.GATEWAY:                            --
-</span></span></code></pre></div><p>This command outputs information about the various network interfaces on your Raspberry Pi. Check the <code>GENERAL.TYPE</code> row to see which kind of network interface each block describes. For example, &ldquo;ethernet&rdquo; is the Ethernet port on your device, and &ldquo;wifi&rdquo; refers to the Wi-Fi chip built into some devices. You&rsquo;ll look at different blocks of output to find your IP address depending on how your device connects to the internet:</p>
-<ul>
-<li>If your device connects via Wi-Fi, check the &ldquo;wifi&rdquo; block</li>
-<li>If your device connects via the Ethernet port, check the &ldquo;ethernet&rdquo; block</li>
-</ul>
-<p>Once you&rsquo;ve identified the correct block, look for the field named <code>IP4.ADDRESS[1]</code> for an IPv4 address or <code>IP6.ADDRESS[1]</code> for an IPv6 address. Ignore the trailing slash and number (e.g. <code>/24</code>) in those fields.</p>
-<p>In the example above, the Raspberry Pi uses Wi-Fi. The block where <code>GENERAL.TYPE</code> reads &ldquo;wifi&rdquo; shows <code>IP4.ADDRESS[1]: 192.168.1.42/24</code>, so the IP address is <code>192.168.1.42</code>.</p>
-<hr>
+</span></span></code></pre></div><hr>
 <h3 id="4-enable-ssh">4. Enable SSH</h3>
 <p>SSH (Secure Shell) lets you open a terminal session on the Raspberry Pi from your dev computer over the network — no monitor or keyboard needed.</p>
 <p>The easiest way to enable it is from the Raspberry Pi desktop:</p>
-<img src="rp-control-centre.png" alt="Raspberry Pi Control Centre — Interfaces tab" style="width: 100%;">
 <ol>
-<li>From the Preferences menu, launch Control Centre.</li>
+<li>Click the Raspberry Pi icon in the top left corner of the screen to open the main menu, then navigate to Preferences and launch Control Centre.</li>
 <li>Navigate to the Interfaces tab.</li>
 <li>Toggle the radio button next to SSH into the active position.</li>
 <li>Click OK to save your configuration changes.</li>
 </ol>
+<p><a href="rp-control-centre.png" target="_blank"><img src="rp-control-centre.png" alt="Raspberry Pi Control Centre — Interfaces tab" style="width: 100%;"></a></p>
 <h4 id="other-ways-to-enable-ssh">Other ways to enable SSH</h4>
+<blockquote>
+<p>If you already enabled SSH through Control Centre above, skip ahead to <a href="#5-enable-vnc">Step 5</a>. These alternatives are just here for reference.</p>
+</blockquote>
 <p><strong>From Imager Tool (during Step 1, before booting the Pi):</strong></p>
 <ol>
 <li>In the Customisation &gt; Remote Access tab, toggle the Enable SSH switch to the active position.</li>
@@ -179,7 +184,6 @@
 <li>OR, Select <strong>Use public key authentication</strong> to configure an SSH key for login with SSH key-based authentication.</li>
 </ol>
 <p><strong>From Raspberry Pi OS Terminal:</strong></p>
-<img src="rp-raspi-config.png" alt="raspi-config Interface Options" style="width: 100%;">
 <ol>
 <li>Open a terminal on the Raspberry Pi and enter <code>sudo raspi-config</code>.</li>
 <li>Select Interface Options.</li>
@@ -188,6 +192,7 @@
 <li>Select Ok.</li>
 <li>Choose Finish.</li>
 </ol>
+<p><a href="rp-raspi-config.png" target="_blank"><img src="rp-raspi-config.png" alt="raspi-config Interface Options" style="width: 100%;"></a></p>
 <p><strong>Manually:</strong></p>
 <p>Create an empty file named <code>ssh</code> in the boot partition. Open a terminal on the Raspberry Pi and run:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo touch /boot/firmware/ssh
@@ -197,14 +202,17 @@
 <h3 id="5-enable-vnc">5. Enable VNC</h3>
 <p>VNC (Virtual Network Computing) lets you see and control the Raspberry Pi&rsquo;s full graphical desktop from your dev computer — like remote desktop. This is useful when you need more than just a terminal.</p>
 <p>The easiest way to enable it is from the same Control Centre you used in Step 4:</p>
-<img src="rp-control-centre.png" alt="Raspberry Pi Control Centre — Interfaces tab" style="width: 100%;">
 <ol>
-<li>From the Preferences menu, launch Control Centre.</li>
+<li>Click the Raspberry Pi icon in the top left corner of the screen to open the main menu, then navigate to Preferences and launch Control Centre.</li>
 <li>Navigate to the Interfaces tab.</li>
 <li>Toggle the radio button next to VNC into the active position.</li>
 <li>Click OK to save your configuration changes.</li>
 </ol>
+<p><a href="rp-control-centre.png" target="_blank"><img src="rp-control-centre.png" alt="Raspberry Pi Control Centre — Interfaces tab" style="width: 100%;"></a></p>
 <h4 id="other-ways-to-enable-vnc">Other ways to enable VNC</h4>
+<blockquote>
+<p>If you already enabled VNC through Control Centre above, skip ahead to <a href="#6-connect-to-the-raspberry-pi-remotely">Step 6</a>. This alternative is just here for reference.</p>
+</blockquote>
 <p><strong>From Raspberry Pi OS Terminal:</strong></p>
 <ol>
 <li>Open a terminal on the Raspberry Pi and run: <code>sudo raspi-config</code></li>
@@ -216,6 +224,7 @@
 <hr>
 <h3 id="6-connect-to-the-raspberry-pi-remotely">6. Connect to the Raspberry Pi Remotely</h3>
 <p>Now that SSH and VNC are enabled, we can ditch the monitor and keyboard and control the Pi entirely from the dev computer. This is how we&rsquo;ll be working with the Pi from here on out.</p>
+<p><strong>Important:</strong> Make sure both your dev computer and the Raspberry Pi are connected to the same Wi-Fi network. If they&rsquo;re on different networks, they won&rsquo;t be able to see each other.</p>
 <p>Everything in this step happens on your dev computer. You&rsquo;ll need to open a terminal:</p>
 <ul>
 <li><strong>macOS:</strong> Open Terminal (search for &ldquo;Terminal&rdquo; in Spotlight, or find it in Applications &gt; Utilities)</li>
@@ -237,13 +246,13 @@
 <li><strong>Linux:</strong> Download the <code>.deb</code> or <code>.rpm</code> package and install it with your package manager (e.g. <code>sudo dpkg -i VNC-Viewer-*.deb</code> on Debian/Ubuntu or <code>sudo rpm -i VNC-Viewer-*.rpm</code> on Fedora/RHEL). Launch it from your application menu or by running <code>vncviewer</code> in a terminal.</li>
 </ul>
 <p>Once installed:</p>
-<img src="macos-vnc-viewer.png" alt="RealVNC Viewer on macOS" style="width: 100%;">
 <ol>
 <li>Open VNC Viewer on your dev computer</li>
 <li>Enter the IP address from Step 3 (e.g. <code>192.168.1.42</code>) and hit Connect</li>
 <li>Enter the username and password you created during OS setup</li>
 <li>You should see the Raspberry Pi&rsquo;s full desktop in a window on your dev computer</li>
 </ol>
+<p><a href="macos-vnc-viewer.png" target="_blank"><img src="macos-vnc-viewer.png" alt="RealVNC Viewer on macOS" style="width: 100%;"></a></p>
 <p>You now have both a terminal (SSH) and a graphical desktop (VNC) connection to the Pi, all over the network. The monitor and keyboard can be disconnected from the RPI5 — you won&rsquo;t need them anymore.</p>
 <hr>
 <h3 id="7-install-nodejs">7. Install Node.js</h3>
@@ -270,7 +279,7 @@
 </span></span></code></pre></div><p>You should see output indicating both the server and client are running. The API runs on port 3000 and the React dev server runs on port 5173.</p>
 <p>Now open the Raspberry Pi&rsquo;s desktop via VNC (from Step 6). Open the Chromium browser on the Pi and go to:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>http://localhost:5173
-</span></span></code></pre></div><img src="rp-hello-zac.png" alt="Chromium browser on Raspberry Pi showing Hello from ZAC" style="width: 100%;">
+</span></span></code></pre></div><p><a href="rp-hello-zac.png" target="_blank"><img src="rp-hello-zac.png" alt="Chromium browser on Raspberry Pi showing Hello from ZAC" style="width: 100%;"></a></p>
 <p>You should see <strong>&ldquo;Hello from ZAC&rdquo;</strong> displayed in the browser. That&rsquo;s the React app fetching from the Express API and rendering the response.</p>
 <p>Here&rsquo;s what&rsquo;s happening under the hood:</p>
 <ol>
@@ -322,7 +331,14 @@
 </ul>
 <hr>
 <h2 id="summary">Summary</h2>
-<p>Final thoughts on what we did.</p>
+<p>Let&rsquo;s check our work against the goals:</p>
+<ul>
+<li><strong>A running Raspberry Pi</strong> — Flashed the microSD card, booted into Raspberry Pi OS, and got through the setup wizard.</li>
+<li><strong>Remote access via VNC and SSH</strong> — Enabled both, connected from the dev computer, and ditched the monitor and keyboard.</li>
+<li><strong>A Node.js API serving &ldquo;Hello, ZAC!&rdquo;</strong> — Installed Node.js, cloned the repo, and got Express running on port 3000 with <code>/api/hello</code>.</li>
+<li><strong>A React app displaying it in the browser</strong> — Vite serves the React frontend, which fetches from the API and renders &ldquo;Hello from ZAC&rdquo; in Chromium.</li>
+</ul>
+<p>That&rsquo;s a Raspberry Pi running a full web stack, controlled entirely from another computer over the network. Not bad for Part One.</p>
 <hr>
 <h2 id="next">Next</h2>
 <p>Quick mention of what we&rsquo;ll be moving into next, plus link when it exists.</p>
