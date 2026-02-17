@@ -23,8 +23,6 @@
     "install:all": "cd server && npm install && cd ../client && npm install"
   },
   "dependencies": {
-  },
-  "devDependencies": {
     "concurrently": "^9.2.1"
   }
 }
