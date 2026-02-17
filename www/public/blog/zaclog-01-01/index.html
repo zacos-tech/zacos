@@ -246,6 +246,40 @@
 </ol>
 <p>You now have both a terminal (SSH) and a graphical desktop (VNC) connection to the Pi, all over the network. The monitor and keyboard can be disconnected from the RPI5 — you won&rsquo;t need them anymore.</p>
 <hr>
+<h3 id="7-install-nodejs">7. Install Node.js</h3>
+<p>From here on, we&rsquo;re working on the Raspberry Pi via SSH. Open a terminal on your dev computer and connect to the Pi:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh &lt;username&gt;@&lt;ip address&gt;
+</span></span></code></pre></div><p>First, make sure the system packages are up to date:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update <span style="color:#f92672">&amp;&amp;</span> sudo apt upgrade -y
+</span></span></code></pre></div><p>Then install Node.js and npm:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install nodejs npm -y
+</span></span></code></pre></div><p>Verify they installed correctly:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>node --version
+</span></span><span style="display:flex;"><span>npm --version
+</span></span></code></pre></div><p>You should see version numbers printed for both. Node should be v18 or higher.</p>
+<hr>
+<h3 id="8-clone-and-run-zac">8. Clone and Run ZAC</h3>
+<p>Still on the Pi via SSH. Clone the ZAC repository:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone --branch zaclog/01.01 https://github.com/ZombieApocalypseTech/zac.git
+</span></span></code></pre></div><p>This grabs a specific version of the code that matches this walkthrough. Move into the project directory:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd zac
+</span></span></code></pre></div><p>The project has two parts — a <strong>server</strong> (Node.js + Express API) and a <strong>client</strong> (React + Vite frontend). Install the dependencies for both:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm run install:all
+</span></span></code></pre></div><p>This will take a minute or two. Once it&rsquo;s done, start everything up:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm run dev
+</span></span></code></pre></div><p>You should see output indicating both the server and client are running. The API runs on port 3000 and the React dev server runs on port 5173.</p>
+<p>Now open the Raspberry Pi&rsquo;s desktop via VNC (from Step 6). Open the Chromium browser on the Pi and go to:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>http://localhost:5173
+</span></span></code></pre></div><img src="rp-hello-zac.png" alt="Chromium browser on Raspberry Pi showing Hello from ZAC" style="width: 100%;">
+<p>You should see <strong>&ldquo;Hello from ZAC&rdquo;</strong> displayed in the browser. That&rsquo;s the React app fetching from the Express API and rendering the response.</p>
+<p>Here&rsquo;s what&rsquo;s happening under the hood:</p>
+<ol>
+<li>The Express server (<code>server/index.js</code>) has an endpoint at <code>/api/hello</code> that returns <code>{ message: &quot;Hello from ZAC&quot; }</code></li>
+<li>The React app (<code>client/src/App.jsx</code>) fetches from <code>/api/hello</code> when it loads and displays the message</li>
+<li>Vite&rsquo;s dev server proxies any request starting with <code>/api</code> to the Express server on port 3000, so the React app doesn&rsquo;t need to know the server&rsquo;s port</li>
+</ol>
+<p>To stop everything, press <code>Ctrl+C</code> in the SSH terminal where you ran <code>npm run dev</code>.</p>
+<hr>
 <h3 id="troubleshooting">Troubleshooting</h3>
 <p><strong>The Pi won&rsquo;t boot / no display:</strong></p>
 <ul>
@@ -273,6 +307,18 @@
 <p><strong>&ldquo;Permission denied&rdquo; when using SSH or VNC:</strong></p>
 <ul>
 <li>Double-check your username and password — these are the credentials you created during the Raspberry Pi OS setup wizard in Step 2.</li>
+</ul>
+<p><strong><code>npm run install:all</code> or <code>npm run dev</code> fails:</strong></p>
+<ul>
+<li>Make sure you&rsquo;re in the <code>zac</code> directory (run <code>pwd</code> to check — it should end with <code>/zac</code>).</li>
+<li>If you see &ldquo;command not found&rdquo; errors for <code>node</code> or <code>npm</code>, go back to Step 7 and install them.</li>
+<li>If you see permission errors, don&rsquo;t use <code>sudo</code> with npm commands — run them as your normal user.</li>
+</ul>
+<p><strong>Browser shows &ldquo;Loading&hellip;&rdquo; or &ldquo;Error&rdquo;:</strong></p>
+<ul>
+<li>Make sure both the server and client are running — you should see output from both in the terminal where you ran <code>npm run dev</code>.</li>
+<li>Make sure you&rsquo;re visiting <code>http://localhost:5173</code>, not port 3000.</li>
+<li>Try refreshing the page — the server might not have been ready when the page first loaded.</li>
 </ul>
 <hr>
 <h2 id="summary">Summary</h2>

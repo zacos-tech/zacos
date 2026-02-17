@@ -293,6 +293,85 @@ You now have both a terminal (SSH) and a graphical desktop (VNC) connection to t
 
 ---
 
+### 7. Install Node.js
+
+From here on, we're working on the Raspberry Pi via SSH. Open a terminal on your dev computer and connect to the Pi:
+
+```bash
+ssh <username>@<ip address>
+```
+
+First, make sure the system packages are up to date:
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+Then install Node.js and npm:
+
+```bash
+sudo apt install nodejs npm -y
+```
+
+Verify they installed correctly:
+
+```bash
+node --version
+npm --version
+```
+
+You should see version numbers printed for both. Node should be v18 or higher.
+
+---
+
+### 8. Clone and Run ZAC
+
+Still on the Pi via SSH. Clone the ZAC repository:
+
+```bash
+git clone --branch zaclog/01.01 https://github.com/ZombieApocalypseTech/zac.git
+```
+
+This grabs a specific version of the code that matches this walkthrough. Move into the project directory:
+
+```bash
+cd zac
+```
+
+The project has two parts — a **server** (Node.js + Express API) and a **client** (React + Vite frontend). Install the dependencies for both:
+
+```bash
+npm run install:all
+```
+
+This will take a minute or two. Once it's done, start everything up:
+
+```bash
+npm run dev
+```
+
+You should see output indicating both the server and client are running. The API runs on port 3000 and the React dev server runs on port 5173.
+
+Now open the Raspberry Pi's desktop via VNC (from Step 6). Open the Chromium browser on the Pi and go to:
+
+```text
+http://localhost:5173
+```
+
+<img src="rp-hello-zac.png" alt="Chromium browser on Raspberry Pi showing Hello from ZAC" style="width: 100%;">
+
+You should see **"Hello from ZAC"** displayed in the browser. That's the React app fetching from the Express API and rendering the response.
+
+Here's what's happening under the hood:
+
+1. The Express server (`server/index.js`) has an endpoint at `/api/hello` that returns `{ message: "Hello from ZAC" }`
+2. The React app (`client/src/App.jsx`) fetches from `/api/hello` when it loads and displays the message
+3. Vite's dev server proxies any request starting with `/api` to the Express server on port 3000, so the React app doesn't need to know the server's port
+
+To stop everything, press `Ctrl+C` in the SSH terminal where you ran `npm run dev`.
+
+---
+
 ### Troubleshooting
 
 **The Pi won't boot / no display:**
@@ -322,11 +401,30 @@ You now have both a terminal (SSH) and a graphical desktop (VNC) connection to t
 
 * Double-check your username and password — these are the credentials you created during the Raspberry Pi OS setup wizard in Step 2.
 
+**`npm run install:all` or `npm run dev` fails:**
+
+* Make sure you're in the `zac` directory (run `pwd` to check — it should end with `/zac`).
+* If you see "command not found" errors for `node` or `npm`, go back to Step 7 and install them.
+* If you see permission errors, don't use `sudo` with npm commands — run them as your normal user.
+
+**Browser shows "Loading..." or "Error":**
+
+* Make sure both the server and client are running — you should see output from both in the terminal where you ran `npm run dev`.
+* Make sure you're visiting `http://localhost:5173`, not port 3000.
+* Try refreshing the page — the server might not have been ready when the page first loaded.
+
 ---
 
 ## Summary
 
-Final thoughts on what we did.
+Let's check our work against the goals:
+
+* **A running Raspberry Pi** — Flashed the microSD card, booted into Raspberry Pi OS, and got through the setup wizard.
+* **Remote access via VNC and SSH** — Enabled both, connected from the dev computer, and ditched the monitor and keyboard.
+* **A Node.js API serving "Hello, ZAC!"** — Installed Node.js, cloned the repo, and got Express running on port 3000 with `/api/hello`.
+* **A React app displaying it in the browser** — Vite serves the React frontend, which fetches from the API and renders "Hello from ZAC" in Chromium.
+
+That's a Raspberry Pi running a full web stack, controlled entirely from another computer over the network. Not bad for Part One.
 
 ---
 
