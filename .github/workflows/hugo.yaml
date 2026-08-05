@@ -1,8 +1,11 @@
-name: Build and deploy
+name: Build and deploy www
 on:
   push:
     branches:
       - main
+    paths:
+      - "www/**"
+      - ".github/workflows/hugo.yaml"
   workflow_dispatch:
 permissions:
   contents: read
@@ -17,6 +20,9 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: www
     env:
       DART_SASS_VERSION: 1.97.1
       GO_VERSION: 1.25.5
@@ -93,7 +99,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./www/public
   deploy:
     environment:
       name: github-pages

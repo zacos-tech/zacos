@@ -7,6 +7,8 @@ This workspace holds one creative universe with two intertwined endeavors, plus 
 
 Owner: Daniel (Will Stepp). Node version workspace-wide: **24.12.0** (`.nvmrc`).
 
+**This workspace is the `zacos` monorepo** (`git@github.com:ZombieApocalypseTech/zacos.git`, private). The former standalone `zac` and `www` repos were merged in with full history rewritten under their subdirectory prefixes (the old GitHub repos remain as read-only historical mirrors — the published ZACLOG post still points readers at `ZombieApocalypseTech/zac`). Not tracked in git: `StarlightEye/` (third-party clone, reference only), `zac.notes.txt` (contains credentials), and the root `.mp4` art asset — all gitignored but kept on disk. The www site deploys from `.github/workflows/hugo.yaml` at the repo root, path-filtered to `www/**`.
+
 ---
 
 ## The fiction (needed to understand the copy and naming)
@@ -17,16 +19,16 @@ The site and product docs are written **in character**. "The Old Man" is the aut
 
 ## Directory map
 
-| Path | What it is | Git? |
-|---|---|---|
-| `www/` | Hugo site for zombieapocalypse.tech (blog "ZACLOG", glossary, journal) | yes — GitHub `ZombieApocalypseTech/www` |
-| `zac/` | The ZAC app: Node/Express server + React/Vite client | yes — `ZombieApocalypseTech/zac` |
-| `StarlightEye/` | **Third-party clone** (Will Whang's IMX585 camera board) — reference only | yes — upstream clone |
-| `am-1/` | AM-1 Arpeggio Machine (browser synth + hardware plan) | no |
-| `tm-1/` | TM-1 Tape Machine (two-deck varispeed tape recorder; most mature) | no |
-| `pm-1/` | PM-1 Picture Machine (glitch/film-effect camera engine) | no |
-| `sm-1/` | SM-1 Sleep Machine — **empty placeholder** (`.keep` only) | no |
-| `zac.notes.txt` | Daniel's raw scratch notes: fiction ideas, BOM lists, setup runbooks | — |
+| Path | What it is | Tracked in monorepo? |
+| --- | --- | --- |
+| `www/` | Hugo site for zombieapocalypse.tech (blog "ZACLOG", glossary, journal) | yes (history imported from `ZombieApocalypseTech/www`) |
+| `zac/` | The ZAC app: Node/Express server + React/Vite client | yes (history imported from `ZombieApocalypseTech/zac`) |
+| `StarlightEye/` | **Third-party clone** (Will Whang's IMX585 camera board) — reference only | no — own upstream git clone, gitignored here |
+| `am-1/` | AM-1 Arpeggio Machine (browser synth + hardware plan) | yes |
+| `tm-1/` | TM-1 Tape Machine (two-deck varispeed tape recorder; most mature) | yes |
+| `pm-1/` | PM-1 Picture Machine (glitch/film-effect camera engine) | yes |
+| `sm-1/` | SM-1 Sleep Machine — **empty placeholder** (`.keep` only) | yes |
+| `zac.notes.txt` | Daniel's raw scratch notes: fiction ideas, BOM lists, setup runbooks | no — gitignored (credentials) |
 
 The `.mp4` at root is an art asset (datamoshed video).
 
@@ -60,7 +62,7 @@ Clone of Will Whang's open-source IMX585 (Sony STARVIS 2) 4-lane MIPI camera boa
 Four sibling instruments. Naming: `<xx>-1` = plain-English "<X> Machine" ("All Machines, no Labs" — the TM-1 was renamed from TL-1/"Tape Lab", but **tm-1's internal files still say TL-1**; the rename hasn't been propagated).
 
 | Dir | Product | One-liner | State |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `am-1` | Arpeggio Machine | 3-part Berlin-school arpeggiator; "can't play a wrong note" | Browser instrument complete; 4 launch blockers; hardware drafted (Daisy Seed) |
 | `tm-1` | Tape Machine | Two-deck varispeed tape recorder with grains, age, drift | Most mature: working harness, tests, full docs, refactor plan; C++ core not started |
 | `pm-1` | Picture Machine | Camera through an 87-operator glitch/film effect rack | Engine complete in browser (canvas 2D); hardware not started |
@@ -90,7 +92,7 @@ Four sibling instruments. Naming: `<xx>-1` = plain-English "<X> Machine" ("All M
 
 - `tm-1/tests/reel-policy-test.js:2` and `tm-1/build/tailwind.config.js` hardcode `/mnt/user-data/outputs/tl1-tape-lab.jsx` — a path from a previous authoring sandbox. **`./build.sh` currently fails at its verify step** on this machine until the test path is fixed to `../app/tl1-tape-lab.jsx`.
 - Handoffs reference `/areas/synth-recorder-build.md` and `/mnt/transcripts/...` — those belong to the old authoring environment and don't exist here.
-- The machine-line dirs have **no git repos** — history and open work live in the handoff/REVIEW prose, not commits. (Getting them under version control is an obvious early improvement.)
+- The machine-line dirs entered git only at the monorepo's first commit (2026-08-05) — their earlier history and open work live in the handoff/REVIEW prose, not commits.
 
 ---
 
