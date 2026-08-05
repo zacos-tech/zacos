@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 400" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+  <title>PM-1 cube — black cassette futurism</title>
+  <desc>Two views of the PM-1 as a blacked-out steel and rubber cube. Side profile of the right face: rubber slab carrying shutter, DECAY and bank dial; lens barrel on the front, screen line on top, projector aperture and HDMI on the back, doors and tripod boss on the bottom, small etched data plate. Top view: featureless black screen glass with control knobs breaking the right and left edges; red appears only on DECAY and ANOMALY.</desc>
+  <rect width="680" height="400" fill="#23272a"/>
+
+  <text x="40" y="40" fill="#767d81" font-size="12" letter-spacing="2">SIDE — RIGHT FACE</text>
+  <rect x="70" y="64" width="224" height="224" rx="10" fill="#0b0d0e" stroke="#33393d"/>
+  <rect x="84" y="78" width="196" height="196" rx="8" fill="#1b2022" stroke="#363d41" stroke-width="0.9"/>
+  <circle cx="95" cy="89" r="2" fill="none" stroke="#3a4145" stroke-width="0.8"/>
+  <circle cx="269" cy="89" r="2" fill="none" stroke="#3a4145" stroke-width="0.8"/>
+  <circle cx="95" cy="263" r="2" fill="none" stroke="#3a4145" stroke-width="0.8"/>
+  <circle cx="269" cy="263" r="2" fill="none" stroke="#3a4145" stroke-width="0.8"/>
+  <circle cx="98" cy="102" r="2" fill="#e8a1a8"/>
+  <line x1="86" y1="68" x2="278" y2="68" stroke="#454c50" stroke-width="3" stroke-dasharray="5 3"/>
+  <rect x="22" y="150" width="48" height="58" rx="5" fill="#0b0d0e" stroke="#33393d"/>
+  <line x1="38" y1="154" x2="38" y2="204" stroke="#2a2f32" stroke-width="2"/>
+  <line x1="52" y1="154" x2="52" y2="204" stroke="#2a2f32" stroke-width="2"/>
+  <rect x="288" y="118" width="11" height="34" rx="2" fill="#000000" stroke="#c8102e" stroke-width="0.8"/>
+  <line x1="302" y1="124" x2="344" y2="110" stroke="#c8102e" stroke-width="0.7" stroke-dasharray="3 3"/>
+  <line x1="302" y1="146" x2="344" y2="160" stroke="#c8102e" stroke-width="0.7" stroke-dasharray="3 3"/>
+  <rect x="289" y="190" width="9" height="16" rx="1" fill="#0b0d0e" stroke="#454c50" stroke-width="0.8"/>
+
+  <circle cx="248" cy="106" r="13" fill="none" stroke="#33393d" stroke-width="0.8"/>
+  <circle cx="248" cy="106" r="9" fill="#0b0d0e" stroke="#454c50"/>
+  <circle cx="236" cy="170" r="17" fill="#0b0d0e" stroke="#c8102e"/>
+  <line x1="236" y1="170" x2="244" y2="157" stroke="#c8102e" stroke-width="1.2"/>
+  <text x="236" y="196" fill="#3d4448" font-size="7" text-anchor="middle" letter-spacing="1">DECAY</text>
+  <circle cx="248" cy="226" r="12" fill="#0b0d0e" stroke="#454c50"/>
+  <text x="248" y="246" fill="#3d4448" font-size="7" text-anchor="middle" letter-spacing="1">BANK</text>
+
+  <rect x="118" y="252" width="64" height="11" rx="1" fill="none" stroke="#2e3437" stroke-width="0.7"/>
+  <text x="150" y="260" fill="#3d4448" font-size="7" text-anchor="middle" letter-spacing="2">PM-1</text>
+
+  <rect x="100" y="281" width="70" height="7" rx="2" fill="none" stroke="#5a6165" stroke-dasharray="3 3" stroke-width="0.8"/>
+  <rect x="182" y="281" width="34" height="7" rx="2" fill="none" stroke="#5a6165" stroke-dasharray="3 3" stroke-width="0.8"/>
+  <rect x="230" y="282" width="24" height="9" rx="2" fill="none" stroke="#5a6165" stroke-width="0.8"/>
+
+  <line x1="278" y1="68" x2="366" y2="56" stroke="#5a6165" stroke-width="0.6" stroke-dasharray="2 2"/>
+  <text x="372" y="60" fill="#767d81" font-size="11">screen · faces up · lid-hood</text>
+  <line x1="300" y1="135" x2="366" y2="126" stroke="#5a6165" stroke-width="0.6" stroke-dasharray="2 2"/>
+  <text x="372" y="130" fill="#c8102e" font-size="11">projector aperture</text>
+  <line x1="298" y1="198" x2="366" y2="196" stroke="#5a6165" stroke-width="0.6" stroke-dasharray="2 2"/>
+  <text x="372" y="200" fill="#767d81" font-size="11">HDMI out · capped</text>
+  <text x="46" y="230" fill="#767d81" font-size="11">lens</text>
+  <text x="178" y="316" fill="#767d81" font-size="10" text-anchor="middle">battery + card doors · tripod boss</text>
+  <text x="178" y="300" fill="#767d81" font-size="9" text-anchor="middle">swappable panel · black / cream / olive / orange / red / blue</text>
+
+  <text x="420" y="40" fill="#767d81" font-size="12" letter-spacing="2">TOP — SCREEN OFF</text>
+  <rect x="420" y="64" width="224" height="224" rx="10" fill="#0b0d0e" stroke="#33393d"/>
+  <rect x="434" y="78" width="196" height="196" rx="4" fill="#000000" stroke="#23282b"/>
+  <line x1="452" y1="176" x2="566" y2="90" stroke="#14181b" stroke-width="12" opacity="0.9"/>
+
+  <circle cx="644" cy="104" r="8" fill="#0b0d0e" stroke="#454c50"/>
+  <circle cx="647" cy="158" r="12" fill="#0b0d0e" stroke="#c8102e"/>
+  <circle cx="644" cy="212" r="9" fill="#0b0d0e" stroke="#454c50"/>
+  <circle cx="418" cy="112" r="9" fill="#0b0d0e" stroke="#c8102e"/>
+  <rect x="408" y="158" width="16" height="11" rx="2" fill="#0b0d0e" stroke="#454c50"/>
+  <circle cx="418" cy="206" r="8" fill="#0b0d0e" stroke="#454c50"/>
+
+  <text x="532" y="306" fill="#4a5155" font-size="9" text-anchor="middle">front / lens on the far side · powered down, the object disappears</text>
+  <text x="532" y="326" fill="#767d81" font-size="10" text-anchor="middle">right: shutter · decay · bank — left: anomaly · hold · encoder</text>
+
+  <text x="340" y="362" fill="#767d81" font-size="10" text-anchor="middle">black cassette futurism · steel core stays black · colour arrives by panel or by LED · red is semantic — DECAY and ANOMALY alone</text>
+  <text x="340" y="382" fill="#4a5155" font-size="10" text-anchor="middle">PM-1 · light enters the front, the vision fills the top, and the back casts it into the room</text>
+</svg>

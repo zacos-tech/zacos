@@ -1,0 +1,61 @@
+flowchart TB
+
+subgraph BUILD["STARTUP — build the recipe table (pure math, no audio exists yet)"]
+    direction TB
+    B1["for each of 512 possible fractions<br/>f = k / 512"] --> B2["for each of 16 taps:<br/>x = tap − 8 + 1 − f<br/>(tap's distance from the read point)"]
+    B2 --> B3["weight = sinc(x) × Blackman(x)<br/>sinc = the one legal curve's bump shape<br/>window SLIDES with f"]
+    B3 --> B4["normalize row → sums to exactly 1<br/>(otherwise loudness shimmers)"]
+    B4 --> TBL[("SINC table<br/>512 rows × 16 weights<br/>32 KB, built once<br/>contains ZERO audio — only recipes")]
+end
+
+subgraph STORE["STORAGE — the tape"]
+    TAPE[("Int16Array<br/>one integer per photo<br/>48,000 photos per second<br/>−32768 … +32767")]
+end
+
+subgraph SAMPLE["EVERY OUTPUT SAMPLE — 48,000×/sec, regardless of speed"]
+    direction TB
+    P["pos = 1000.2988<br/>the playhead, allowed between photos"]
+    P --> I["i = floor(pos) = 1000<br/>which pair of photos"]
+    P --> F["f = pos − i = 0.2988<br/>how far between them"]
+    F --> ROW["row = floor(f × 512) = 152<br/>pick the recipe for this fraction"]
+    I --> GATHER["gather 16 neighbors<br/>buf[993 … 1008]<br/>(8 photos each side)"]
+    TAPE --> GATHER
+    TBL --> W["16 weights from row 152<br/>… −0.02, 0.36, 0.85, 0.36, −0.02 …<br/>(negatives = the bump's ripples)"]
+    GATHER --> MAC["acc = Σ weight[k] × photo[k]<br/>16 multiplies + 15 adds<br/>THE WHOLE PER-SAMPLE COST"]
+    W --> MAC
+    MAC --> OUT["out = acc ÷ 32768<br/>int16 → float"]
+end
+
+subgraph ADVANCE["ADVANCE — varispeed itself"]
+    direction TB
+    ADD["pos += rate<br/>rate 1.0 → passthrough (f stays 0, row 0 = [0…1…0], bit-exact)<br/>rate 0.25 → 3 of every 4 outputs are interpolated<br/>rate −1 → backward<br/>ONE ADDITION. this is the entire speed control"]
+    ADD --> WRAP{"crossed the<br/>splice end?"}
+    WRAP -- "LOOP" --> W1["wrap into the splice<br/>(a tape loop's ends really join)"]
+    WRAP -- "ONE-SHOT" --> W2["stop the deck"]
+    WRAP -- "no" --> NEXT["next output sample"]
+end
+
+subgraph CHARACTER["AFTER THE TRANSPORT — the tape costume, all optional"]
+    direction TB
+    HL["head loss<br/>lowpass tracking speed<br/>slow tape genuinely darkens"] --> WOW["wow + flutter<br/>rate wobble, deeper when slow"]
+    WOW --> HISS["two hiss sources<br/>tape (speed-scaled) + electronics (not)"]
+    HISS --> REST["AGE · filter · level · grains …"]
+end
+
+OUT --> HL
+OUT --> ADD
+
+STYLE_NOTE["THE KEY SEPARATION:<br/>weights depend only on WHERE you read (the fraction) —<br/>audio depends only on WHAT is under the head.<br/>They meet at one multiply and never mix.<br/>That is why the table can exist before the audio does."]
+TBL -.-> STYLE_NOTE
+TAPE -.-> STYLE_NOTE
+
+style TBL fill:#2A3033,stroke:#C8302A,color:#E8E4DC
+style TAPE fill:#2A3033,stroke:#C8302A,color:#E8E4DC
+style MAC fill:#3A2426,stroke:#C8302A,color:#E8E4DC
+style ADD fill:#3A2426,stroke:#C8302A,color:#E8E4DC
+style STYLE_NOTE fill:#20262A,stroke:#8E9698,color:#E8E4DC
+style BUILD fill:#1E2225,stroke:#454C50,color:#E8E4DC
+style STORE fill:#1E2225,stroke:#454C50,color:#E8E4DC
+style SAMPLE fill:#1E2225,stroke:#454C50,color:#E8E4DC
+style ADVANCE fill:#1E2225,stroke:#454C50,color:#E8E4DC
+style CHARACTER fill:#1E2225,stroke:#454C50,color:#E8E4DC

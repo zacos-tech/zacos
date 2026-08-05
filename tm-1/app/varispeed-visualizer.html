@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TL-1 · Varispeed, visualized</title>
+<style>
+  :root{
+    --edge:#171A1C; --body:#1E2225; --well:#20262A; --panel:#2A3033;
+    --line:#454C50; --dim:#8E9698; --bone:#E8E4DC; --red:#C8302A; --pale:#E8A79A;
+  }
+  *{box-sizing:border-box; margin:0}
+  html,body{background:var(--body); color:var(--bone);
+    font:13px/1.5 ui-monospace,'SF Mono',Menlo,Consolas,monospace;}
+  .rig{max-width:980px; margin:24px auto; padding:0 16px}
+  .frame{background:var(--panel); border:1px solid var(--line); border-radius:3px; overflow:hidden}
+  header{display:flex; justify-content:space-between; align-items:baseline;
+    padding:10px 14px; border-bottom:1px solid var(--line); background:var(--well)}
+  header h1{font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase}
+  header .sub{font-size:10px; color:var(--dim); letter-spacing:.08em}
+  .scope{display:block; width:100%; touch-action:none; cursor:ew-resize; background:var(--body)}
+  .bars{display:block; width:100%; background:var(--well); border-top:1px solid var(--line)}
+  .deck{display:flex; flex-wrap:wrap; gap:10px 18px; align-items:center;
+    padding:12px 14px; border-top:1px solid var(--line); background:var(--well)}
+  .ro{display:flex; flex-direction:column; gap:2px; min-width:74px}
+  .ro b{font-size:15px; font-weight:600; color:var(--bone); font-variant-numeric:tabular-nums}
+  .ro span{font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--dim)}
+  .ro b em{font-style:normal; color:var(--red)}
+  .seg{display:flex; border:1px solid var(--edge); border-radius:2px; overflow:hidden}
+  .seg button{appearance:none; border:0; background:var(--panel); color:var(--dim);
+    font:inherit; font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+    padding:7px 12px; cursor:pointer}
+  .seg button+button{border-left:1px solid var(--edge)}
+  .seg button.on{color:var(--red); box-shadow:inset 0 0 0 1.2px var(--red)}
+  .seg button:focus-visible{outline:2px solid var(--pale); outline-offset:-2px}
+  .tgl{display:flex; align-items:center; gap:7px; font-size:10px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--dim); cursor:pointer; user-select:none}
+  .tgl input{accent-color:var(--red)}
+  .rate{display:flex; align-items:center; gap:9px}
+  .rate input{width:150px; accent-color:var(--red)}
+  .rate .val{min-width:52px; font-variant-numeric:tabular-nums}
+  .btn{appearance:none; border:1px solid var(--edge); border-radius:2px; background:var(--panel);
+    color:var(--bone); font:inherit; font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+    padding:7px 13px; cursor:pointer}
+  .btn.lit{color:var(--red); box-shadow:inset 0 0 0 1.2px var(--red)}
+  .btn:focus-visible,.tgl input:focus-visible{outline:2px solid var(--pale); outline-offset:2px}
+  footer{padding:10px 14px 12px; border-top:1px solid var(--line);
+    font-size:11px; color:var(--dim); line-height:1.6}
+  footer b{color:var(--bone); font-weight:600}
+  @media (prefers-reduced-motion: reduce){ .noanim{transition:none} }
+</style>
+</head>
+<body>
+<div class="rig">
+  <div class="frame">
+    <header>
+      <h1>Varispeed &middot; how one sample is read</h1>
+      <div class="sub" id="hint">drag the read head</div>
+    </header>
+    <canvas id="scope" class="scope" height="340" aria-label="Reconstruction view: drag to move the read head"></canvas>
+    <canvas id="bars" class="bars" height="110" aria-label="Interpolation weights for the current fraction"></canvas>
+    <div class="deck">
+      <div class="ro"><b id="roPos">–</b><span>position</span></div>
+      <div class="ro"><b id="roF">–</b><span>fraction f</span></div>
+      <div class="ro"><b id="roRow">–</b><span>table row</span></div>
+      <div class="ro"><b id="roOut">–</b><span>output</span></div>
+      <div class="seg" role="group" aria-label="Interpolator">
+        <button data-ip="0">Linear&thinsp;&middot;&thinsp;2</button>
+        <button data-ip="1">Hermite&thinsp;&middot;&thinsp;4</button>
+        <button data-ip="2" class="on">Sinc&thinsp;&middot;&thinsp;16</button>
+      </div>
+      <label class="tgl"><input type="checkbox" id="ckBumps" checked>bumps</label>
+      <button class="btn" id="btnPlay">Play</button>
+      <div class="rate">
+        <input type="range" id="rate" min="-2" max="2" step="0.05" value="0.25" aria-label="Tape rate">
+        <span class="val" id="roRate">0.25&times;</span>
+      </div>
+      <button class="btn" id="btnNew">New tape</button>
+    </div>
+    <footer id="story">
+      The dots are the tape — the only thing recorded. Each dot casts a rippled <b>bump</b>
+      (its value &times; the sinc shape), and the bright line is simply <b>all bumps summed</b>:
+      the one band-limited curve the samples define. The read head takes its value off that line.
+      The recipe follows <b>where</b> you read; the tape supplies <b>what</b> is there — they meet
+      at sixteen multiplies and never mix.
+    </footer>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+/* ---- the engine's own table math, verbatim in miniature ---------------- */
+var TAPS=16, PHASES=512, HALF=8, TWO_PI=Math.PI*2;
+function rowWeights(f){                       // one row of the 512x16 table
+  var w=new Float64Array(TAPS), sum=0, k, x, s, wp, bl;
+  for(k=0;k<TAPS;k++){
+    x=k-HALF+1-f;
+    s=Math.abs(x)<1e-9?1:Math.sin(Math.PI*x)/(Math.PI*x);
+    wp=(k+1-f)/TAPS;                          // window SLIDES with f
+    bl=0.42-0.5*Math.cos(TWO_PI*wp)+0.08*Math.cos(2*TWO_PI*wp);
+    w[k]=s*bl; sum+=w[k];
+  }
+  if(sum!==0) for(k=0;k<TAPS;k++) w[k]/=sum;  // unity gain per row
+  return w;
+}
+function quantRow(f){ var ph=(f*PHASES)|0; if(ph>=PHASES)ph=PHASES-1; return rowWeights(ph/PHASES); }
+
+/* ---- a little tape: band-limited, so the one-curve story is true ------- */
+var N=30, PAD=HALF+2, tape=new Float64Array(N);
+function newTape(){
+  var f1=1/(5+Math.random()*4), f2=1/(9+Math.random()*5), f3=1/(3.6+Math.random()*2);
+  var p1=Math.random()*TWO_PI, p2=Math.random()*TWO_PI, p3=Math.random()*TWO_PI;
+  var a3=0.25+Math.random()*0.2;
+  for(var n=0;n<N;n++){
+    tape[n]=0.5*Math.sin(TWO_PI*f1*n+p1)+0.34*Math.sin(TWO_PI*f2*n+p2)+a3*Math.sin(TWO_PI*f3*n+p3);
+    tape[n]*=0.9;
+  }
+}
+newTape();
+
+/* ---- three readers, matching the harness -------------------------------- */
+function readLinear(p){ var i=Math.floor(p), f=p-i; return tape[i]*(1-f)+tape[i+1]*f; }
+function readHermite(p){
+  var i=Math.floor(p), f=p-i, xm1=tape[i-1], x0=tape[i], x1=tape[i+1], x2=tape[i+2];
+  var c=(x1-xm1)*0.5, v=x0-x1, w=c+v, a=w+v+(x2-x0)*0.5, b=w+a;
+  return ((a*f-b)*f+c)*f+x0;
+}
+function readSinc(p){
+  var i=Math.floor(p), f=p-i, w=quantRow(f), acc=0;
+  for(var k=0;k<TAPS;k++) acc+=w[k]*tape[i-HALF+1+k];
+  return acc;
+}
+var readers=[readLinear, readHermite, readSinc], tapsOf=[2,4,16], firstTap=[0,-1,-HALF+1];
+
+/* ---- state -------------------------------------------------------------- */
+var pos=PAD+7.3, interp=2, showBumps=true, playing=false, rate=0.25;
+var trail=[];                                  // emitted output samples
+var scope=document.getElementById('scope'), bars=document.getElementById('bars');
+var reduced=(window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)').matches:false);
+
+function weightsFor(p){
+  var i=Math.floor(p), f=p-i;
+  if(interp===2) return {i:i, w:quantRow(f)};
+  if(interp===1){
+    var xm=readHermite, ff=f;                  // hermite basis weights
+    var c=[-0.5*ff+ff*ff-0.5*ff*ff*ff, 1-2.5*ff*ff+1.5*ff*ff*ff,
+           0.5*ff+2*ff*ff-1.5*ff*ff*ff, -0.5*ff*ff+0.5*ff*ff*ff];
+    return {i:i, w:c};
+  }
+  return {i:i, w:[1-f, f]};
+}
+
+/* ---- drawing ------------------------------------------------------------ */
+function fit(cv){
+  var dpr=window.devicePixelRatio||1, w=cv.clientWidth;
+  if(cv.width!==Math.round(w*dpr)){ cv.width=Math.round(w*dpr); cv.height=Math.round(cv.getAttribute('height')*dpr); }
+  var g=cv.getContext('2d'); if(!g) return null;
+  g.setTransform(dpr,0,0,dpr,0,0); return g;
+}
+var L=PAD, R=N-PAD;                            // visible tape region
+function xOf(p,w){ return 24+(p-L)/(R-L)*(w-48); }
+function pOf(x,w){ return L+(x-24)/(w-48)*(R-L); }
+
+function drawScope(){
+  var g=fit(scope); if(!g) return;
+  var w=scope.clientWidth, h=+scope.getAttribute('height'), mid=h*0.52, amp=h*0.36;
+  g.clearRect(0,0,w,h);
+  g.font='9px ui-monospace,monospace';
+
+  // sample grid
+  g.strokeStyle='#262C30'; g.lineWidth=1;
+  for(var n=Math.ceil(L);n<=Math.floor(R);n++){
+    var x=xOf(n,w); g.beginPath(); g.moveTo(x,14); g.lineTo(x,h-12); g.stroke();
+  }
+  g.strokeStyle='#31383C'; g.beginPath(); g.moveTo(24,mid); g.lineTo(w-24,mid); g.stroke();
+
+  var W=weightsFor(pos), i0=W.i+firstTap[interp], nt=tapsOf[interp];
+
+  // bumps: each active sample's weighted contribution across x
+  if(showBumps){
+    for(var k=0;k<nt;k++){
+      var sn=i0+k; if(sn<1||sn>=N-2) continue;
+      g.beginPath();
+      for(var px=24;px<=w-24;px+=2){
+        var p=pOf(px,w), d=p-sn, bump;
+        if(Math.abs(d)>HALF){ bump=0; }
+        else{
+          var s=Math.abs(d)<1e-9?1:Math.sin(Math.PI*d)/(Math.PI*d);
+          var bl=0.42-0.5*Math.cos(TWO_PI*(d/TAPS+0.5))+0.08*Math.cos(2*TWO_PI*(d/TAPS+0.5));
+          bump=s*bl;
+        }
+        var y=mid-tape[sn]*bump*amp;
+        px===24?g.moveTo(px,y):g.lineTo(px,y);
+      }
+      g.strokeStyle='rgba(200,48,42,0.30)'; g.lineWidth=1; g.stroke();
+    }
+  }
+
+  // the reconstructed curve = the sum of bumps
+  g.beginPath();
+  for(var px2=24;px2<=w-24;px2+=1.5){
+    var pp=pOf(px2,w), v=readers[interp](pp), y2=mid-v*amp;
+    px2===24?g.moveTo(px2,y2):g.lineTo(px2,y2);
+  }
+  g.strokeStyle='#E8E4DC'; g.lineWidth=1.6; g.stroke();
+
+  // emitted output trail
+  for(var t=0;t<trail.length;t++){
+    var tr=trail[t], a=(t+1)/trail.length*0.85;
+    g.fillStyle='rgba(232,167,154,'+a.toFixed(3)+')';
+    g.beginPath(); g.arc(xOf(tr.p,w), mid-tr.v*amp, 2.2, 0, TWO_PI); g.fill();
+  }
+
+  // stored samples: stems + dots; active taps lit
+  for(var n2=Math.ceil(L)-1;n2<=Math.floor(R)+1;n2++){
+    if(n2<0||n2>=N) continue;
+    var act=n2>=i0&&n2<i0+nt, x3=xOf(n2,w), y3=mid-tape[n2]*amp;
+    g.strokeStyle=act?'rgba(200,48,42,0.8)':'#5B6367';
+    g.lineWidth=act?1.6:1;
+    g.beginPath(); g.moveTo(x3,mid); g.lineTo(x3,y3); g.stroke();
+    g.fillStyle=act?'#C8302A':'#8E9698';
+    g.beginPath(); g.arc(x3,y3,act?3.4:2.6,0,TWO_PI); g.fill();
+  }
+
+  // read head + value
+  var hx=xOf(pos,w), val=readers[interp](pos);
+  g.strokeStyle='#C8302A'; g.lineWidth=1.2;
+  g.beginPath(); g.moveTo(hx,10); g.lineTo(hx,h-10); g.stroke();
+  g.fillStyle='#C8302A';
+  g.beginPath(); g.arc(hx, mid-val*amp, 5, 0, TWO_PI); g.fill();
+  g.strokeStyle='#1E2225'; g.lineWidth=1.5;
+  g.beginPath(); g.arc(hx, mid-val*amp, 5, 0, TWO_PI); g.stroke();
+  g.fillStyle='#E8A79A'; g.textAlign='left';
+  g.fillText('read head', Math.min(hx+7,w-70), 20);
+
+  g.fillStyle='#5B6367';
+  g.fillText('tape \u2192', 24, h-2);
+}
+
+function drawBars(){
+  var g=fit(bars); if(!g) return;
+  var w=bars.clientWidth, h=+bars.getAttribute('height'), mid=h*0.56;
+  g.clearRect(0,0,w,h);
+  var W=weightsFor(pos), nt=W.w.length;
+  var bw=Math.min(34,(w-60)/nt*0.62), gap=(w-60)/nt;
+  g.strokeStyle='#31383C'; g.beginPath(); g.moveTo(30,mid); g.lineTo(w-30,mid); g.stroke();
+  g.font='9px ui-monospace,monospace'; g.textAlign='center';
+  for(var k=0;k<nt;k++){
+    var x=30+gap*(k+0.5), v=W.w[k], bh=v*(h*0.38);
+    g.fillStyle=v>=0?'#C8302A':'rgba(200,48,42,0.45)';
+    g.fillRect(x-bw/2, Math.min(mid,mid-bh), bw, Math.abs(bh));
+    g.fillStyle='#8E9698';
+    if(nt<=4||Math.abs(v)>0.02) g.fillText(v.toFixed(2), x, v>=0?mid+14:mid-Math.abs(bh)-14);
+  }
+  g.fillStyle='#8E9698'; g.textAlign='left';
+  g.fillText(nt+' weights \u00b7 depend only on the fraction \u00b7 sum = 1.00', 30, 13);
+}
+
+/* ---- readouts ----------------------------------------------------------- */
+var els={pos:roPos, f:roF, row:roRow, out:roOut, rate:roRate};
+function readouts(){
+  var i=Math.floor(pos), f=pos-i;
+  els.pos.innerHTML=pos.toFixed(4);
+  els.f.innerHTML='<em>'+f.toFixed(4)+'</em>';
+  els.row.textContent=interp===2?String((f*PHASES)|0)+' / 512':'\u2014';
+  els.out.textContent=readers[interp](pos).toFixed(4);
+  els.rate.textContent=(rate<0?'\u2212':'')+Math.abs(rate).toFixed(2)+'\u00d7';
+}
+function draw(){ drawScope(); drawBars(); readouts(); }
+
+/* ---- interaction -------------------------------------------------------- */
+function clampPos(p){ return Math.max(L+0.001, Math.min(R-0.001, p)); }
+var dragging=false;
+function toPos(ev){
+  var r=scope.getBoundingClientRect(), cx=(ev.touches?ev.touches[0].clientX:ev.clientX)-r.left;
+  return clampPos(pOf(cx, scope.clientWidth));
+}
+scope.addEventListener('pointerdown', function(e){ dragging=true; scope.setPointerCapture(e.pointerId); pos=toPos(e); stopPlay(); draw(); });
+scope.addEventListener('pointermove', function(e){ if(dragging){ pos=toPos(e); draw(); } });
+scope.addEventListener('pointerup', function(){ dragging=false; });
+
+document.querySelectorAll('.seg button').forEach(function(b){
+  b.addEventListener('click', function(){
+    document.querySelectorAll('.seg button').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on'); interp=+b.dataset.ip; draw();
+  });
+});
+ckBumps.addEventListener('change', function(){ showBumps=ckBumps.checked; draw(); });
+var rateEl=document.getElementById('rate');
+rateEl.addEventListener('input', function(){ rate=+rateEl.value; readouts(); });
+btnNew.addEventListener('click', function(){ newTape(); trail.length=0; draw(); });
+
+/* play: the speaker demands outputs at a fixed tick; pos walks by rate ---- */
+var timer=null;
+function stopPlay(){ playing=false; btnPlay.classList.remove('lit'); btnPlay.textContent='Play';
+  if(timer){ clearInterval(timer); timer=null; } }
+btnPlay.addEventListener('click', function(){
+  if(playing){ stopPlay(); return; }
+  playing=true; btnPlay.classList.add('lit'); btnPlay.textContent='Stop';
+  var hz=reduced?12:30;
+  timer=setInterval(function(){
+    var r=Math.abs(rate)<0.05?(rate<0?-0.05:0.05):rate;
+    pos+=r*0.55;                               // scaled so the walk is watchable
+    if(pos>=R) pos=L+ (pos-R);                 // wrap the visible splice
+    if(pos<L)  pos=R-(L-pos);
+    trail.push({p:pos, v:readers[interp](pos)});
+    if(trail.length>56) trail.shift();
+    draw();
+  }, 1000/hz);
+});
+
+/* keyboard: arrows nudge the head ---------------------------------------- */
+scope.tabIndex=0;
+scope.addEventListener('keydown', function(e){
+  var step=e.shiftKey?0.01:0.1;
+  if(e.key==='ArrowLeft'){ pos=clampPos(pos-step); stopPlay(); draw(); e.preventDefault(); }
+  if(e.key==='ArrowRight'){ pos=clampPos(pos+step); stopPlay(); draw(); e.preventDefault(); }
+});
+
+window.addEventListener('resize', draw);
+draw();
+})();
+</script>
+</body>
+</html>

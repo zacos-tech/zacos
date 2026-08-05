@@ -1,0 +1,15 @@
+# macOS junk
+.DS_Store
+
+# dependencies
+node_modules/
+
+# third-party reference clone (Will Whang's IMX585 board) — kept local, not part of the monorepo
+/StarlightEye/
+
+# personal scratch notes (contain credentials) and large art assets
+/zac.notes.txt
+/alone-at-the-bottom-moshed-02-08-20-09-02-665.mp4
+
+# build/work dirs
+tm-1/build/.work/

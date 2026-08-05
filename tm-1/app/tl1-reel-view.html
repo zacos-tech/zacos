@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TL-1 · Reel view</title>
+<style>
+  :root{
+    --edge:#171A1C; --body:#1E2225; --well:#20262A; --panel:#2A3033;
+    --line:#454C50; --dim:#8E9698; --bone:#E8E4DC; --a:#C8302A; --b:#E8A79A;
+  }
+  *{box-sizing:border-box;margin:0}
+  html,body{background:#141719;color:var(--bone);
+    font:12px/1.5 ui-monospace,'SF Mono',Menlo,Consolas,monospace}
+  .rig{max-width:900px;margin:22px auto;padding:0 14px}
+
+  .caption{font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--dim);margin-bottom:9px;display:flex;justify-content:space-between}
+
+  /* the screen sits in a bezel, because that is what it will be */
+  .bezel{background:var(--edge);border:1px solid #0D0F10;border-radius:4px;
+    padding:9px;box-shadow:0 1px 0 #3A4145 inset}
+  canvas#scr{display:block;width:100%;height:auto;background:#000;border-radius:2px}
+
+  .deck-rows{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+  .strip{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:11px 12px}
+  .strip h2{font-size:10px;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+  .strip.a h2{color:var(--a)} .strip.b h2{color:var(--b)}
+  .row{display:flex;align-items:center;gap:9px;margin-top:9px}
+  .row label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);width:44px}
+  input[type=range]{flex:1;accent-color:var(--a);height:14px}
+  .strip.b input[type=range]{accent-color:var(--b)}
+  .val{width:52px;text-align:right;font-variant-numeric:tabular-nums;font-size:12px}
+
+  .btns{display:flex;gap:7px;margin-top:10px}
+  button{appearance:none;flex:1;border:1px solid #101314;border-radius:2px;
+    background:var(--well);color:var(--bone);font:inherit;font-size:9px;
+    letter-spacing:.16em;text-transform:uppercase;padding:7px 4px;cursor:pointer}
+  button:focus-visible{outline:2px solid var(--b);outline-offset:2px}
+  .strip.a button.on{color:var(--a);box-shadow:inset 0 0 0 1.2px var(--a)}
+  .strip.b button.on{color:var(--b);box-shadow:inset 0 0 0 1.2px var(--b)}
+
+  .global{margin-top:14px;background:var(--panel);border:1px solid var(--line);
+    border-radius:3px;padding:11px 12px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .global label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+  .global input[type=range]{width:150px;accent-color:var(--dim)}
+  .note{margin-top:14px;color:var(--dim);line-height:1.65;font-size:11px}
+  .note b{color:var(--bone);font-weight:600}
+  @media (max-width:640px){ .deck-rows{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<div class="rig">
+
+  <div class="caption"><span>TL-1 · home view</span><span>800 × 320 bar LCD</span></div>
+
+  <div class="bezel">
+    <canvas id="scr" width="1600" height="640" aria-label="Reel view: two decks, each with supply and take-up reels"></canvas>
+  </div>
+
+  <div class="deck-rows">
+    <div class="strip a" id="stripA">
+      <h2>Deck A</h2>
+      <div class="row"><label>Speed</label>
+        <input type="range" id="rA" min="-4" max="4" step="0.01" value="1">
+        <span class="val" id="vA">1.00×</span></div>
+      <div class="btns">
+        <button id="pA" class="on">Stop</button>
+        <button id="fA">Freeze</button>
+      </div>
+    </div>
+    <div class="strip b" id="stripB">
+      <h2>Deck B</h2>
+      <div class="row"><label>Speed</label>
+        <input type="range" id="rB" min="-4" max="4" step="0.01" value="0.997">
+        <span class="val" id="vB">1.00×</span></div>
+      <div class="btns">
+        <button id="pB" class="on">Stop</button>
+        <button id="fB">Freeze</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="global">
+    <label for="reel">Reel</label>
+    <select id="reel" style="background:#20262A;color:#E8E4DC;border:1px solid #454C50;
+      border-radius:2px;padding:5px 7px;font:inherit;font-size:11px">
+      <option value="21600">6 hours</option>
+      <option value="1800" selected>30 minutes</option>
+      <option value="180">3 minutes</option>
+      <option value="20">20 seconds</option>
+    </select>
+    <label for="spool">Spool ×</label>
+    <input type="range" id="spool" min="1" max="400" step="1" value="60">
+    <span class="val" id="vSpool">60×</span>
+  </div>
+
+  <p class="note">
+    The reels are the readout. Hub diameter is <b>how much tape is left</b> — supply shrinks,
+    take-up grows, and a full six-hour reel visibly transfers from one side to the other.
+    Rotation is <b>true angular velocity</b>, so a nearly empty reel spins faster than a full one
+    at the same tape speed. Set the two decks a few thousandths apart and the drift readout is
+    the machine describing its own imperfection. Raise <b>Spool ×</b> to watch hours pass.
+  </p>
+</div>
+
+<script>
+(function(){
+"use strict";
+var C = { edge:"#171A1C", well:"#20262A", line:"#454C50", dim:"#8E9698",
+          bone:"#E8E4DC", a:"#C8302A", b:"#E8A79A" };
+var TAU = Math.PI*2;
+var reduced = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)").matches : false;
+
+var deck = [
+  { rate:1,     play:true, freeze:false, pos:0.34, angS:0, angT:0, acc:C.a, name:"A" },
+  { rate:0.997, play:true, freeze:false, pos:0.34, angS:0, angT:0, acc:C.b, name:"B" }
+];
+var reelSec = 1800, spool = 60;
+var marks = [0, 0.17, 0.31, 0.52, 0.66, 0.81];   // splice / track marks on the reel
+
+var cv = document.getElementById("scr"), g = cv.getContext("2d");
+var W = 800, H = 320;                             // logical screen, drawn at 2x
+
+/* radius of a reel holding `frac` of the tape: area-proportional, so the
+   outer edge moves the way real tape does — fast when the hub is small. */
+var HUB = 21, RMAX = 84;
+function radius(frac){
+  if (frac < 0) frac = 0; if (frac > 1) frac = 1;
+  return Math.sqrt(HUB*HUB + (RMAX*RMAX - HUB*HUB)*frac);
+}
+
+function drawReel(x, y, r, ang, acc, lit){
+  // tape body
+  g.beginPath(); g.arc(x, y, r, 0, TAU);
+  g.fillStyle = "#23282B"; g.fill();
+  g.lineWidth = 1; g.strokeStyle = "#31383C"; g.stroke();
+
+  // wound-tape striations, rotating — this is what reads as motion at a glance
+  var rings = 5;
+  for (var i=1;i<=rings;i++){
+    var rr = HUB + (r-HUB)*(i/(rings+1));
+    g.beginPath(); g.arc(x, y, rr, 0, TAU);
+    g.strokeStyle = "rgba(69,76,80,0.55)"; g.stroke();
+  }
+
+  // hub + spokes
+  g.save(); g.translate(x,y); g.rotate(ang);
+  g.beginPath(); g.arc(0,0,HUB,0,TAU);
+  g.fillStyle = C.edge; g.fill();
+  g.strokeStyle = lit ? acc : C.line; g.lineWidth = 1.4; g.stroke();
+  for (var s=0;s<3;s++){
+    var t = s*TAU/3;
+    g.beginPath();
+    g.moveTo(Math.cos(t)*6, Math.sin(t)*6);
+    g.lineTo(Math.cos(t)*(HUB-3), Math.sin(t)*(HUB-3));
+    g.strokeStyle = lit ? acc : C.line; g.lineWidth = 2.2; g.stroke();
+  }
+  g.beginPath(); g.arc(0,0,3.4,0,TAU); g.fillStyle = lit ? acc : C.line; g.fill();
+  g.restore();
+}
+
+function drawDeck(d, ox){
+  var D = deck[d];
+  var cx1 = ox + 104, cx2 = ox + 296, cy = 132;
+  var rS = radius(1 - D.pos), rT = radius(D.pos);
+  var moving = D.play && !D.freeze && Math.abs(D.rate) > 0.005;
+
+  // label + rate
+  g.font = "600 11px ui-monospace, monospace"; g.textAlign = "left";
+  g.fillStyle = D.acc;
+  g.fillText("DECK " + D.name, ox + 18, 30);
+
+  g.font = "600 30px ui-monospace, monospace"; g.textAlign = "right";
+  g.fillStyle = D.freeze ? D.acc : (moving ? C.bone : C.dim);
+  var rt = (D.rate < 0 ? "\u2212" : "") + Math.abs(D.rate).toFixed(2);
+  g.fillText(rt + "\u00d7", ox + 382, 34);
+
+  if (D.freeze){
+    g.font = "600 10px ui-monospace, monospace"; g.textAlign = "left";
+    g.fillStyle = D.acc; g.fillText("FROZEN", ox + 84, 30);
+  } else if (!D.play){
+    g.font = "600 10px ui-monospace, monospace"; g.textAlign = "left";
+    g.fillStyle = C.dim; g.fillText("STOPPED", ox + 84, 30);
+  }
+
+  drawReel(cx1, cy, rS, D.angS, D.acc, moving);
+  drawReel(cx2, cy, rT, D.angT, D.acc, moving);
+
+  /* TAPE PATH. Leaves the bottom of the supply reel, passes the head stack,
+     returns to the take-up reel. Slack when stopped, taut when running —
+     the same tension cue a real transport gives you. */
+  var hx = ox + 200, hy = 246;
+  var sag = moving ? 3 : 15;
+  g.beginPath();
+  g.moveTo(cx1, cy + rS);
+  g.quadraticCurveTo((cx1+hx)/2, cy + rS + 42 + sag, hx - 20, hy);
+  g.lineTo(hx + 20, hy);
+  g.quadraticCurveTo((cx2+hx)/2, cy + rT + 42 + sag, cx2, cy + rT);
+  g.strokeStyle = moving ? "#6E777B" : "#454C50";
+  g.lineWidth = 2.4; g.stroke();
+
+  // head stack: erase, record, play — the play head lights when tape moves
+  var heads = [[-15,"#3A4145"],[0,"#3A4145"],[15, moving || D.freeze ? D.acc : "#3A4145"]];
+  for (var i=0;i<heads.length;i++){
+    g.fillStyle = heads[i][1];
+    g.fillRect(hx + heads[i][0] - 3.5, hy - 1, 7, 12);
+  }
+  // frozen: the heads keep reading a standing tape — show it as a soft glow
+  if (D.freeze){
+    var pulse = reduced ? 0.5 : 0.35 + 0.25*Math.sin(performance.now()/420);
+    g.beginPath(); g.arc(hx + 15, hy + 5, 13, 0, TAU);
+    g.fillStyle = "rgba(200,48,42," + (pulse*0.5).toFixed(3) + ")";
+    if (D.name === "B") g.fillStyle = "rgba(232,167,154," + (pulse*0.5).toFixed(3) + ")";
+    g.fill();
+  }
+
+  /* Position strip: the whole reel as a line, with splice marks. The reels
+     say how much tape; this says where on it. */
+  var sx = ox + 18, sw = 364, sy = 288;
+  g.fillStyle = "#20262A"; g.fillRect(sx, sy, sw, 4);
+  g.fillStyle = "#3A4145";
+  for (var m=0;m<marks.length;m++) g.fillRect(sx + marks[m]*sw, sy - 3, 1, 10);
+  g.fillStyle = D.acc; g.fillRect(sx + D.pos*sw - 1, sy - 4, 2, 12);
+
+  // elapsed / remaining, in tape terms
+  g.font = "10px ui-monospace, monospace"; g.textAlign = "left";
+  g.fillStyle = C.dim;
+  g.fillText(clock(D.pos*reelSec), sx, sy + 20);
+  g.textAlign = "right";
+  g.fillText("\u2212" + clock((1-D.pos)*reelSec), sx + sw, sy + 20);
+}
+
+function clock(s){
+  s = Math.max(0, Math.round(s));
+  var h = (s/3600)|0, m = ((s%3600)/60)|0, ss = s%60;
+  return (h ? h + ":" + String(m).padStart(2,"0") : String(m))
+    + ":" + String(ss).padStart(2,"0");
+}
+
+function draw(){
+  g.setTransform(2,0,0,2,0,0);
+  g.clearRect(0,0,W,H);
+  g.fillStyle = "#0A0C0D"; g.fillRect(0,0,W,H);
+
+  drawDeck(0, 0);
+  drawDeck(1, 400);
+
+  // divider
+  g.fillStyle = "#20262A"; g.fillRect(400, 16, 1, 288);
+
+  /* DRIFT. The two transports never agree; this is the number that says by
+     how much. It only means anything when both are running. */
+  var both = deck[0].play && deck[1].play && !deck[0].freeze && !deck[1].freeze;
+  var ppm = Math.round((deck[1].rate - deck[0].rate) / (Math.abs(deck[0].rate)||1) * 1e6);
+  g.textAlign = "center"; g.font = "10px ui-monospace, monospace";
+  g.fillStyle = both ? C.dim : "#2F3639";
+  g.fillText(both ? ("\u0394 " + (ppm>0?"+":"") + ppm + " ppm") : "\u0394 \u2014", 400, 314);
+}
+
+var last = performance.now();
+function tick(now){
+  var dt = Math.min((now - last)/1000, 0.1); last = now;
+  for (var d=0; d<2; d++){
+    var D = deck[d];
+    if (D.play && !D.freeze){
+      var v = D.rate * spool / reelSec;          // fraction of reel per second
+      D.pos += v * dt;
+      if (D.pos > 1) D.pos -= 1;
+      if (D.pos < 0) D.pos += 1;
+      // angular velocity = linear speed / radius: small reels spin faster
+      var rS = radius(1 - D.pos), rT = radius(D.pos);
+      var lin = D.rate * spool * 34;
+      D.angS -= lin / rS * dt;
+      D.angT -= lin / rT * dt;
+    }
+  }
+  draw();
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+
+/* controls */
+function bind(i, rId, vId, pId, fId){
+  var r = document.getElementById(rId), v = document.getElementById(vId),
+      p = document.getElementById(pId), f = document.getElementById(fId);
+  function showRate(){ v.textContent = (deck[i].rate<0?"\u2212":"") + Math.abs(deck[i].rate).toFixed(2) + "\u00d7"; }
+  r.addEventListener("input", function(){ deck[i].rate = +r.value; showRate(); });
+  p.addEventListener("click", function(){
+    deck[i].play = !deck[i].play;
+    p.classList.toggle("on", deck[i].play);
+    p.textContent = deck[i].play ? "Stop" : "Play";
+  });
+  f.addEventListener("click", function(){
+    deck[i].freeze = !deck[i].freeze;
+    f.classList.toggle("on", deck[i].freeze);
+    if (deck[i].freeze) { deck[i].play = true;
+      document.getElementById(pId).classList.add("on");
+      document.getElementById(pId).textContent = "Stop"; }
+  });
+  showRate();
+}
+bind(0,"rA","vA","pA","fA");
+bind(1,"rB","vB","pB","fB");
+
+document.getElementById("reel").addEventListener("change", function(e){
+  reelSec = +e.target.value;
+});
+var sp = document.getElementById("spool"), vsp = document.getElementById("vSpool");
+sp.addEventListener("input", function(){ spool = +sp.value; vsp.textContent = spool + "\u00d7"; });
+})();
+</script>
+</body>
+</html>
