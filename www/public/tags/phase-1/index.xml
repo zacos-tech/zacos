@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Phase-1 on Zombie Apocalypse Tech</title>
+    <link>http://localhost:1313/tags/phase-1/</link>
+    <description>Recent content in Phase-1 on Zombie Apocalypse Tech</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 12 Jan 2026 22:58:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/phase-1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ZACLOG/001 - Hello, ZAC!</title>
+      <link>http://localhost:1313/blog/zaclog-001/</link>
+      <pubDate>Mon, 12 Jan 2026 22:58:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/zaclog-001/</guid>
+      <description>&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#goals&#34;&gt;Goals&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#inventory&#34;&gt;Inventory&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#walkthrough&#34;&gt;Walkthrough&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;Summary&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#next&#34;&gt;Next&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;goals&#34;&gt;Goals&lt;/h1&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;In this section, we&amp;rsquo;re going to build a POC (proof of concept) of ZAC.&lt;/p&gt;&#xA;&lt;h1 id=&#34;inventory&#34;&gt;Inventory&lt;/h1&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;walkthrough&#34;&gt;Walkthrough&lt;/h1&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;&#xA;&lt;hr&gt;&#xA;&lt;h1 id=&#34;next&#34;&gt;Next&lt;/h1&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+  </channel>
+</rss>
