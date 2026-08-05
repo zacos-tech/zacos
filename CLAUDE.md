@@ -7,7 +7,7 @@ This workspace holds one creative universe with two intertwined endeavors, plus 
 
 Owner: Daniel (Will Stepp). Node version workspace-wide: **24.12.0** (`.nvmrc`).
 
-**This workspace is the `zacos` monorepo** (`git@github.com:ZombieApocalypseTech/zacos.git`, private). The former standalone `zac` and `www` repos were merged in with full history rewritten under their subdirectory prefixes (the old GitHub repos remain as read-only historical mirrors — the published ZACLOG post still points readers at `ZombieApocalypseTech/zac`). Not tracked in git: `StarlightEye/` (third-party clone, reference only), `zac.notes.txt` (contains credentials), and the root `.mp4` art asset — all gitignored but kept on disk. The www site deploys from `.github/workflows/hugo.yaml` at the repo root, path-filtered to `www/**`.
+**This workspace is the `zacos` monorepo** (`git@github.com:zacos-tech/zacos.git`, public — the `zacos-tech` GitHub org matches the `zacos.tech` domain; the old `ZombieApocalypseTech/zacos` URL redirects here). The former standalone `zac` and `www` repos were merged in with full history rewritten under their subdirectory prefixes (the old GitHub repos remain as read-only historical mirrors — the published ZACLOG post still points readers at `ZombieApocalypseTech/zac`). Not tracked in git: `StarlightEye/` (third-party clone, reference only), `zac.notes.txt` (contains credentials), and the root `.mp4` art asset — all gitignored but kept on disk. The www site deploys from `.github/workflows/hugo.yaml` at the repo root, path-filtered to `www/**`.
 
 ---
 
