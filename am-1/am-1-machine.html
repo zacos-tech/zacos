@@ -6,23 +6,34 @@
 <title>AM-1 · ARPEGGIO MACHINE</title>
 <style>
 :root{
-  --bg:#16191a;--panel:#1d2123;--panel2:#22272a;--hair:#31383c;
-  --t:#c9ced1;--dim:#767d81;--faint:#4a5155;
-  --led:#c8102e;--led-pale:#e8a1a8;--amber:#d9a13b;
+  --bg:#131212;--panel:#1b1a19;--panel2:#232221;--hair:#37342f;
+  --t:#d6d1c7;--dim:#867f74;--faint:#524e46;
+  --led:#c8102e;--led-pale:#e8a1a8;--amber:#e0a43c;--amber-dim:#8a6a2c;
+  --cream:#e8dfc8;--cream-line:rgba(232,223,200,0.16);
+  --bevel-lt:rgba(255,250,240,0.05);--bevel-dk:rgba(0,0,0,0.5);
 }
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--t);
+html{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button,select,.kb,.kb *,.deg,#seqbar,#seqbar *{-webkit-user-select:none;user-select:none}
+html,body{margin:0;color:var(--t);
+  background:var(--bg) repeating-linear-gradient(0deg,rgba(255,250,240,0.01) 0 1px,transparent 1px 3px);
   font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px}
 .wrap{max-width:1060px;margin:0 auto;padding:20px 16px 60px}
-header{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--hair);padding-bottom:10px}
+header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;row-gap:8px;padding-bottom:10px;
+  border-bottom:1px solid var(--hair);
+  box-shadow:0 1px 0 var(--bevel-lt);}
+header h1,.plate b{color:var(--cream)}
 header h1{font-size:15px;letter-spacing:.28em;margin:0;font-weight:600}
 header .sub{color:var(--dim);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
 header .run{margin-left:auto;display:flex;gap:8px;align-items:center}
-button{background:var(--panel2);color:var(--t);border:1px solid var(--hair);border-radius:3px;
+button{color:var(--t);border:1px solid var(--hair);border-radius:3px;
+  background:linear-gradient(180deg,#292826,#201e1c);
+  box-shadow:inset 0 1px 0 var(--bevel-lt),0 1px 2px var(--bevel-dk);
   font:inherit;letter-spacing:.1em;text-transform:uppercase;font-size:11px;padding:7px 14px;cursor:pointer}
+button:active{box-shadow:inset 0 2px 4px var(--bevel-dk);transform:translateY(0.5px)}
 button:hover{border-color:var(--dim)}
-button[aria-pressed="true"]{border-color:var(--led);color:var(--led-pale)}
-button.anomaly{border-color:var(--amber);color:var(--amber)}
+button[aria-pressed="true"]{background:#3a2226;border-color:var(--led);color:var(--led-pale);box-shadow:inset 0 1px 0 rgba(255,180,170,0.08)}
+button.anomaly{border-color:var(--amber-dim);color:var(--amber);text-shadow:0 0 7px rgba(224,164,60,0.5)}
 button.big{padding:9px 22px}
 .plate{margin:14px 0 18px;border:1px solid var(--hair);border-radius:3px;background:var(--panel);
   padding:9px 12px;color:var(--dim);font-size:11px;letter-spacing:.08em;display:flex;gap:18px;flex-wrap:wrap}
@@ -31,10 +42,10 @@ button.big{padding:9px 22px}
 .kbrow{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;margin-bottom:18px}
 .kbstack{flex:none;width:334px}
 #seqbar{display:flex;gap:2px;margin:8px 0 0;width:334px;flex:none}
-#seqbar .c{flex:1;height:20px;border:1px solid #2a2a2a;border-radius:2px;background:#141414;
+#seqbar .c{flex:1;height:20px;border:1px solid #2c2a26;border-radius:2px;background:#0e0d0c;box-shadow:inset 0 1px 3px rgba(0,0,0,0.6);
   position:relative;cursor:pointer;font:9px/20px ui-monospace,Menlo,monospace;text-align:center;
   color:#6a6a6a;letter-spacing:-0.3px;user-select:none;padding:0}
-#seqbar .c.note{background:#3d3427;border-color:#6b5a3a;color:#e7dcc3}
+#seqbar .c.note{background:linear-gradient(180deg,#463b28,#382e1e);border-color:#7a6640;color:#efe3c4;box-shadow:inset 0 1px 0 rgba(255,245,225,0.11)}
 #seqbar .c.off{background:#181818;border-color:#4a4034;color:#5c5348}
 #seqbar .c.rest{background:#1b1b1b;color:#3a3a3a}
 #seqbar .c.empty{cursor:default;opacity:0.45}
@@ -42,23 +53,127 @@ button.big{padding:9px 22px}
 #seqbar .c .m0{top:-1px;background:#c96}
 #seqbar .c .m1{top:4px;background:#9ad}
 #seqbar .c .m2{bottom:-1px;background:#b8a}
+@keyframes standby{0%,100%{box-shadow:0 0 0 0 rgba(255,64,48,0);background:var(--panel2)}50%{box-shadow:0 0 10px 2px rgba(255,64,48,0.55);background:#3a2226}}
+.standby{animation:standby 2.2s ease-in-out infinite}
+input[type="range"]{-webkit-appearance:none;appearance:none;background:transparent;height:18px}
+input[type="range"]::-webkit-slider-runnable-track{height:5px;border-radius:3px;
+  background:#0e0d0c;box-shadow:inset 0 1px 2px rgba(0,0,0,0.7),0 1px 0 var(--bevel-lt)}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;margin-top:-4.5px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#454340,#292826 65%);border:1px solid #474441;
+  box-shadow:0 1px 2px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,250,240,0.14)}
+input[type="range"]::-moz-range-track{height:5px;border-radius:3px;background:#0e0d0c;box-shadow:inset 0 1px 2px rgba(0,0,0,0.7)}
+input[type="range"]::-moz-range-thumb{width:13px;height:13px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#454340,#292826 65%);border:1px solid #474441}
+output{color:var(--amber);text-shadow:0 0 6px rgba(224,164,60,0.3)}
+footer.pageFoot{margin-top:26px;padding-top:14px;border-top:1px solid var(--hair);
+  box-shadow:0 1px 0 var(--bevel-lt) inset;display:flex;gap:16px;align-items:center;flex-wrap:wrap;
+  font-size:11px;letter-spacing:.06em}
+footer.pageFoot a{color:var(--amber);text-decoration:none;text-shadow:0 0 6px rgba(224,164,60,0.25)}
+footer.pageFoot a:hover{text-decoration:underline}
+.footContact{display:inline-flex;align-items:center;gap:10px}
+.ghLink{display:inline-flex;align-items:center;color:var(--dim)}
+.ghLink:hover{color:var(--amber)}
+.ghLink svg{width:17px;height:17px;fill:currentColor}
+footer.pageFoot .footNote{margin-left:auto;color:var(--dim)}
+footer.pageFoot form{display:flex;gap:8px}
+footer.pageFoot input[type="email"]{background:var(--panel2);border:1px solid var(--hair);border-radius:3px;
+  color:var(--t);font:inherit;font-size:11px;padding:6px 9px;width:190px;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,0.4)}
+footer.pageFoot input[type="submit"]{background:linear-gradient(180deg,#292826,#201e1c);color:var(--t);
+  border:1px solid var(--hair);border-radius:3px;font:inherit;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;padding:6px 12px;cursor:pointer;box-shadow:inset 0 1px 0 var(--bevel-lt)}
+#manual{position:fixed;top:0;right:0;bottom:0;width:400px;z-index:50;overflow-y:auto;
+  background:linear-gradient(180deg,#1d1c1a,var(--panel));border-left:1px solid var(--hair);
+  box-shadow:-10px 0 28px rgba(0,0,0,0.55);padding:18px 22px 40px;
+  transform:translateX(105%);transition:transform .22s ease}
+body.manualOpen #manual{transform:none}
+@media (min-width:1500px){body.manualOpen .wrap{margin-right:calc((100% - 1060px)/2 + 210px)}}
+.manualX{position:absolute;top:10px;right:12px;padding:3px 10px;font-size:13px;line-height:1}
+#manual h3{font-size:11px;letter-spacing:.22em;color:var(--cream);text-transform:uppercase;
+  margin:18px 0 6px;border-bottom:1px solid var(--cream-line);padding-bottom:4px}
+#manual h3:first-child{margin-top:2px}
+#manual p{font-size:12px;line-height:1.55;color:var(--t);margin:6px 0}
+#manual b{color:var(--cream);font-weight:600}
+#manual .k{color:var(--amber)}
+html{overflow-x:hidden}
+.wrap{position:relative}
+.wrap::before,.wrap::after{content:"";position:absolute;top:10px;bottom:10px;width:26px;
+  background:
+    linear-gradient(90deg,rgba(255,240,210,0.10),rgba(0,0,0,0.28) 30%,rgba(0,0,0,0.05) 55%,rgba(0,0,0,0.4)),
+    repeating-linear-gradient(90deg,#46321f 0 2px,#3a2a1a 2px 5px,#412e1c 5px 7px),
+    repeating-linear-gradient(88deg,rgba(0,0,0,0.18) 0 1px,transparent 1px 11px),
+    #3a2a1a;
+  box-shadow:inset 0 0 8px rgba(0,0,0,0.55),0 2px 8px rgba(0,0,0,0.5)}
+.wrap::before{left:-30px;border-radius:7px 0 0 7px}
+.wrap::after{right:-30px;border-radius:0 7px 7px 0;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,0.4),rgba(0,0,0,0.05) 45%,rgba(0,0,0,0.28) 70%,rgba(255,240,210,0.10)),
+    repeating-linear-gradient(90deg,#46321f 0 2px,#3a2a1a 2px 5px,#412e1c 5px 7px),
+    repeating-linear-gradient(92deg,rgba(0,0,0,0.18) 0 1px,transparent 1px 11px),
+    #3a2a1a}
+@media (max-width:1150px){.wrap::before,.wrap::after{display:none}}
+@media (max-width:720px){
+  .wrap{padding:14px 10px 48px}
+  header h1{font-size:20px}
+  #manual{width:100vw;border-left:none;padding:16px 16px 40px}
+  body.manualOpen .wrap{margin-right:0}
+  footer.pageFoot{flex-direction:column;align-items:flex-start;gap:10px}
+  .footContact{display:inline-flex;align-items:center;gap:10px}
+.ghLink{display:inline-flex;align-items:center;color:var(--dim)}
+.ghLink:hover{color:var(--amber)}
+.ghLink svg{width:17px;height:17px;fill:currentColor}
+footer.pageFoot .footNote{margin-left:0}
+  footer.pageFoot form{width:100%}
+  footer.pageFoot input[type="email"]{flex:1;width:auto}
+  input[type="range"]::-webkit-slider-thumb{width:18px;height:18px;margin-top:-6.5px}
+  input[type="range"]::-moz-range-thumb{width:17px;height:17px}
+  button{padding:8px 12px}
+  .ctl label{width:64px}
+  .deg{min-width:38px}
+  #patchName{width:110px}
+  #patchList{max-width:46vw}
+  .tools{gap:6px}
+  .row{flex-wrap:wrap;row-gap:8px}
+  header #btnManual,header .stat,header #btnInit,header #btnBounce,header .hdrDiv{display:none}
+  input[type="text"],input[type="email"],select{font-size:16px}
+  button{min-height:40px}
+  .layer,.master{padding:10px 10px}
+  .kbrow{gap:10px}
+  .ctl{gap:8px}
+  #manual p{font-size:13px;line-height:1.6}
+}
+@media (max-width:359px){
+  .kb{transform:scale(0.85);transform-origin:left top;margin-bottom:-14px}
+}
+.hdrDiv{display:inline-block;width:1px;height:18px;background:var(--hair);margin:0 8px;vertical-align:middle}
+header select#circuitSel{background:linear-gradient(180deg,#292826,#201e1c);border:1px solid var(--hair);border-radius:3px;color:var(--amber);font:inherit;font-size:11px;padding:4px 6px;text-shadow:0 0 6px rgba(224,164,60,0.35);box-shadow:inset 0 1px 0 var(--bevel-lt)}
 .kb{position:relative;height:96px;width:334px;flex:none}
-.kb .wk{position:absolute;top:0;width:46px;height:96px;background:#20252811;border:1px solid var(--hair);
-  border-radius:0 0 4px 4px;background:var(--panel2);cursor:pointer}
+.kb .wk{position:absolute;top:0;width:46px;height:96px;border:1px solid var(--hair);
+  border-radius:0 0 4px 4px;cursor:pointer;
+  background:linear-gradient(180deg,#282624,#21201e);
+  box-shadow:inset 0 1px 0 var(--bevel-lt),inset 0 -3px 5px rgba(0,0,0,0.35)}
 .kb .wk.on{background:#3a2226;border-color:var(--led)}
-.kb .bk{position:absolute;top:0;width:28px;height:58px;background:#0c0e0f;border:1px solid var(--hair);
-  border-radius:0 0 3px 3px;z-index:2;cursor:pointer}
+.kb .bk{position:absolute;top:0;width:28px;height:58px;border:1px solid #232120;
+  border-radius:0 0 3px 3px;z-index:2;cursor:pointer;
+  background:linear-gradient(180deg,#121110,#0a0909);
+  box-shadow:inset 0 1px 0 rgba(255,250,240,0.04),0 2px 3px rgba(0,0,0,0.5)}
 .kb .bk.on{background:#471a20;border-color:var(--led)}
 .kb .lbl{position:absolute;bottom:4px;width:100%;text-align:center;color:var(--faint);font-size:9px;pointer-events:none}
 .degrees{display:flex;flex-direction:column;gap:8px}
 .degrees .row{display:flex;gap:6px}
 .deg{min-width:44px}
-.selrow{display:flex;gap:10px;align-items:center;color:var(--dim);font-size:11px;letter-spacing:.1em}
+.selrow{display:flex;gap:10px;flex-wrap:wrap;row-gap:8px;align-items:center;color:var(--dim);font-size:11px;letter-spacing:.1em}
 select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);border-radius:3px;font:inherit;font-size:11px;padding:5px 6px}
 /* layers */
 .layers{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
-.layer,.master{border:1px solid var(--hair);border-radius:4px;background:var(--panel);padding:12px 14px}
-.layer h2,.master h2{margin:0 0 10px;font-size:11px;letter-spacing:.24em;color:var(--dim);font-weight:600;
+.layer,.master{border:1px solid var(--hair);border-radius:4px;padding:12px 14px;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,250,240,0.013) 0 1px,transparent 1px 4px),
+    linear-gradient(180deg,#201e1c,var(--panel));
+  box-shadow:inset 0 1px 0 var(--bevel-lt),inset 0 -1px 0 rgba(0,0,0,0.35),0 2px 5px var(--bevel-dk)}
+.layer h2,.master h2{margin:0 0 10px;font-size:11px;letter-spacing:.24em;color:var(--cream);font-weight:600;
+  text-shadow:0 1px 1px rgba(0,0,0,0.6);
+  border-bottom:1px solid var(--cream-line);padding-bottom:6px;
   display:flex;align-items:center;gap:8px}
 .led{width:8px;height:8px;border-radius:50%;background:#2a2f32;flex:none;transition:background .04s}
 .led.hot{background:var(--led);box-shadow:0 0 6px var(--led)}
@@ -69,11 +184,11 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
 .ctl .seg{display:flex;gap:4px;flex:1}
 .seg button{flex:1;padding:5px 2px;font-size:10px}
 .master{margin-top:12px}
-.master.harmony{background:#131618;border-color:#3a4145;margin-bottom:14px}
+.master.harmony{background:linear-gradient(180deg,#151414,#121110);border-color:#3e3a33;margin-bottom:14px}
 .master.harmony .kbrow{margin-bottom:0;justify-content:space-between}
 .mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:4px 26px}
 .tools{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.tools .stat{margin-left:auto;color:var(--dim);font-size:11px;letter-spacing:.1em;min-height:16px}
+.tools .stat{max-width:38vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-left:auto;color:var(--dim);font-size:11px;letter-spacing:.1em;min-height:16px}
 .note{margin-top:22px;color:var(--faint);font-size:11px;line-height:1.7;border-top:1px solid var(--hair);padding-top:12px}
 .note b{color:var(--dim)}
 </style>
@@ -82,12 +197,17 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
 <div class="wrap">
   <header>
     <h1>AM-1</h1><span class="sub">arpeggio machine</span>
+    <button id="btnManual" aria-pressed="false" style="padding:4px 10px;font-size:10px">manual</button>
     <div class="run">
       <span class="stat" id="stat">—</span>
+      <span class="hdrDiv" aria-hidden="true"></span>
       <button id="btnInit">init</button>
       <button id="btnBounce" aria-pressed="false">bounce</button>
-      <button id="btnTap">tap</button>
-      <button id="btnBack">back</button>
+      <span class="hdrDiv" aria-hidden="true"></span>
+      <select id="circuitSel" aria-label="era">
+        <option value="mk1" selected>2026</option>
+        <option value="mk2">1983</option>
+      </select>
       <button id="btnAnomaly" class="anomaly">anomaly</button>
       <span class="led" id="runLed"></span>
       <button class="big" id="btnRun" aria-pressed="false">run</button>
@@ -126,13 +246,13 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
       </div>
       <div class="row" id="degRow"></div>
       <div class="row">
+        <button id="seqMode" aria-pressed="false" title="what seq rec writes">melody</button>
         <button id="seqRec" aria-pressed="false">seq rec</button>
         <button id="seqRest">rest</button>
         <button id="seqClr">clear</button>
         <button id="seqFollow" aria-pressed="false">follow</button>
         <span id="seqShow" style="color:var(--faint);font-size:10px;align-self:center;max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</span>
       </div>
-      <div class="selrow" style="color:var(--faint)">degrees build the chord from the scale — always in key</div>
     </div>
   </div>
   </div>
@@ -149,6 +269,7 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
             <button data-v="square" aria-pressed="false">square</button>
             <button data-v="sine" aria-pressed="false">sine</button>
             <button data-v="strings" aria-pressed="false">strings</button>
+            <button data-v="choir" aria-pressed="false">choir</button>
           </div></div>
         <div class="ctl"><label>note</label>
           <div class="seg" id="droneNoteSeg">
@@ -247,7 +368,8 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
         <div class="ctl"><label for="pitch">pitch</label><input type="range" id="pitch" min="-12" max="12" step="0.1" value="0"><output id="pitchOut">0.0</output></div>
         <div class="ctl"><label for="swing">swing</label><input type="range" id="swing" min="0" max="100" value="0"><output id="swingOut">0</output></div>
         <div class="ctl"><label for="drive">drive</label><input type="range" id="drive" min="0" max="100" value="15"><output id="driveOut">15</output></div>
-        <div class="ctl"><label for="age">age</label><input type="range" id="age" min="0" max="100" value="0"><output id="ageOut">0</output></div>
+
+        <div class="ctl"><label for="age">entropy</label><input type="range" id="age" min="0" max="100" value="0"><output id="ageOut">0</output></div>
       </div>
       <div>
         <div class="ctl"><label for="cutoff">cutoff</label><input type="range" id="cutoff" min="0" max="100" value="72"><output id="cutoffOut">72</output></div>
@@ -260,13 +382,67 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
   </div>
 
 
-  <div class="note">
-    <b>AM-1.</b> Three arpeggio layers share one clock at divisions /1 /2 /3 /4 — they interlock by construction.
-    Every note is drawn from the latched chord, and the chord is drawn from the scale: the machine cannot leave the key. Scale <b>free</b> drops the rails — all twelve notes, no snapping.
-    Change degrees while it runs; that is the performance. SEQ REC arms the keyboard — tap a melody (REST for gaps), and any layer set to seq loops it. FOLLOW transposes the sequence with the degrees — the Berlin move. Delay is tempo-synced — the classic river. Reverb is the hall it runs through. MOD is one slow wave aimed at one thing — the hands-free sweep.
-    Bounce records the output as WAV. Space runs; T taps tempo. Hold \u00d72 on a part (keys 1/2/3) to ratchet it. ANOMALY rolls a legal patch — the rails hold. FEEDBACK returns the machine to itself; past ninety it howls. No pages. No wrong notes.
-  </div>
+  <footer class="pageFoot">
+    <span class="footContact"><a href="https://github.com/zacos-tech" class="ghLink" target="_blank" rel="noopener" aria-label="ZACOS on GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    <a href="mailto:oldman@zacos.tech" class="footer-email">oldman@zacos.tech</a></span>
+    <span class="footNote">Follow AM-1 hardware progress</span>
+    <form id="mcForm"
+      action="https://tech.us13.list-manage.com/subscribe/post?u=4c2e196117cdb095809f3bb3b&amp;id=f31692b207&amp;f_id=00de34e5f0"
+      method="post"
+      class="mailchimp-form"
+      target="_self"
+      novalidate
+    >
+      <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Email" required />
+      <input type="submit" value="Confirm" />
+      <div aria-hidden="true" style="position: absolute; left: -5000px;">
+        <input type="text" name="b_4c2e196117cdb095809f3bb3b_f31692b207" tabindex="-1" value="" />
+      </div>
+    </form>
+  </footer>
 </div>
+
+<aside id="manual" aria-label="manual">
+  <button id="manualClose" class="manualX" aria-label="close manual">×</button>
+  <h3>The Machine</h3>
+  <p>Three arpeggio parts share one clock at divisions /1–/4 and interlock by construction. One drone. All notes derive from the latched chord; the chord derives from the selected key and scale. <span class="k">RUN</span> starts and stops the clock.</p>
+
+  <h3>Harmony</h3>
+  <p><b>KEY</b> and <b>SCALE</b> define the pitch set: six scales plus <b>free</b> (chromatic; snapping disabled). <b>DEGREE</b> buttons move the ensemble to the selected chord degree in real time. <b>7THS</b> adds sevenths to all chords. The keyboard latches a custom chord; all input is snapped to the scale.</p>
+
+  <h3>Parts</h3>
+  <p>Three parts: <b>BASS · RYTM · LEAD</b>. Per part: voice (saw, square, glass, bell, pluck) · pattern (up, down, updown, random, seq, rev) · division /1–/4 · octave span 1–4 · <b>SHAPE</b> (note length) · <b>LEVEL</b> · <b>LEN</b> (loop length 0–16; 0 = the pattern's natural length; unequal lengths phase against one another). Keys <span class="k">1 / 2 / 3</span>: hold to ratchet the part ×2.</p>
+
+  <h3>Sequencer</h3>
+  <p><b>SEQ REC</b> arms the keyboard for step entry: 16 steps maximum; <b>REST</b> inserts a gap. Parts set to <b>seq</b> play the sequence; <b>rev</b> plays it in retrograde. <b>FOLLOW</b> transposes the sequence with degree changes. Step bar: click a step to mute or unmute it. Moving markers indicate each part's loop position. <b>MODE</b> selects the recorder's target: melody (keyboard notes) or chords (a degree progression, 16 steps maximum; <b>REST</b> records a hold). A recorded progression advances the harmony one step per whole note while running. Melody and progression run concurrently.</p>
+
+  <h3>Drone</h3>
+  <p>Six voices: <b>saw</b>, <b>square</b>, <b>sine</b> (+1 octave), <b>strings</b> (saw pair through an ensemble chorus), <b>choir</b> (fixed vowel formant bank with vibrato). <b>NOTE</b> selects root, fifth, or high octave. The drone tracks KEY, PITCH, LFO 2, and ENTROPY.</p>
+
+  <h3>Effects</h3>
+  <p><b>DELAY</b>: tempo-synced ping-pong; repeats are progressively damped. <b>REVERB</b>: four types — hall, plate, spring, dark. <b>PHASER</b>: four-stage allpass sweep; left and right channels sweep 90° apart.</p>
+
+  <h3>Mod</h3>
+  <p>Two LFOs. <b>LFO 1</b> targets cutoff, shape, drive, reverb, resonance; audio-rate capable. <b>LFO 2</b> targets pitch, feedback, delay, level, phaser; control-rate. Five waves: tri, saw, square, random, <b>chaos</b> (Lorenz attractor; non-repeating). Rate 0 = a 30-minute cycle.</p>
+
+  <h3>Master</h3>
+  <p><b>TEMPO</b> 5–180 BPM. <b>SWING</b> 0–100. <b>PITCH</b> ±12 semitones; the clock is unaffected. <b>GLIDE</b>: portamento. <b>DRIVE</b>: low range — asymmetric transistor-type saturation; upper range — hard clipping; maximum — aliased distortion. <b>ENTROPY</b>: playback disorder, linear 0–100; 0 is fully deterministic; at maximum, pitch walks exceed ±100 cents, onsets scoop, and approximately 20% of notes play weak. The clock is unaffected. <b>FEEDBACK</b>: a delay line tuned to the key root, returned through the master filter; self-oscillates above approximately 90, at the tonic. <b>CUTOFF / RESONANCE</b>: one master low-pass filter over the entire output. <b>OUTPUT</b>: level.</p>
+
+  <h3>Era</h3>
+  <p>Selects the engine circuit. <b>2026</b>: linear oscillators; symmetric-clipping drive. <b>1983</b>: pulse-width oscillators with free-run phase; asymmetric drive with bias memory. Stored per patch.</p>
+
+  <h3>Anomaly</h3>
+  <p>Generates a complete scale-legal patch.</p>
+
+  <h3>Patches</h3>
+  <p>15 factory patches. Save by name. Export and import as JSON. The session — all parameters and the era — persists automatically and restores on load. <b>INIT</b> zeroes the machine. <b>BOUNCE</b> records the output to WAV.</p>
+
+  <h3>Keys</h3>
+  <p><span class="k">space</span> run/stop · <span class="k">T</span> tap tempo · <span class="k">1/2/3</span> hold to ratchet · <span class="k">REST</span> during recording.</p>
+
+  <h3>Texture</h3>
+  <p>Stratified ostinato polyphony over a pedal point: interlocking arpeggios over a drone.</p>
+</aside>
 
 <script>
 /* ================================================================
@@ -280,16 +456,22 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
                    buildPattern + lenCycle (LEN). Also CAL — every
                    ear-tuned constant — and the boot `state` literal.
      audio         the Web Audio graph: initAudio wiring, the five
-                   voices inside playNote, the CP3 drive curve,
-                   procedural reverb IRs, the phaser, the drone
-                   (incl. the strings ensemble), applyMaster.
+                   voices inside playNote, the DRIVE circuits (the
+                   header's ERA selector: mk1 = 2026 lab-clean, mk2 =
+                   1983 CP3/gnarl/crunch + analog oscillators),
+                   procedural reverb IRs, the stereo phaser, the
+                   drone's six voices (strings + choir ensembles),
+                   applyMaster.
      mod           the two LFOs: LFO1 (audio-rate osc + tick), LFO2
-                   (tick only), the AGE thermal walks.
+                   (tick only), five waves incl. the Lorenz chaos,
+                   the ENTROPY thermal walks (state key: age).
      clock         the lookahead scheduler — the machine's one
                    inviolable. Pulse math, swing, syncIdx (parts
                    join the grid in phase), start/stop, tab-hide.
      chord input   the harmony surface: latch keyboard, degrees,
-                   KEY/SCALE/7THS, the seq recorder, the seq bar
+                   KEY/SCALE/7THS, the seq recorder (melody notes or
+                   a chord progression — seqMode/progSeq; the clock
+                   auto-advances the progression), the seq bar
                    (step on/off + phase markers), previewNote.
      layer UI      the three part strips — built from LAYER_FIELDS
                    by the seg/slider helpers (SEG_LABELS maps panel
@@ -297,9 +479,12 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
      master wiring the master/effects controls → state → applyMaster.
      tools         WAV bounce, FIELDS (the parameter registry that
                    generates serialize/load/UI refresh), patches +
-                   factory bank, the ANOMALY dice + its rails and
-                   logbook, INIT.
-     boot          first render. Nothing sounds until RUN.
+                   the factory bank (all owner-made; dispName shows
+                   "Berlin, Bees" over berlin_bees keys), the
+                   ANOMALY dice + its rails and logbook, INIT.
+     boot          session memory: restore am1.active if stored,
+                   else Berlin, Bees greets; era + live state persist
+                   every 3s. Nothing sounds until RUN.
 
    Two tables rule everything: CAL (how it sounds) and FIELDS (what a
    patch is). `state` is the single source of truth — the DOM is only
@@ -314,7 +499,7 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
    no-ops and the engine neither knows nor cares. */
 const UI={partFire:(i,waitMs)=>{},transport:(running)=>{}};
 const KEYS=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
-/* Five curated scales + 'free' (chromatic, the opt-out of the no-wrong-
+/* Six curated scales + 'free' (chromatic, the opt-out of the no-wrong-
    notes law). Intervals in semitones from the key root. Everything
    harmonic — chords, snapping, FOLLOW — derives from these rows. */
 const SCALES={
@@ -327,11 +512,11 @@ const ROLES={bass:{base:36,sub:true},arp:{base:48,sub:false},lead:{base:60,sub:f
 /* CAL — the calibration table. Every value here was tuned by ear in the
    harness; this block ports verbatim to the hardware firmware. */
 const CAL={
-  drive:{taper:1.5,span:7,comp:1.3,bias:0.24},
+  drive:{taper:1.5,span:7,comp:1.3,bias:0.24,asym:0.22,floorG:0.35,tiltF:250,tiltDb:3.5,lpF:9000,lpHiF:18000,lpCurve:1.8,biasHz:7,biasK:0.09,gnarlLo:0.65,crunch:0.45,crunchG:1.8},
   fb:{taper:1.6,max:1.15,root:36},
   cut:{base:16,span:10.25},
   mod:{base:0.000556,span:324000,audioCap:180,tickCap:30,pitchSpan:0.7,shapeSpan:50,cutSwing:60,driveSwing:0.8,levelSwing:0.8,resoSwing:0.85,chaosK:2.2},
-  voice:{driftCents:4,humBase:0.92,humSpan:0.16,glideMax:0.35,sawDetune:1.006,bellRatio:3.01,bellHit:3.2,bellTail:0.45,pluckFb:0.88,pluckFbSpan:0.115,pluckDampBase:900,pluckDampSpan:5000},
+  voice:{driftCents:4,humBase:0.92,humSpan:0.16,glideMax:0.35,sawDetune:1.006,duty:0.483,droopN:26,droopP:0.6,bow2:1.07,bow3:1.03,bellRatio:3.01,bellHit:3.2,bellTail:0.45,pluckFb:0.88,pluckFbSpan:0.115,pluckDampBase:900,pluckDampSpan:5000},
   /* AGE — the Prophet Rev4 VINTAGE move, wearing the house name (the TM-1's
      AGE knob is its sibling: same gesture, tape physics instead). Each PART
      is a voice card that aged differently — fixed per-part miscalibrations
@@ -351,13 +536,19 @@ const CAL={
     driftMax:144,scoopMax:95,scoopTMin:0.05,scoopTSpan:0.09,settleStretch:2.4,
     envJitMax:0.42,cutJit:0.10,humLo:0.5,humHi:2.4,
     sickMax:0.2,sickVelHi:0.45,sickVelSpan:0.37,sickDurHi:0.75,sickDurSpan:0.45,aliveRamp:4},
-  phaser:{rate:0.11,center:700,stageMul:[0.7,1.0,1.45,2.1,3.0,4.3],sweepCents:1500,q:0.7,fbMax:0.5,wetMax:0.5,wetTaper:0.6},
+  phaser:{rate:0.11,stages:4,center:800,sweepCents:2400,q:0.5,fbMax:0.65,wetMax:0.5,wetTaper:0.6},
   drone:{lvl:0.5,lp:420,detune:1.004,
     /* strings — the 70s string-machine drone (Solina/Eminent school): saws
        two octaves above the basement, through a two-tap ensemble chorus
        (slow LFOs at unequal rates — the swirl that makes saws read as
        strings), mellow lowpass instead of the sub-drone's dark one. */
-    strings:{lp:3400,lvl:0.38,det:1.007,d1:0.019,d2:0.026,r1:0.62,r2:0.87,depth:0.0032,tap:0.5}},
+    strings:{lp:3400,lvl:0.38,det:1.007,d1:0.019,d2:0.026,r1:0.62,r2:0.87,depth:0.0032,tap:0.5},
+    /* choir — vowel formants for an open "ah": F1/F2/F3 at vocal-tract
+       frequencies, gains weighted like a chest voice; formants FIXED (a
+       moving vowel is speech, a held one is a choir); vibrato — singers
+       waver — rides the oscillators, not the filters. */
+    choir:{lp:3200,lvl:0.6,det:1.009,f1:640,f2:1080,f3:2650,q:9,g1:1.0,g2:0.55,g3:0.3,
+      vibHz:4.6,vibCents:3.4,d1:0.021,d2:0.029,r1:0.55,r2:0.8,depth:0.003,tap:0.5}},
   bus:{dsum:0.6,dlyDamp:3200,compTh:-14,compRatio:4}
 };
 const state={
@@ -370,7 +561,7 @@ const state={
     {name:'PART II',  role:'arp',  voice:'square', pattern:'updown', div:1, oct:2, shape:20, level:60, on:true, len:0, idx:-1},
     {name:'PART III', role:'lead', voice:'saw',    pattern:'up',     div:3, oct:2, shape:52, level:46, on:true, len:0, idx:-1}
   ],
-  seqOff:[], swing:0, glide:0, pitch:0, drone:35, drive:15, fb:0, age:0, cutoff:72, reso:18, vol:80,
+  seqOff:[], swing:0, glide:0, pitch:0, drone:35, drive:15, fb:0, age:0, circuit:'mk1', cutoff:72, reso:18, vol:80,
   dlyDiv:3, dlyFb:45, dlyMix:30, phase:0, verbType:'hall', verbSize:45, verbMix:25,
   mod:{wave:'tri',target:'cutoff',rate:25,depth:0},
   mod2:{wave:'tri',target:'pitch',rate:20,depth:0},
@@ -455,11 +646,21 @@ function buildPattern(layer){
   return lenCycle(notes,layer);
 }
 /* ============ audio ============ */
-let ctx=null,master,preFilt,filt,shaper,dcBlock,driveIn,driveOut,phOut,phDry,phWet,phFb,phLfo,phDepth,phAps,fbDly,fbG,dly,dlyR,dsum,dmerge,dlyFbG,dlyWet,dlyDamp,comp,modOsc,scCut,scDrive,scVerb,scReso,noiseBuf,recDest,droneNodes=null,bnc=null,verb,verbWet,lastVerbSize=-1,lastVerbType='',lastDrive=-1;
+let ctx=null,master,preFilt,filt,shaper,dcBlock,anaSaw,anaPulse,driveIn,driveOut,drvTiltIn,drvTiltOut,drvRound,drvSum,drvRect,drvBiasLp,drvBiasG,phOut,phDry,phWet,phFbL,phFbR,phLfo,phLfoB,phDepth,phDepthB,phAps,fbDly,fbG,dly,dlyR,dsum,dmerge,dlyFbG,dlyWet,dlyDamp,comp,modOsc,scCut,scDrive,scVerb,scReso,noiseBuf,recDest,droneNodes=null,bnc=null,verb,verbWet,lastVerbSize=-1,lastVerbType='',lastDrive=-1;
 /* Drive transfer curve: tanh normalized to unity at the rails, so the
    output ceiling never moves — more drive = more snarl, not more level.
    Also the feedback loop's safety limiter. */
 function curve(amount){
+  if(state.circuit==='mk1'){
+    /* MK1 — the original circuit, verbatim: bias-shifted tanh, identity at zero */
+    const k=amount*3,n=2048,c=new Float32Array(n);
+    if(k<=0){for(let i=0;i<n;i++)c[i]=i*2/n-1;return c}
+    const g=1+k,b=CAL.drive.bias*amount,dc=Math.tanh(g*b);
+    let peak=0;
+    for(let i=0;i<n;i++){const x=i*2/n-1;const y=Math.tanh(g*(x+b))-dc;c[i]=y;if(Math.abs(y)>peak)peak=Math.abs(y)}
+    for(let i=0;i<n;i++)c[i]/=peak;
+    return c;
+  }
   /* CP3-school saturation: a bias-shifted tanh clips asymmetrically — one
      polarity flattens before the other, the transistor-mixer move — which
      adds EVEN harmonics (2nd, 4th) on top of tanh's odd ones. That octave-
@@ -467,11 +668,15 @@ function curve(amount){
      DC from the shifted operating point is subtracted here and a 12Hz
      blocker downstream catches the program-dependent rest. Peak-normalized
      so the ceiling never moves: more drive = more hair, never more level. */
-  const k=amount*3,n=1024,c=new Float32Array(n);
-  if(k<=0){for(let i=0;i<n;i++)c[i]=i*2/n-1;return c}
-  const g=1+k,b=CAL.drive.bias*amount,dc=Math.tanh(g*b);
+  const k=CAL.drive.floorG+amount*3,n=2048,c=new Float32Array(n);
+  const u=Math.max(0,Math.min(1,(amount-CAL.drive.gnarlLo)/(1-CAL.drive.gnarlLo)));   /* the gnarl fade */
+  const g=1+k+u*CAL.drive.crunchG,b=CAL.drive.bias*amount,a=CAL.drive.asym*(0.35+amount*0.65)*(1-u);
+  const cr=u*CAL.drive.crunch;   /* crunch: blend toward hard corners up top */
+  const F=x=>{const w=g*(x+a*x*x+b),t=Math.tanh(w);
+    return cr?t+(Math.max(-1,Math.min(1,w*1.4))-t)*cr:t};
+  const dc=F(0);
   let peak=0;
-  for(let i=0;i<n;i++){const x=i*2/n-1;const y=Math.tanh(g*(x+b))-dc;c[i]=y;if(Math.abs(y)>peak)peak=Math.abs(y)}
+  for(let i=0;i<n;i++){const x=i*2/n-1;const y=F(x)-dc;c[i]=y;if(Math.abs(y)>peak)peak=Math.abs(y)}
   for(let i=0;i<n;i++)c[i]/=peak;
   return c;
 }
@@ -484,7 +689,12 @@ function initAudio(){
   ctx=new (window.AudioContext||window.webkitAudioContext)();
   preFilt=ctx.createGain();
   filt=ctx.createBiquadFilter();filt.type='lowpass';
-  shaper=ctx.createWaveShaper();shaper.oversample='2x';
+  {const NH=48,V=CAL.voice,z=new Float32Array(NH+1),ss=new Float32Array(NH+1),sp=new Float32Array(NH+1);
+   const droop=n=>Math.pow(1/(1+Math.pow(n/V.droopN,2)),V.droopP);
+   for(let n=1;n<=NH;n++){ss[n]=(1/n)*droop(n);sp[n]=(2/(n*Math.PI))*Math.sin(n*Math.PI*V.duty)*droop(n)}
+   ss[2]*=V.bow2;ss[3]*=V.bow3;
+   anaSaw=ctx.createPeriodicWave(z,ss);anaPulse=ctx.createPeriodicWave(z.slice(),sp);}
+  shaper=ctx.createWaveShaper();shaper.oversample='4x';
   dly=ctx.createDelay(13);dlyR=ctx.createDelay(13);
   dsum=ctx.createGain();dsum.gain.value=CAL.bus.dsum;
   dsum.channelCount=1;dsum.channelCountMode='explicit';   /* mono into the ping-pong */
@@ -501,29 +711,58 @@ function initAudio(){
   driveIn=ctx.createGain();driveOut=ctx.createGain();
   preFilt.connect(filt);filt.connect(driveIn);
   dcBlock=ctx.createBiquadFilter();dcBlock.type='highpass';dcBlock.frequency.value=12;dcBlock.Q.value=0.5;
-  driveIn.connect(shaper);shaper.connect(dcBlock);dcBlock.connect(driveOut);
+  drvTiltIn=ctx.createBiquadFilter();drvTiltIn.type='lowshelf';drvTiltIn.frequency.value=CAL.drive.tiltF;drvTiltIn.gain.value=CAL.drive.tiltDb;
+  drvTiltOut=ctx.createBiquadFilter();drvTiltOut.type='lowshelf';drvTiltOut.frequency.value=CAL.drive.tiltF;drvTiltOut.gain.value=-CAL.drive.tiltDb;
+  drvRound=ctx.createBiquadFilter();drvRound.type='lowpass';drvRound.frequency.value=CAL.drive.lpF;drvRound.Q.value=0.5;
+  drvSum=ctx.createGain();
+  drvRect=ctx.createWaveShaper();
+  {const n=1024,rc=new Float32Array(n);for(let i=0;i<n;i++){const x=i*2/n-1;rc[i]=Math.abs(x)}drvRect.curve=rc}
+  drvBiasLp=ctx.createBiquadFilter();drvBiasLp.type='lowpass';drvBiasLp.frequency.value=CAL.drive.biasHz;
+  drvBiasG=ctx.createGain();drvBiasG.gain.value=0;
+  driveIn.connect(drvTiltIn);
+  drvTiltIn.connect(drvSum);
+  drvTiltIn.connect(drvRect);drvRect.connect(drvBiasLp);drvBiasLp.connect(drvBiasG);drvBiasG.connect(drvSum);   /* the charging cap: feedforward, no cycle */
+  drvSum.connect(shaper);shaper.connect(dcBlock);dcBlock.connect(drvTiltOut);drvTiltOut.connect(drvRound);drvRound.connect(driveOut);
   fbDly=ctx.createDelay(0.1);fbDly.delayTime.value=0.024;
   fbG=ctx.createGain();fbG.gain.value=0;
   driveOut.connect(fbDly);fbDly.connect(fbG);fbG.connect(preFilt);
   /* phaser: driveOut → [dry + 4×allpass] → phOut → dry/delay/verb.
      The scream loop above taps driveOut directly — pre-phaser — so the
      tuned feedback's calibration is untouched. */
-  phOut=ctx.createGain();phDry=ctx.createGain();phWet=ctx.createGain();phFb=ctx.createGain();
-  phDry.gain.value=1;phWet.gain.value=0;phFb.gain.value=0;
-  phAps=[];let prev=null;
-  for(let i=0;i<CAL.phaser.stageMul.length;i++){
-    const ap=ctx.createBiquadFilter();ap.type='allpass';
-    ap.frequency.value=CAL.phaser.center*CAL.phaser.stageMul[i];ap.Q.value=CAL.phaser.q;
-    (prev||driveOut).connect(ap);prev=ap;phAps.push(ap);
-  }
-  prev.connect(phWet);phWet.connect(phOut);
-  const phFbDl=ctx.createDelay(0.01);phFbDl.delayTime.value=0;   /* Web Audio law: a cycle must contain a DelayNode or the whole loop renders SILENCE — this one-quantum delay is what makes the wet path audible at all */
-  prev.connect(phFb);phFb.connect(phFbDl);phFbDl.connect(phAps[0]);
+  phOut=ctx.createGain();phDry=ctx.createGain();phWet=ctx.createGain();
+  phDry.gain.value=1;phWet.gain.value=0;
+  const phSplit=ctx.createChannelSplitter(2),phMerge=ctx.createChannelMerger(2);
+  driveOut.connect(phSplit);
+  phAps=[];
+  const mkChain=(chIn,chOut)=>{
+    let prev=null;const first=[];
+    for(let i=0;i<CAL.phaser.stages;i++){
+      const ap=ctx.createBiquadFilter();ap.type='allpass';
+      ap.frequency.value=CAL.phaser.center;ap.Q.value=CAL.phaser.q;
+      if(prev)prev.connect(ap);else{phSplit.connect(ap,chIn);first.push(ap)}
+      prev=ap;phAps.push(ap);
+    }
+    const fb=ctx.createGain();fb.gain.value=0;
+    const dl=ctx.createDelay(0.01);dl.delayTime.value=0;   /* Web Audio law: a cycle needs a DelayNode or it renders silence */
+    prev.connect(fb);fb.connect(dl);dl.connect(first[0]);
+    prev.connect(phMerge,0,chOut);
+    return {aps:phAps.slice(-CAL.phaser.stages),fb};
+  };
+  const chL=mkChain(0,0),chR=mkChain(1,1);
+  phFbL=chL.fb;phFbR=chR.fb;
+  phMerge.connect(phWet);phWet.connect(phOut);
   driveOut.connect(phDry);phDry.connect(phOut);
+  /* quadrature sweep: two LFOs at the same rate, the right one started a
+     quarter-cycle late — a fixed 90° offset, so the channels counter-swirl */
   phLfo=ctx.createOscillator();phLfo.frequency.value=CAL.phaser.rate;
+  phLfoB=ctx.createOscillator();phLfoB.frequency.value=CAL.phaser.rate;
   phDepth=ctx.createGain();phDepth.gain.value=CAL.phaser.sweepCents;
-  phLfo.connect(phDepth);phAps.forEach(ap=>phDepth.connect(ap.detune));   /* cents — every stage sweeps proportionally, no clamp */
-  phLfo.start();
+  phDepthB=ctx.createGain();phDepthB.gain.value=CAL.phaser.sweepCents;
+  phLfo.connect(phDepth);phLfoB.connect(phDepthB);
+  chL.aps.forEach(ap=>phDepth.connect(ap.detune));
+  chR.aps.forEach(ap=>phDepthB.connect(ap.detune));
+  const t0=ctx.currentTime+0.02;
+  phLfo.start(t0);phLfoB.start(t0+0.25/CAL.phaser.rate);
   phOut.connect(comp);
   phOut.connect(dsum);dsum.connect(dly);
   dly.connect(dlyDamp);dlyDamp.connect(dlyR);
@@ -585,7 +824,20 @@ function applyMaster(){
   verbWet.gain.value=state.verbMix/100*0.8;
   filt.frequency.value=cutHz(state.cutoff);   /* 16 Hz .. ~19.5 kHz */
   filt.Q.value=0.4+state.reso/100*11;
-  if(state.drive!==lastDrive){shaper.curve=curve(state.drive/100);lastDrive=state.drive}
+  if(state.drive!==lastDrive){const d=state.drive/100;shaper.curve=curve(d);lastDrive=state.drive;
+    if(state.circuit==='mk1'){
+      /* MK1: flatten the CP3 stages out of the path — the old chain in behavior */
+      if(drvBiasG)drvBiasG.gain.value=0;
+      if(drvTiltIn){drvTiltIn.gain.value=0;drvTiltOut.gain.value=0;}
+      if(drvRound)drvRound.frequency.value=19500;
+      shaper.oversample='2x';
+    }else{
+      const u=Math.max(0,Math.min(1,(d-CAL.drive.gnarlLo)/(1-CAL.drive.gnarlLo)));
+      if(drvBiasG)drvBiasG.gain.value=-CAL.drive.biasK*(0.25+d*0.75)*(1-0.5*u);
+      if(drvTiltIn){drvTiltIn.gain.value=CAL.drive.tiltDb*(1-u);drvTiltOut.gain.value=-CAL.drive.tiltDb*(1-u);}
+      if(drvRound)drvRound.frequency.value=CAL.drive.lpF+Math.pow(d,CAL.drive.lpCurve)*(CAL.drive.lpHiF-CAL.drive.lpF);
+      shaper.oversample=u>0.5?'2x':'4x';   /* the aliasing dirt readmitted — the animal keeps its teeth */
+    }}
   driveIn.gain.value=1+Math.pow(state.drive/100,CAL.drive.taper)*CAL.drive.span;
   driveOut.gain.value=1/(1+state.drive/100*CAL.drive.comp);
   fbG.gain.value=Math.pow(state.fb/100,CAL.fb.taper)*CAL.fb.max;
@@ -596,7 +848,7 @@ function applyMaster(){
   const pa=state.phase/100,pw=Math.pow(pa,CAL.phaser.wetTaper)*CAL.phaser.wetMax;
   phWet.gain.value=pw;
   phDry.gain.value=1-pw;
-  phFb.gain.value=pa*CAL.phaser.fbMax;
+  phFbL.gain.value=pa*CAL.phaser.fbMax;phFbR.gain.value=pa*CAL.phaser.fbMax;
   dlyFbG.gain.value=state.dlyFb/100;
   dlyWet.gain.value=state.dlyMix/100*0.9;
   master.gain.value=Math.pow(state.vol/100,1.4);
@@ -632,20 +884,26 @@ function ageDrone(){return Math.pow(2,CAL.age.droneCents*(state.age/100)/1200)}
 function droneRoot(){
   return snapToScale(24+state.key)
     +(state.droneNote==='fifth'?7:(state.droneNote==='high'||state.droneNote==='low')?12:0)
-    +(state.droneVoice==='sine'?12:state.droneVoice==='strings'?24:0);
+    +(state.droneVoice==='sine'?12:(state.droneVoice==='strings'||state.droneVoice==='choir')?24:0);
 }
 function droneWave(){
   return state.droneVoice==='square'?'square':state.droneVoice==='sine'?'sine':'sawtooth';
 }
-function droneDet(){return state.droneVoice==='strings'?CAL.drone.strings.det:CAL.drone.detune}
+function setDroneWave(o){
+  const w=droneWave();
+  if(state.circuit==='mk2'&&w==='sawtooth')o.setPeriodicWave(anaSaw);
+  else if(state.circuit==='mk2'&&w==='square')o.setPeriodicWave(anaPulse);
+  else o.type=w;
+}
+function droneDet(){return state.droneVoice==='strings'?CAL.drone.strings.det:state.droneVoice==='choir'?CAL.drone.choir.det:CAL.drone.detune}
 /* Drone lifecycle: born on demand (running + amount>0), then only
    retuned/reshaped — two detuned oscs (CAL.drone.detune ≈ one slow
    beat) through a fixed 420Hz lowpass. Fades out rather than stopping
    so RUN toggles never click. */
 function applyDrone(){
   if(!ctx)return;
-  const kind=state.droneVoice==='strings'?'strings':'plain';
-  const lvl=state.drone/100*(kind==='strings'?CAL.drone.strings.lvl:CAL.drone.lvl);
+  const kind=state.droneVoice==='strings'?'strings':state.droneVoice==='choir'?'choir':'plain';
+  const lvl=state.drone/100*(kind==='strings'?CAL.drone.strings.lvl:kind==='choir'?CAL.drone.choir.lvl:CAL.drone.lvl);
   if(lvl>0&&state.running){
     if(droneNodes&&droneNodes.kind!==kind){         /* voice family changed — rebuild */
       const old=droneNodes,t=ctx.currentTime;droneNodes=null;
@@ -656,9 +914,9 @@ function applyDrone(){
       const root=droneRoot(),pm=Math.pow(2,state.pitch/12);
       const g=ctx.createGain();g.gain.value=0;
       const f=ctx.createBiquadFilter();f.type='lowpass';
-      f.frequency.value=kind==='strings'?CAL.drone.strings.lp:CAL.drone.lp;
+      f.frequency.value=kind==='strings'?CAL.drone.strings.lp:kind==='choir'?CAL.drone.choir.lp:CAL.drone.lp;
       const o1=ctx.createOscillator(),o2=ctx.createOscillator();
-      o1.type=droneWave();o2.type=droneWave();
+      setDroneWave(o1);setDroneWave(o2);
       o1.frequency.value=mtof(root)*pm*ageDrone();o2.frequency.value=mtof(root)*pm*droneDet()*ageDrone();
       let lfos=[];
       if(kind==='strings'){
@@ -674,13 +932,39 @@ function applyDrone(){
           const tg=ctx.createGain();tg.gain.value=SC.tap;
           mix.connect(dl);dl.connect(tg);tg.connect(f);
         });
+      }else if(kind==='choir'){
+        const CC=CAL.drone.choir,mix=ctx.createGain();mix.gain.value=0.5;
+        o1.connect(mix);o2.connect(mix);
+        /* singers waver: one shared vibrato on the throats, never the vowel */
+        const vib=ctx.createOscillator();vib.frequency.value=CC.vibHz;
+        const vg=ctx.createGain();vg.gain.value=CC.vibCents;
+        vib.connect(vg);vg.connect(o1.detune);vg.connect(o2.detune);
+        vib.start();lfos.push(vib);
+        /* the vowel: three fixed formant bandpasses in parallel */
+        const vowel=ctx.createGain();
+        [[CC.f1,CC.g1],[CC.f2,CC.g2],[CC.f3,CC.g3]].forEach(([fq,gv])=>{
+          const bp=ctx.createBiquadFilter();bp.type='bandpass';
+          bp.frequency.value=fq;bp.Q.value=CC.q;
+          const bg=ctx.createGain();bg.gain.value=gv;
+          mix.connect(bp);bp.connect(bg);bg.connect(vowel);
+        });
+        /* one throat becomes a section: the strings' two-tap ensemble */
+        const dry=ctx.createGain();dry.gain.value=0.55;vowel.connect(dry);dry.connect(f);
+        [[CC.d1,CC.r1],[CC.d2,CC.r2]].forEach(([d,r])=>{
+          const dl=ctx.createDelay(0.08);dl.delayTime.value=d;
+          const lfo=ctx.createOscillator();lfo.frequency.value=r;
+          const lg=ctx.createGain();lg.gain.value=CC.depth;
+          lfo.connect(lg);lg.connect(dl.delayTime);lfo.start();lfos.push(lfo);
+          const tg=ctx.createGain();tg.gain.value=CC.tap;
+          vowel.connect(dl);dl.connect(tg);tg.connect(f);
+        });
       }else{o1.connect(f);o2.connect(f);}
       f.connect(g);g.connect(preFilt);
       o1.start();o2.start();
       droneNodes={o1,o2,g,f,kind,lfos};
     }
     droneNodes.g.gain.setTargetAtTime(lvl,ctx.currentTime,0.4);
-    if(kind==='plain'){droneNodes.o1.type=droneWave();droneNodes.o2.type=droneWave();}
+    if(kind==='plain'){setDroneWave(droneNodes.o1);setDroneWave(droneNodes.o2);}
     const root=droneRoot(),pm=Math.pow(2,state.pitch/12);
     droneNodes.o1.frequency.setTargetAtTime(mtof(root)*pm*ageDrone(),ctx.currentTime,0.3);
     droneNodes.o2.frequency.setTargetAtTime(mtof(root)*pm*droneDet()*ageDrone(),ctx.currentTime,0.3);
@@ -729,7 +1013,7 @@ function playNote(layer,midi,t,pi){
   const humF=1-(1-CAL.voice.humBase)*alive+Math.random()*humSpan;   /* exactly 1.0 at age 0 */
   const vel=Math.pow(layer.level/100,1.3)*0.34*(1-Math.min(0.6,sh*0.6))
     *humF*sickVel;   /* humanized level, widened by age — clinical at zero */
-  const g=ctx.createGain();
+  const g=ctx.createGain();g.gain.value=0;   /* silent from birth — mk2 free-run oscs may start early */
   g.gain.setValueAtTime(0,t);
   g.gain.linearRampToValueAtTime(vel,t+atk);
   g.gain.exponentialRampToValueAtTime(0.001,t+atk+dur);
@@ -752,12 +1036,19 @@ function playNote(layer,midi,t,pi){
     o.detune.linearRampToValueAtTime((Math.random()*2-1)*dc,stopT);
   };
   const mk=(type,freq,lvl)=>{
-    const o=ctx.createOscillator();o.type=type;setPitch(o,freq);
+    const o=ctx.createOscillator();
+    let st=t;
+    if(type==='anaSaw'||type==='anaPulse'){
+      o.setPeriodicWave(type==='anaSaw'?anaSaw:anaPulse);
+      const ph=(t*freq)%1;st=Math.max(ctx.currentTime,t-ph/freq);   /* free-run phase */
+    }else o.type=type;
+    setPitch(o,freq);
     if(lvl!==1){const gg=ctx.createGain();gg.gain.value=lvl;o.connect(gg);gg.connect(g)}
     else o.connect(g);
-    o.start(t);o.stop(stopT);
+    o.start(st);o.stop(stopT);
   };
-  if(layer.voice==='square')mk('square',f,1);
+  const MK2=state.circuit==='mk2';
+  if(layer.voice==='square')mk(MK2?'anaPulse':'square',f,1);
   else if(layer.voice==='glass'){mk('sine',f,0.9);mk('sine',f*2.004,0.4);mk('sine',f*3,0.12)}
   else if(layer.voice==='bell'){
     const c=ctx.createOscillator();c.type='sine';setPitch(c,f);
@@ -786,7 +1077,7 @@ function playNote(layer,midi,t,pi){
     damp.connect(g);
     src.start(t);src.stop(t+Math.max(0.002,per*1.5));
   }
-  else{mk('sawtooth',f,1);mk('sawtooth',f*CAL.voice.sawDetune,0.5)}
+  else{const w=MK2?'anaSaw':'sawtooth';mk(w,f,1);mk(w,f*CAL.voice.sawDetune,0.5)}
   if(ROLES[layer.role].sub)mk('square',f/2,0.5);
   const rf=ctx.createBiquadFilter();                  /* role colour */
   rf.type='lowpass';rf.frequency.value=(ROLE_COLOR[layer.role]||4000)*(1+VA.partCut[pi%3]*vin+(Math.random()-0.5)*VA.cutJit*vin);rf.Q.value=0.5;
@@ -867,12 +1158,13 @@ function mod2Tick(dt){
     dlyWet.gain.setTargetAtTime(Math.max(0,state.dlyMix/100*0.9*(1+lfo2)),ctx.currentTime,0.012);
   }else if(m2.target==='level'){
     master.gain.setTargetAtTime(Math.pow(state.vol/100,1.4)*Math.max(0.02,1+lfo2*CAL.mod.levelSwing),ctx.currentTime,0.012);
-  }else if(m2.target==='phase'&&phWet){
+  }else if(m2.target==='phase'&&phWet&&phFbL){
     const pa=Math.max(0,Math.min(1,state.phase/100*(1+lfo2)));
     const pw=Math.pow(pa,CAL.phaser.wetTaper)*CAL.phaser.wetMax;
     phWet.gain.setTargetAtTime(pw,ctx.currentTime,0.012);
     phDry.gain.setTargetAtTime(1-pw,ctx.currentTime,0.012);
-    phFb.gain.setTargetAtTime(pa*CAL.phaser.fbMax,ctx.currentTime,0.012);
+    phFbL.gain.setTargetAtTime(pa*CAL.phaser.fbMax,ctx.currentTime,0.012);
+    phFbR.gain.setTargetAtTime(pa*CAL.phaser.fbMax,ctx.currentTime,0.012);
   }
   /* the drone breathes with the machine: mod2 pitch (when aimed there),
      the AGE sag, and its own thermal walk, all in one live retune */
@@ -915,6 +1207,12 @@ function rebuildPatterns(){state.layers.forEach((l,i)=>{patterns[i]=buildPattern
 function schedule(){
   while(ctx&&nextT<ctx.currentTime+lookahead){
     const p=pulse;
+    /* progression: one step per whole note (16 pulses). An automated
+       degree press — applies at schedule time exactly as a finger would. */
+    if(state.progSeq.length&&p%16===0){
+      const st=state.progSeq[Math.floor(p/16)%state.progSeq.length];
+      if(st!=null&&st!==state.degree)setChordFromDegree(st);
+    }
     const swingOff=(p%2)?(state.swing/100)*(60/state.tempo/4)*0.33:0;
     const t=nextT+swingOff;
     state.layers.forEach((l,i)=>{
@@ -1083,7 +1381,10 @@ function drawDegrees(){
     const b=document.createElement('button');
     b.className='deg';b.textContent=NUMERALS[d];
     b.setAttribute('aria-pressed',state.degree===d);
-    b.onclick=()=>setChordFromDegree(d);
+    b.onclick=()=>{
+      setChordFromDegree(d);   /* recording is playing — the press always sounds */
+      if(seqArmed&&state.seqMode==='prog'&&state.progSeq.length<16){state.progSeq.push(d);progShow()}
+    };
     row.appendChild(b);
   }
 }
@@ -1091,8 +1392,28 @@ document.getElementById('seqRec').onclick=function(){
   seqArmed=!seqArmed;this.setAttribute('aria-pressed',seqArmed);
 };
 document.getElementById('seqRest').onclick=()=>{
+  if(state.seqMode==='prog'){
+    if(state.progSeq.length<16){state.progSeq.push(null);progShow()}
+    return;
+  }
   if(state.seq.length<16){state.seqOff[state.seq.length]=0;state.seq.push(null);seqShow();rebuildPatterns()}};
-document.getElementById('seqClr').onclick=()=>{state.seq=[];state.seqOff=[];seqShow();rebuildPatterns()};
+document.getElementById('seqClr').onclick=()=>{
+  if(state.seqMode==='prog'){state.progSeq=[];progShow();return}
+  state.seq=[];state.seqOff=[];seqShow();rebuildPatterns()};
+/* the prog line — roman numerals in the show span; – is a hold */
+function progShow(){
+  const el=document.getElementById('seqShow');
+  el.textContent=state.progSeq.length
+    ? state.progSeq.map(d=>d==null?'–':NUMERALS[d]).join(' ')
+    : '—';
+}
+document.getElementById('seqMode').onclick=function(){
+  state.seqMode=state.seqMode==='prog'?'mel':'prog';
+  const prog=state.seqMode==='prog';
+  this.textContent=prog?'chords':'melody';
+  this.setAttribute('aria-pressed',prog);
+  prog?progShow():seqShow();
+};
 document.getElementById('seqFollow').onclick=function(){
   state.follow=!state.follow;this.setAttribute('aria-pressed',state.follow);rebuildPatterns();
 };
@@ -1137,7 +1458,7 @@ function tapTempo(){
   document.getElementById('tempoOut').textContent=bpm;
   applyMaster();stat('tempo '+bpm);
 }
-document.getElementById('btnTap').onclick=tapTempo;
+{const bt=document.getElementById('btnTap');if(bt)bt.onclick=tapTempo}   /* button retired from the header; the feature waits */
 /* ============ layer UI ============ */
 const PATTERNS=['up','down','updown','random','seq','rev'];
 const ratSet=[];
@@ -1207,7 +1528,9 @@ function slider(label,min,max,val,fn,fmt){
 UI.partFire=(i,wait)=>{const led=document.getElementById('led'+i);
   setTimeout(()=>{led.classList.add('hot');setTimeout(()=>led.classList.remove('hot'),60)},wait)};
 UI.transport=r=>{document.getElementById('runLed').classList.toggle('hot',r);
-  const b=document.getElementById('btnRun');b.setAttribute('aria-pressed',r);b.textContent=r?'stop':'run'};
+  const b=document.getElementById('btnRun');b.setAttribute('aria-pressed',r);b.textContent=r?'stop':'run';
+  b.classList.toggle('standby',!r)};   /* stopped = breathing red standby */
+document.getElementById('btnRun').classList.add('standby');
 document.getElementById('btnRun').onclick=()=>state.running?stop():start();
 [['tempo','tempo'],['swing','swing'],['glide','glide'],['drone','drone'],['drive','drive'],['age','age'],['cutoff','cutoff'],
  ['reso','reso'],['fb','fb'],['vol','vol'],['dlyFb','dlyFb'],['dlyMix','dlyMix'],['phase','phase'],['verbSize','verbSize'],['verbMix','verbMix']].forEach(([id,key])=>{
@@ -1238,6 +1561,22 @@ function setSeg(id,val){
 wireSeg('modWave',v=>{state.mod.wave=v;applyMaster()});
 wireSeg('modTarget',v=>{state.mod.target=v;applyMaster()});
 wireSeg('verbTypeSeg',v=>{state.verbType=v;applyMaster()});
+{const f=document.getElementById('mcForm');
+ if(f)f.addEventListener('submit',e=>{
+   e.preventDefault();
+   const done=()=>{f.innerHTML='<span class="footNote">Sent — check your inbox to confirm.</span>'};
+   try{
+     fetch(f.action,{method:'POST',mode:'no-cors',body:new FormData(f)}).then(done,done);
+   }catch(err){done()}
+ });}
+{const bm=document.getElementById('btnManual');
+ const setM=o=>{document.body.classList.toggle('manualOpen',o);bm.setAttribute('aria-pressed',o);
+   try{localStorage.setItem('am1.manual',o?'1':'0')}catch(e){}};
+ bm.onclick=()=>setM(!document.body.classList.contains('manualOpen'));
+ const bx=document.getElementById('manualClose');
+ if(bx)bx.onclick=()=>setM(false);
+ try{if(localStorage.getItem('am1.manual')==='1')setM(true)}catch(e){}}
+document.getElementById('circuitSel').onchange=e=>{state.circuit=e.target.value;lastDrive=-1;applyMaster();applyDrone()};   /* dev engine selector — swap re-voices drive + drone live */
 wireSeg('droneVoiceSeg',v=>{state.droneVoice=v;applyDrone()});
 wireSeg('droneNoteSeg',v=>{state.droneNote=v;applyDrone()});
 document.getElementById('mod2Rate').oninput=e=>{state.mod2.rate=+e.target.value;
@@ -1303,6 +1642,8 @@ const FIELDS=[
   {k:'degree',    d:0,      ui:null},
   {k:'seq',       d:[],     ui:{kind:'seq'}},
   {k:'seqOff',    d:[],     ui:null},        /* muted steps — note kept, plays as a rest */
+  {k:'seqMode',   d:'mel',  ui:null},        /* what SEQ REC writes: mel notes | prog degrees */
+  {k:'progSeq',   d:[],     ui:null},        /* recorded degree progression; null = hold */
   {k:'follow',    d:false,  ui:{kind:'press', id:'seqFollow'}},
   {k:'sevenths',  d:false,  ui:{kind:'press', id:'btn7'}},
   {k:'glide',     d:0,      ui:{kind:'slider',id:'glide'}},
@@ -1321,6 +1662,7 @@ const FIELDS=[
   {k:'dlyMix',    d:30,     ui:{kind:'slider',id:'dlyMix'}},
   {k:'phase',     d:0,      ui:{kind:'slider',id:'phase'}},
   {k:'verbType',  d:'hall', ui:{kind:'seg',   id:'verbTypeSeg'}},
+  {k:'circuit',   d:'mk1',  ui:{kind:'sel',   id:'circuitSel'}},
   {k:'verbSize',  d:45,     ui:{kind:'slider',id:'verbSize'}},
   {k:'verbMix',   d:25,     ui:{kind:'slider',id:'verbMix'}},
   {k:'mod',  d:{wave:'tri',target:'cutoff',rate:25,depth:0}, ui:{kind:'lfo',prefix:'mod'}},
@@ -1406,47 +1748,76 @@ document.getElementById('btnPaste').onclick=()=>{
 };
 /* ---------- patch bank ---------- */
 const FACTORY={
-'the cathedral':{v:1,key:9,scale:'minor',chord:[69,72,76],degree:0,seq:[],follow:false,tempo:112,swing:0,drone:40,drive:18,cutoff:70,reso:20,vol:80,dlyDiv:3,dlyFb:45,dlyMix:32,verbType:'hall',verbSize:45,verbMix:22,mod:{wave:'tri',target:'cutoff',rate:18,depth:30},layers:[
- {role:'bass',voice:'saw',pattern:'up',div:2,oct:1,shape:26,level:78,on:true},
- {role:'arp',voice:'square',pattern:'updown',div:1,oct:2,shape:20,level:60,on:true},
- {role:'lead',voice:'saw',pattern:'up',div:3,oct:2,shape:52,level:46,on:true}]},
-'the engine room':{v:1,key:4,scale:'minor',chord:[64,67,71],degree:0,seq:[],follow:false,tempo:140,swing:0,drone:25,drive:75,cutoff:45,reso:65,vol:78,dlyDiv:2,dlyFb:30,dlyMix:18,verbType:'dark',verbSize:30,verbMix:18,mod:{wave:'sqr',target:'cutoff',rate:62,depth:40},layers:[
- {role:'bass',voice:'square',pattern:'up',div:2,oct:1,shape:8,level:85,on:true},
- {role:'bass',voice:'square',pattern:'random',div:1,oct:1,shape:6,level:70,on:true},
- {role:'bass',voice:'saw',pattern:'up',div:4,oct:1,shape:12,level:75,on:true}]},
-'the bell garden':{v:1,key:2,scale:'major',chord:[62,66,69],degree:0,seq:[],follow:false,tempo:58,swing:0,drone:30,drive:8,cutoff:78,reso:12,vol:80,dlyDiv:3,dlyFb:55,dlyMix:35,verbType:'plate',verbSize:85,verbMix:45,mod:{wave:'tri',target:'shape',rate:10,depth:45},layers:[
- {role:'lead',voice:'bell',pattern:'random',div:4,oct:2,shape:92,level:50,on:true},
- {role:'lead',voice:'glass',pattern:'updown',div:3,oct:2,shape:95,level:44,on:true},
- {role:'lead',voice:'bell',pattern:'up',div:2,oct:1,shape:88,level:38,on:true}]},
-'the catacombs':{v:1,key:7,scale:'harm minor',chord:[67,70,74],degree:0,seq:[],follow:false,tempo:76,swing:0,drone:50,drive:30,cutoff:58,reso:30,vol:80,dlyDiv:4,dlyFb:40,dlyMix:25,verbType:'spring',verbSize:55,verbMix:30,mod:{wave:'tri',target:'cutoff',rate:14,depth:20},layers:[
- {role:'bass',voice:'saw',pattern:'up',div:4,oct:1,shape:40,level:80,on:true},
- {role:'arp',voice:'square',pattern:'down',div:2,oct:2,shape:35,level:58,on:true},
- {role:'lead',voice:'square',pattern:'up',div:3,oct:1,shape:60,level:40,on:true}]},
-'the head-nod':{v:1,key:2,scale:'dorian',chord:[62,65,69],degree:0,seq:[],follow:false,tempo:84,swing:55,drone:35,drive:35,cutoff:55,reso:35,vol:80,dlyDiv:2,dlyFb:38,dlyMix:26,verbType:'dark',verbSize:38,verbMix:24,mod:{wave:'rnd',target:'cutoff',rate:45,depth:25},layers:[
- {role:'bass',voice:'saw',pattern:'up',div:2,oct:1,shape:22,level:82,on:true},
- {role:'arp',voice:'square',pattern:'random',div:1,oct:1,shape:16,level:55,on:true},
- {role:'lead',voice:'glass',pattern:'up',div:4,oct:2,shape:50,level:30,on:false}]},
-'the process piece':{v:1,key:0,scale:'major',chord:[60,64,67],degree:0,seq:[60,62,64,67,69,71],follow:true,tempo:120,swing:0,drone:0,drive:10,cutoff:75,reso:10,vol:80,dlyDiv:2,dlyFb:20,dlyMix:12,verbType:'plate',verbSize:40,verbMix:18,mod:{wave:'tri',target:'cutoff',rate:20,depth:0},layers:[
- {role:'arp',voice:'glass',pattern:'seq',div:2,oct:1,shape:30,level:62,on:true},
- {role:'arp',voice:'glass',pattern:'seq',div:3,oct:1,shape:30,level:62,on:true},
- {role:'bass',voice:'saw',pattern:'up',div:4,oct:1,shape:20,level:50,on:true}]},
-'the cluster field':{v:1,key:0,scale:'free',chord:[60,61,63,66],degree:-1,seq:[],follow:false,tempo:66,swing:0,drone:20,drive:22,cutoff:65,reso:40,vol:78,dlyDiv:3,dlyFb:60,dlyMix:40,verbType:'plate',verbSize:70,verbMix:35,mod:{wave:'rnd',target:'verb',rate:30,depth:50},layers:[
- {role:'lead',voice:'bell',pattern:'random',div:3,oct:2,shape:70,level:50,on:true},
- {role:'arp',voice:'glass',pattern:'random',div:4,oct:2,shape:60,level:45,on:true},
- {role:'bass',voice:'saw',pattern:'random',div:2,oct:1,shape:45,level:60,on:true}]},
-'a familiar door, ajar':{v:1,key:0,scale:'major',chord:[60,64,67,71],degree:-1,seq:[60,64,67,71],follow:false,tempo:86,swing:0,drone:45,drive:25,cutoff:52,reso:22,vol:80,dlyDiv:2,dlyFb:35,dlyMix:18,verbType:'hall',verbSize:35,verbMix:15,mod:{wave:'tri',target:'cutoff',rate:20,depth:0},layers:[
- {role:'bass',voice:'saw',pattern:'up',div:2,oct:1,shape:22,level:0,on:false},
- {role:'arp',voice:'saw',pattern:'seq',div:1,oct:1,shape:20,level:66,on:true},
- {role:'lead',voice:'saw',pattern:'seq',div:2,oct:1,shape:30,level:26,on:false}]}
+/* the player's own patches (Aug 2026) — handed in by name, filed by genre; values verbatim */
+'wave_alone':{"v":1,"key":10,"scale":"lydian","chord":[74,77,81],"degree":2,"seq":[],"follow":false,"sevenths":false,"glide":15,"pitch":0,"tempo":125,"swing":49,"drone":0,"drive":11,"cutoff":46,"reso":31,"fb":8,"vol":80,"dlyDiv":2,"dlyFb":50,"dlyMix":15,"verbType":"spring","verbSize":68,"verbMix":37,"mod":{"wave":"tri","target":"cutoff","rate":63,"depth":28},"mod2":{"wave":"saw","target":"level","rate":42,"depth":28},"droneVoice":"square","droneNote":"high","layers":[{"role":"bass","voice":"bell","pattern":"up","div":2,"oct":3,"shape":75,"level":61,"on":true},{"role":"arp","voice":"saw","pattern":"down","div":2,"oct":2,"shape":43,"level":37,"on":true},{"role":"bass","voice":"glass","pattern":"up","div":2,"oct":1,"shape":92,"level":71,"on":true}]},
+'soft_amazed':{"v":1,"key":2,"scale":"major","chord":[71,74,78],"degree":5,"seq":[],"follow":false,"glide":0,"pitch":0,"tempo":120,"swing":0,"drone":0,"drive":6,"cutoff":50,"reso":8,"vol":78,"dlyDiv":3,"dlyFb":50,"dlyMix":100,"verbType":"dark","verbSize":77,"verbMix":22,"mod":{"wave":"tri","target":"cutoff","rate":60,"depth":100},"layers":[{"role":"bass","voice":"saw","pattern":"up","div":4,"oct":3,"shape":93,"level":63,"on":true},{"role":"lead","voice":"saw","pattern":"random","div":3,"oct":3,"shape":63,"level":57,"on":true},{"role":"lead","voice":"square","pattern":"up","div":3,"oct":2,"shape":53,"level":43,"on":true}]},
+'wave_badalamenti':{"v":1,"circuit":"mk2","key":2,"scale":"harm minor","chord":[62,65,69,73],"degree":0,"seq":[],"follow":false,"sevenths":true,"glide":0,"pitch":0,"tempo":125,"swing":0,"drone":20,"drive":12,"cutoff":52,"reso":24,"fb":15,"vol":80,"dlyDiv":3,"dlyFb":27,"dlyMix":28,"verbType":"dark","verbSize":45,"verbMix":27,"mod":{"wave":"sqr","target":"verb","rate":58,"depth":6},"mod2":{"wave":"tri","target":"delay","rate":48,"depth":2},"droneVoice":"saw","droneNote":"root","layers":[{"role":"bass","voice":"saw","pattern":"random","div":2,"oct":2,"shape":93,"level":64,"on":true},{"role":"lead","voice":"glass","pattern":"random","div":1,"oct":1,"shape":83,"level":60,"on":false},{"role":"bass","voice":"square","pattern":"down","div":4,"oct":3,"shape":14,"level":42,"on":false}]},
+'berlin_bees':{"v":1,"circuit":"mk2","key":0,"scale":"minor","chord":[60,63,67],"degree":0,"seq":[],"seqOff":[],"follow":false,"sevenths":false,"glide":0,"pitch":0,"tempo":120,"swing":0,"drone":30,"drive":10,"age":10,"cutoff":75,"reso":50,"fb":0,"vol":80,"dlyDiv":3,"dlyFb":61,"dlyMix":50,"phase":0,"verbType":"hall","verbSize":100,"verbMix":70,"mod":{"wave":"tri","target":"cutoff","rate":20,"depth":100},"mod2":{"wave":"tri","target":"pitch","rate":20,"depth":0},"droneVoice":"strings","droneNote":"root","layers":[{"role":"lead","voice":"bell","pattern":"up","div":3,"oct":3,"shape":58,"level":70,"on":true,"len":3},{"role":"arp","voice":"saw","pattern":"up","div":3,"oct":3,"shape":30,"level":70,"on":true,"len":4},{"role":"lead","voice":"square","pattern":"up","div":3,"oct":3,"shape":45,"level":50,"on":true,"len":5}]},
+'soft_calmness':{"v":1,"circuit":"mk2","key":2,"scale":"minor","chord":[67,70,74],"degree":3,"seq":[],"follow":false,"glide":0,"pitch":0,"tempo":30,"swing":46,"drone":0,"drive":75,"cutoff":21,"reso":0,"fb":0,"vol":100,"dlyDiv":3,"dlyFb":75,"dlyMix":50,"verbType":"dark","verbSize":100,"verbMix":100,"mod":{"wave":"tri","target":"drive","rate":50,"depth":50},"layers":[{"role":"lead","voice":"bell","pattern":"down","div":2,"oct":2,"shape":46,"level":75,"on":true},{"role":"bass","voice":"pluck","pattern":"updown","div":4,"oct":4,"shape":74,"level":100,"on":true},{"role":"arp","voice":"glass","pattern":"up","div":2,"oct":2,"shape":62,"level":75,"on":true}]},
+'wave_submerged':{"v":1,"circuit":"mk2","key":0,"scale":"minor","chord":[60,63,67,70],"degree":0,"seq":[],"follow":false,"sevenths":true,"glide":0,"pitch":0,"tempo":120,"swing":0,"drone":49,"drive":20,"cutoff":51,"reso":71,"fb":11,"vol":80,"dlyDiv":3,"dlyFb":50,"dlyMix":100,"verbType":"dark","verbSize":40,"verbMix":68,"mod":{"wave":"tri","target":"cutoff","rate":39,"depth":87},"mod2":{"wave":"tri","target":"delay","rate":22,"depth":92},"droneVoice":"saw","droneNote":"root","layers":[{"role":"arp","voice":"saw","pattern":"up","div":1,"oct":1,"shape":30,"level":70,"on":true},{"role":"bass","voice":"saw","pattern":"down","div":4,"oct":4,"shape":37,"level":70,"on":true},{"role":"lead","voice":"saw","pattern":"updown","div":1,"oct":4,"shape":50,"level":70,"on":true}]},
+'gnarl_malaise':{"v":1,"circuit":"mk2","key":9,"scale":"dorian","chord":[76,79,83,86],"degree":4,"seq":[],"follow":false,"sevenths":true,"glide":52,"pitch":0,"tempo":31,"swing":0,"drone":0,"drive":69,"cutoff":58,"reso":51,"fb":21,"vol":63,"dlyDiv":3,"dlyFb":60,"dlyMix":83,"verbType":"dark","verbSize":89,"verbMix":37,"mod":{"wave":"rnd","target":"drive","rate":9,"depth":1},"mod2":{"wave":"saw","target":"pitch","rate":18,"depth":19},"droneVoice":"square","droneNote":"fifth","layers":[{"role":"bass","voice":"square","pattern":"random","div":2,"oct":3,"shape":77,"level":73,"on":true},{"role":"lead","voice":"square","pattern":"random","div":3,"oct":3,"shape":94,"level":61,"on":true},{"role":"lead","voice":"glass","pattern":"up","div":1,"oct":2,"shape":80,"level":58,"on":true}]},
+'data_forever_fantasy':{"v":1,"key":0,"scale":"major","chord":[60,64,67,71],"degree":0,"seq":[],"follow":false,"sevenths":true,"glide":0,"pitch":0,"tempo":120,"swing":0,"drone":20,"drive":20,"cutoff":100,"reso":0,"fb":0,"vol":62,"dlyDiv":3,"dlyFb":47,"dlyMix":49,"verbType":"hall","verbSize":100,"verbMix":79,"mod":{"wave":"tri","target":"cutoff","rate":25,"depth":0},"mod2":{"wave":"tri","target":"pitch","rate":20,"depth":0},"droneVoice":"strings","droneNote":"high","layers":[{"role":"bass","voice":"saw","pattern":"random","div":2,"oct":4,"shape":30,"level":70,"on":true},{"role":"arp","voice":"saw","pattern":"up","div":1,"oct":3,"shape":53,"level":70,"on":true},{"role":"lead","voice":"bell","pattern":"updown","div":1,"oct":4,"shape":39,"level":70,"on":true}]},
+'gnarl_groove':{"v":1,"circuit":"mk2","key":9,"scale":"minor","chord":[69,72,76],"degree":0,"seq":[],"follow":false,"sevenths":false,"glide":0,"pitch":0,"tempo":47,"swing":0,"drone":35,"drive":80,"age":100,"cutoff":65,"reso":18,"fb":37,"vol":80,"dlyDiv":3,"dlyFb":30,"dlyMix":86,"verbType":"hall","verbSize":45,"verbMix":25,"mod":{"wave":"tri","target":"cutoff","rate":52,"depth":91},"mod2":{"wave":"tri","target":"feedbk","rate":20,"depth":43},"droneVoice":"saw","droneNote":"root","layers":[{"role":"bass","voice":"saw","pattern":"up","div":2,"oct":1,"shape":26,"level":78,"on":true},{"role":"arp","voice":"square","pattern":"updown","div":1,"oct":2,"shape":20,"level":60,"on":true},{"role":"lead","voice":"saw","pattern":"up","div":3,"oct":2,"shape":52,"level":46,"on":true}]},
+'soft_lovely':{"v":1,"key":10,"scale":"phrygian","chord":[75,78,82],"degree":3,"seq":[],"follow":true,"tempo":84,"swing":0,"drone":0,"drive":13,"cutoff":67,"reso":0,"vol":80,"dlyDiv":2,"dlyFb":40,"dlyMix":23,"verbType":"dark","verbSize":100,"verbMix":100,"mod":{"wave":"saw","target":"drive","rate":58,"depth":32},"layers":[{"role":"bass","voice":"square","pattern":"updown","div":1,"oct":3,"shape":29,"level":86,"on":true},{"role":"arp","voice":"saw","pattern":"random","div":4,"oct":3,"shape":56,"level":35,"on":true},{"role":"lead","voice":"glass","pattern":"updown","div":4,"oct":1,"shape":69,"level":51,"on":true}]},
+'wave_shimmer':{"v":1,"key":2,"scale":"lydian","chord":[69,73,76,80],"degree":4,"seq":[],"follow":false,"sevenths":true,"glide":0,"pitch":0,"tempo":114,"swing":0,"drone":0,"drive":12,"cutoff":51,"reso":7,"fb":4,"vol":80,"dlyDiv":2,"dlyFb":23,"dlyMix":14,"verbType":"dark","verbSize":43,"verbMix":30,"mod":{"wave":"tri","target":"shape","rate":63,"depth":32},"mod2":{"wave":"rnd","target":"feedbk","rate":17,"depth":21},"droneVoice":"sine","droneNote":"fifth","layers":[{"role":"bass","voice":"square","pattern":"up","div":3,"oct":2,"shape":42,"level":86,"on":true},{"role":"bass","voice":"bell","pattern":"down","div":2,"oct":2,"shape":76,"level":60,"on":true},{"role":"arp","voice":"glass","pattern":"up","div":1,"oct":2,"shape":72,"level":62,"on":true}]},
+'gnarl_scream':{"v":1,"key":5,"scale":"lydian","chord":[65,69,72,76],"degree":0,"seq":[],"seqOff":[],"follow":false,"sevenths":true,"glide":0,"pitch":-7.1,"tempo":180,"swing":0,"drone":44,"drive":59,"age":100,"cutoff":100,"reso":57,"fb":54,"vol":80,"dlyDiv":3,"dlyFb":39,"dlyMix":100,"phase":0,"verbType":"dark","verbSize":50,"verbMix":100,"mod":{"wave":"chaos","target":"drive","rate":81,"depth":100},"mod2":{"wave":"chaos","target":"pitch","rate":48,"depth":100},"droneVoice":"saw","droneNote":"high","layers":[{"role":"bass","voice":"glass","pattern":"up","div":1,"oct":4,"shape":49,"level":70,"on":true,"len":0},{"role":"arp","voice":"glass","pattern":"updown","div":1,"oct":4,"shape":45,"level":70,"on":true,"len":0},{"role":"lead","voice":"glass","pattern":"down","div":1,"oct":4,"shape":58,"level":70,"on":true,"len":0}]},
+'wave_burnt':{"v":1,"circuit":"mk2","key":0,"scale":"major","chord":[64,67,71],"degree":2,"seq":[],"follow":false,"glide":0,"pitch":0,"tempo":180,"swing":100,"drone":34,"drive":50,"cutoff":60,"reso":92,"fb":0,"vol":50,"dlyDiv":3,"dlyFb":65,"dlyMix":100,"verbType":"hall","verbSize":100,"verbMix":100,"mod":{"wave":"tri","target":"cutoff","rate":25,"depth":0},"layers":[{"role":"bass","voice":"saw","pattern":"updown","div":2,"oct":4,"shape":26,"level":100,"on":true},{"role":"arp","voice":"square","pattern":"updown","div":1,"oct":2,"shape":20,"level":60,"on":false},{"role":"lead","voice":"saw","pattern":"up","div":3,"oct":2,"shape":52,"level":46,"on":false}]},
+'soft_wash':{"v":1,"circuit":"mk2","key":10,"scale":"dorian","chord":[73,77,80],"degree":2,"seq":[],"follow":false,"glide":0,"pitch":0,"tempo":5,"swing":100,"drone":0,"drive":30,"cutoff":60,"reso":70,"vol":80,"dlyDiv":4,"dlyFb":50,"dlyMix":100,"verbType":"dark","verbSize":100,"verbMix":100,"mod":{"wave":"tri","target":"cutoff","rate":73,"depth":87},"layers":[{"role":"bass","voice":"saw","pattern":"updown","div":4,"oct":3,"shape":100,"level":66,"on":true},{"role":"bass","voice":"square","pattern":"updown","div":2,"oct":3,"shape":100,"level":73,"on":true},{"role":"arp","voice":"bell","pattern":"up","div":1,"oct":2,"shape":93,"level":77,"on":false}]},
+/* the fifteenth: his hand-tuned vespers — phaser pinned, delay wash */
+'soft_vespers':{"v":1,"circuit":"mk2","key":7,"scale":"major","chord":[67,71,74],"degree":0,"seq":[],"seqOff":[],"follow":false,"sevenths":false,"glide":0,"pitch":0,"tempo":56,"swing":0,"drone":10,"drive":8,"age":10,"cutoff":62,"reso":12,"fb":0,"vol":78,"dlyDiv":4,"dlyFb":30,"dlyMix":76,"phase":100,"verbType":"hall","verbSize":65,"verbMix":34,"mod":{"wave":"tri","target":"cutoff","rate":10,"depth":12},"mod2":{"wave":"tri","target":"pitch","rate":5,"depth":8},"droneVoice":"choir","droneNote":"root","layers":[{"role":"lead","voice":"glass","pattern":"up","div":4,"oct":1,"shape":55,"level":42,"on":true,"len":5},{"role":"arp","voice":"bell","pattern":"random","div":3,"oct":1,"shape":64,"level":30,"on":true,"len":0},{"role":"bass","voice":"saw","pattern":"up","div":4,"oct":1,"shape":40,"level":34,"on":false,"len":0}]},
+/* commissioned: the early-80s computer — fast bleeps, random electrical sequences */
+'data_relay':{"v":1,"key":9,"scale":"minor","chord":[69,72,76],"degree":0,"seq":[],"follow":false,"sevenths":false,"glide":0,"pitch":0,"tempo":152,"swing":0,"drone":0,"drive":8,"age":0,"phase":0,"cutoff":88,"reso":32,"fb":0,"vol":78,"dlyDiv":4,"dlyFb":30,"dlyMix":18,"verbType":"plate","verbSize":20,"verbMix":10,"mod":{"wave":"rnd","target":"cutoff","rate":78,"depth":38},"mod2":{"wave":"rnd","target":"level","rate":60,"depth":25},"layers":[
+{"role":"lead","voice":"glass","pattern":"random","div":1,"oct":2,"shape":4,"level":58,"on":true},
+{"role":"arp","voice":"square","pattern":"random","div":2,"oct":3,"shape":6,"level":50,"on":true},
+{"role":"bass","voice":"glass","pattern":"random","div":4,"oct":1,"shape":10,"level":46,"on":true}]},
+'gnarl_droop':{"v":1,"circuit":"mk2","key":5,"scale":"phrygian","chord":[65,68,72],"degree":0,"seq":[],"follow":false,"sevenths":false,"glide":70,"pitch":0,"tempo":38,"swing":0,"drone":10,"droneVoice":"saw","droneNote":"root","drive":95,"age":85,"fb":60,"phase":70,"cutoff":48,"reso":45,"vol":72,"dlyDiv":3,"dlyFb":55,"dlyMix":60,"verbType":"dark","verbSize":85,"verbMix":40,"mod":{"wave":"chaos","target":"cutoff","rate":20,"depth":45},"mod2":{"wave":"saw","target":"pitch","rate":10,"depth":55},"layers":[
+{"role":"bass","voice":"saw","pattern":"down","div":2,"oct":1,"shape":75,"level":78,"on":true},
+{"role":"arp","voice":"saw","pattern":"down","div":3,"oct":2,"shape":85,"level":58,"on":true},
+{"role":"lead","voice":"square","pattern":"down","div":4,"oct":1,"shape":90,"level":48,"on":true}]},
+/* commissioned: the clean-signal wing — trippy, dreamy, sludgey; drive stays home */
+'wave_mirage':{"v":1,"key":0,"scale":"free","chord":[60,61,66,68],"degree":-1,"seq":[],"follow":false,"sevenths":false,"glide":30,"pitch":0,"tempo":66,"swing":0,"drone":8,"droneVoice":"sine","droneNote":"high","drive":0,"age":25,"fb":0,"phase":85,"cutoff":72,"reso":20,"vol":78,"dlyDiv":4,"dlyFb":50,"dlyMix":45,"verbType":"hall","verbSize":90,"verbMix":50,"mod":{"wave":"chaos","target":"verb","rate":25,"depth":60},"mod2":{"wave":"chaos","target":"pitch","rate":25,"depth":30},"layers":[
+{"role":"lead","voice":"glass","pattern":"updown","div":3,"oct":2,"shape":70,"level":50,"on":true},
+{"role":"arp","voice":"bell","pattern":"random","div":4,"oct":2,"shape":78,"level":42,"on":true},
+{"role":"bass","voice":"glass","pattern":"up","div":4,"oct":1,"shape":60,"level":44,"on":true}]},
+'gnarl_sludge':{"v":1,"circuit":"mk2","key":0,"scale":"minor","chord":[60,63,67],"degree":0,"seq":[],"follow":false,"sevenths":false,"glide":80,"pitch":0,"tempo":20,"swing":0,"drone":10,"droneVoice":"square","droneNote":"root","drive":0,"age":35,"fb":0,"phase":0,"cutoff":30,"reso":28,"vol":80,"dlyDiv":2,"dlyFb":60,"dlyMix":40,"verbType":"dark","verbSize":75,"verbMix":35,"mod":{"wave":"tri","target":"cutoff","rate":4,"depth":18},"mod2":{"wave":"tri","target":"pitch","rate":8,"depth":10},"layers":[
+{"role":"bass","voice":"saw","pattern":"down","div":3,"oct":1,"shape":95,"level":80,"on":true},
+{"role":"arp","voice":"square","pattern":"up","div":4,"oct":1,"shape":92,"level":58,"on":true},
+{"role":"lead","voice":"saw","pattern":"down","div":4,"oct":2,"shape":88,"level":40,"on":true}]},
+'soft_sorrow':{"v":1,"key":5,"scale":"minor","chord":[65,68,72,75],"degree":0,"seq":[],"seqOff":[],"follow":false,"sevenths":true,"glide":10,"pitch":0,"tempo":30,"swing":0,"drone":10,"drive":51,"age":100,"cutoff":52,"reso":16,"fb":1,"vol":78,"dlyDiv":3,"dlyFb":50,"dlyMix":38,"phase":0,"verbType":"dark","circuit":"mk2","verbSize":85,"verbMix":100,"mod":{"wave":"chaos","target":"shape","rate":44,"depth":78},"mod2":{"wave":"tri","target":"feedbk","rate":9,"depth":70},"droneVoice":"choir","droneNote":"root","layers":[{"role":"arp","voice":"pluck","pattern":"down","div":1,"oct":3,"shape":22,"level":38,"on":true,"len":0},{"role":"lead","voice":"saw","pattern":"updown","div":3,"oct":1,"shape":85,"level":72,"on":true,"len":0},{"role":"lead","voice":"glass","pattern":"up","div":4,"oct":2,"shape":78,"level":42,"on":true,"len":0}]},
+/* commissioned: the synthwave wing — fun 80s, clean signal, tight clocks */
+'wave_night_drive':{"v":1,"key":9,"scale":"minor","chord":[69,72,76],"degree":0,"seq":[],"seqOff":[],"seqMode":"mel","progSeq":[],"follow":false,"sevenths":false,"glide":0,"pitch":0,"tempo":118,"swing":0,"drone":29,"drive":16,"age":10,"cutoff":89,"reso":80,"fb":0,"vol":80,"dlyDiv":4,"dlyFb":35,"dlyMix":48,"phase":0,"verbType":"dark","circuit":"mk2","verbSize":45,"verbMix":24,"mod":{"wave":"tri","target":"drive","rate":30,"depth":61},"mod2":{"wave":"tri","target":"delay","rate":32,"depth":90},"droneVoice":"saw","droneNote":"root","layers":[{"role":"bass","voice":"saw","pattern":"up","div":1,"oct":1,"shape":22,"level":85,"on":true,"len":0},{"role":"arp","voice":"square","pattern":"updown","div":2,"oct":1,"shape":35,"level":85,"on":true,"len":0},{"role":"lead","voice":"glass","pattern":"random","div":2,"oct":3,"shape":36,"level":52,"on":true,"len":5}]},
+'gnarl_disco_blues':{"v":1,"key":10,"scale":"minor","chord":[70,73,77],"degree":0,"seq":[null],"seqOff":[],"seqMode":"mel","progSeq":[],"follow":false,"sevenths":false,"glide":0,"pitch":0,"tempo":114,"swing":22,"drone":50,"drive":75,"age":48,"cutoff":82,"reso":76,"fb":17,"vol":80,"dlyDiv":2,"dlyFb":34,"dlyMix":34,"phase":42,"verbType":"dark","circuit":"mk1","verbSize":63,"verbMix":32,"mod":{"wave":"chaos","target":"drive","rate":68,"depth":55},"mod2":{"wave":"tri","target":"feedbk","rate":48,"depth":14},"droneVoice":"choir","droneNote":"high","layers":[{"role":"bass","voice":"square","pattern":"random","div":2,"oct":1,"shape":36,"level":72,"on":true,"len":0},{"role":"lead","voice":"pluck","pattern":"rev","div":2,"oct":3,"shape":24,"level":60,"on":false,"len":0},{"role":"lead","voice":"square","pattern":"down","div":2,"oct":1,"shape":53,"level":74,"on":true,"len":5}]},
+/* the second batch (Aug 2026) — handed in by name, filed by genre; eras by character */
+'data_hard_at_work':{"v":1,"key":6,"scale":"minor","chord":[73,76,80],"degree":4,"seq":[],"follow":false,"glide":0,"pitch":-12,"tempo":74,"swing":35,"drone":0,"drive":10,"cutoff":51,"reso":38,"vol":80,"dlyDiv":3,"dlyFb":38,"dlyMix":80,"verbType":"dark","verbSize":77,"verbMix":19,"mod":{"wave":"tri","target":"cutoff","rate":17,"depth":27},"layers":[{"role":"bass","voice":"bell","pattern":"random","div":4,"oct":3,"shape":15,"level":65,"on":true},{"role":"bass","voice":"glass","pattern":"down","div":4,"oct":2,"shape":36,"level":50,"on":false},{"role":"arp","voice":"square","pattern":"random","div":4,"oct":1,"shape":55,"level":44,"on":true}]},
+'data_future_ping':{"v":1,"circuit":"mk2","key":5,"scale":"dorian","chord":[67,70,74],"degree":1,"seq":[],"follow":false,"glide":0,"pitch":0,"tempo":135,"swing":0,"drone":0,"drive":30,"cutoff":83,"reso":84,"vol":80,"dlyDiv":3,"dlyFb":50,"dlyMix":100,"verbType":"dark","verbSize":69,"verbMix":49,"mod":{"wave":"tri","target":"cutoff","rate":15,"depth":100},"layers":[{"role":"bass","voice":"glass","pattern":"up","div":2,"oct":3,"shape":28,"level":76,"on":true},{"role":"bass","voice":"square","pattern":"down","div":2,"oct":3,"shape":32,"level":52,"on":true},{"role":"arp","voice":"saw","pattern":"random","div":1,"oct":3,"shape":34,"level":71,"on":true}]},
+'wave_alien':{"v":1,"circuit":"mk2","key":8,"scale":"phrygian","chord":[76,80,83],"degree":5,"seq":[],"follow":false,"glide":31,"pitch":0,"tempo":11,"swing":0,"drone":52,"drive":2,"cutoff":42,"reso":20,"vol":80,"dlyDiv":4,"dlyFb":60,"dlyMix":42,"verbType":"dark","verbSize":68,"verbMix":41,"mod":{"wave":"tri","target":"verb","rate":8,"depth":47},"layers":[{"role":"bass","voice":"square","pattern":"random","div":4,"oct":2,"shape":82,"level":62,"on":true},{"role":"arp","voice":"square","pattern":"updown","div":2,"oct":2,"shape":67,"level":57,"on":true},{"role":"lead","voice":"saw","pattern":"random","div":2,"oct":2,"shape":88,"level":73,"on":true}]},
+'data_ping_city':{"v":1,"key":5,"scale":"dorian","chord":[65,68,72],"degree":0,"seq":[],"follow":false,"glide":0,"pitch":1,"tempo":133,"swing":0,"drone":0,"drive":14,"cutoff":65,"reso":48,"vol":80,"dlyDiv":3,"dlyFb":50,"dlyMix":100,"verbType":"hall","verbSize":37,"verbMix":24,"mod":{"wave":"tri","target":"shape","rate":59,"depth":0},"layers":[{"role":"bass","voice":"bell","pattern":"updown","div":4,"oct":2,"shape":19,"level":61,"on":false},{"role":"arp","voice":"bell","pattern":"down","div":2,"oct":2,"shape":51,"level":80,"on":false},{"role":"lead","voice":"square","pattern":"random","div":1,"oct":3,"shape":11,"level":57,"on":true}]},
+'gnarl_abyss':{"v":1,"circuit":"mk2","key":1,"scale":"phrygian","chord":[61,64,68],"degree":0,"seq":[],"follow":false,"glide":12,"pitch":-5,"tempo":148,"swing":65,"drone":41,"drive":89,"cutoff":36,"reso":82,"vol":80,"dlyDiv":3,"dlyFb":63,"dlyMix":100,"verbType":"dark","verbSize":100,"verbMix":100,"mod":{"wave":"rnd","target":"cutoff","rate":64,"depth":100},"layers":[{"role":"bass","voice":"saw","pattern":"updown","div":2,"oct":3,"shape":6,"level":86,"on":true},{"role":"arp","voice":"square","pattern":"down","div":3,"oct":3,"shape":5,"level":62,"on":true},{"role":"lead","voice":"saw","pattern":"random","div":3,"oct":3,"shape":100,"level":50,"on":true}]},
+'soft_muted_joy':{"v":1,"circuit":"mk2","key":4,"scale":"phrygian","chord":[64,67,71],"degree":0,"seq":[],"follow":false,"glide":0,"tempo":50,"swing":0,"drone":0,"drive":8,"cutoff":68,"reso":41,"vol":80,"dlyDiv":4,"dlyFb":31,"dlyMix":80,"verbType":"dark","verbSize":72,"verbMix":100,"mod":{"wave":"rnd","target":"verb","rate":41,"depth":15},"layers":[{"role":"bass","voice":"square","pattern":"random","div":4,"oct":3,"shape":100,"level":84,"on":true},{"role":"lead","voice":"glass","pattern":"up","div":1,"oct":2,"shape":52,"level":40,"on":true},{"role":"bass","voice":"square","pattern":"updown","div":4,"oct":3,"shape":55,"level":44,"on":true}]},
+'soft_vibrato':{"v":1,"circuit":"mk2","key":1,"scale":"major","chord":[66,70,73],"degree":3,"seq":[],"follow":false,"glide":19,"pitch":-12,"tempo":50,"swing":53,"drone":0,"drive":11,"cutoff":58,"reso":23,"vol":80,"dlyDiv":3,"dlyFb":45,"dlyMix":16,"verbType":"spring","verbSize":40,"verbMix":24,"mod":{"wave":"tri","target":"drive","rate":64,"depth":81},"layers":[{"role":"bass","voice":"square","pattern":"random","div":4,"oct":3,"shape":87,"level":62,"on":true},{"role":"arp","voice":"saw","pattern":"down","div":1,"oct":2,"shape":89,"level":57,"on":true},{"role":"arp","voice":"glass","pattern":"down","div":3,"oct":2,"shape":76,"level":61,"on":false}]},
+'wave_city_of_angels':{"v":1,"key":9,"scale":"minor","chord":[69,72,76],"degree":0,"seq":[],"follow":false,"glide":0,"pitch":1,"tempo":112,"swing":0,"drone":35,"drive":52,"cutoff":100,"reso":0,"vol":80,"dlyDiv":3,"dlyFb":45,"dlyMix":30,"verbType":"hall","verbSize":45,"verbMix":25,"mod":{"wave":"tri","target":"cutoff","rate":25,"depth":0},"layers":[{"role":"bass","voice":"saw","pattern":"up","div":2,"oct":1,"shape":26,"level":78,"on":true},{"role":"arp","voice":"square","pattern":"updown","div":1,"oct":2,"shape":20,"level":60,"on":true},{"role":"lead","voice":"saw","pattern":"up","div":3,"oct":2,"shape":52,"level":46,"on":true}]},
+/* commissioned: the Für Alina patch — tintinnabuli at the machine's slowest */
+'soft_alina':{"v":1,"key":11,"scale":"minor","chord":[71,74,78],"degree":0,"seq":[],"follow":false,"sevenths":false,"glide":0,"pitch":0,"tempo":10,"swing":0,"drone":8,"droneVoice":"sine","droneNote":"root","drive":0,"age":12,"fb":0,"phase":0,"cutoff":55,"reso":8,"vol":76,"dlyDiv":4,"dlyFb":20,"dlyMix":8,"verbType":"hall","verbSize":70,"verbMix":40,"mod":{"wave":"tri","target":"cutoff","rate":3,"depth":10},"mod2":{"wave":"tri","target":"level","rate":4,"depth":12},"layers":[
+{"role":"lead","voice":"bell","pattern":"up","div":4,"oct":2,"shape":88,"level":46,"on":true},
+{"role":"arp","voice":"glass","pattern":"down","div":3,"oct":2,"shape":82,"level":40,"on":true},
+{"role":"bass","voice":"bell","pattern":"up","div":4,"oct":1,"shape":90,"level":30,"on":false}]}
 };
 const BANK_KEY='am1.patches';
 function readBank(){try{return JSON.parse(localStorage.getItem(BANK_KEY))||{}}catch(e){return{}}}
 function writeBank(b){try{localStorage.setItem(BANK_KEY,JSON.stringify(b));return true}catch(e){return false}}
+function dispName(n){
+  const cap=w=>w?w[0].toUpperCase()+w.slice(1):w;
+  const i=n.indexOf('_');
+  if(i<0)return cap(n);
+  return cap(n.slice(0,i))+', '+n.slice(i+1).split('_').map(cap).join(' ');
+}
 function refreshPatchList(sel){
   const s=document.getElementById('patchList'),b=readBank();
   s.innerHTML='<option value="">\u2014 patches \u2014</option>';
   const gf=document.createElement('optgroup');gf.label='factory';
-  Object.keys(FACTORY).forEach(n=>{const o=document.createElement('option');o.value='f:'+n;o.textContent=n;gf.appendChild(o)});
+  /* gnarl sinks to the bottom — the hellish shelf closes the list */
+  Object.keys(FACTORY).sort((a,b)=>((a.startsWith('gnarl_')?1:0)-(b.startsWith('gnarl_')?1:0))||a.localeCompare(b))
+    .forEach(n=>{const o=document.createElement('option');o.value='f:'+n;o.textContent=dispName(n);gf.appendChild(o)});
   s.appendChild(gf);
   const names=Object.keys(b).sort();
   if(names.length){
@@ -1461,14 +1832,15 @@ document.getElementById('btnPSave').onclick=()=>{
   if(!n){stat('name the patch first');return}
   const b=readBank();b[n]=serializePatch();
   stat(writeBank(b)?('saved \u00b7 '+n):'storage unavailable \u2014 use export');
-  refreshPatchList('s:'+n);
+  activeSel='s:'+n;refreshPatchList(activeSel);
 };
+let activeSel='';   /* which patch-list entry the session is living on */
 document.getElementById('patchList').onchange=e=>{
-  const v=e.target.value;if(!v)return;
+  const v=e.target.value;if(!v)return;activeSel=v;
   const n=v.slice(2);
   if(v[0]==='f'&&FACTORY[n]){
     applyPatch(JSON.parse(JSON.stringify(FACTORY[n])));
-    document.getElementById('patchName').value=n;stat('loaded \u00b7 '+n);
+    document.getElementById('patchName').value=dispName(n);stat('loaded \u00b7 '+dispName(n));
   }else{
     const b=readBank();
     if(b[n]){applyPatch(b[n]);document.getElementById('patchName').value=n;stat('loaded \u00b7 '+n)}
@@ -1533,7 +1905,7 @@ function rollAnomaly(){
       rate:deep?ri(5,30):ri(10,70),depth:ri(0,50)},
     mod2:{wave:pick(['tri','saw','sqr','rnd','chaos']),target:pick(['pitch','delay','level','feedbk','phase']),
       rate:deep?ri(5,25):ri(10,55),depth:ri(0,35)},
-    droneVoice:pick(['saw','saw','square','sine','strings']),
+    droneVoice:pick(['saw','saw','square','sine','strings','choir']),
     droneNote:pick(['root','root','root','fifth','high']),
     layers:[0,1,2].map(i=>({role:i===0?'bass':pick(['bass','arp','lead']),
       voice:pick(['saw','square','glass','bell','pluck']),pattern:patt(),
@@ -1552,11 +1924,11 @@ document.getElementById('btnAnomaly').onclick=()=>{
   histPos=rollHist.length-1;
   applyPatch(j);stat('anomaly');
 };
-document.getElementById('btnBack').onclick=()=>{
+{const bb=document.getElementById('btnBack');if(bb)bb.onclick=()=>{
   if(histPos<=0){stat(histPos<0?'no rolls yet':'no earlier rolls');return}
   histPos--;applyPatch(rollHist[histPos]);
   stat('anomaly · '+(rollHist.length-1-histPos)+' back');
-};
+};}
 /* INIT: true zero — not the boot patch but NOTHING: parts off, effects
    dry, drive/feedback/drone at 0, filter wide open, seq wiped, C minor
    armed and waiting. The one deliberate non-zero is OUTPUT — a silent
@@ -1575,9 +1947,43 @@ document.getElementById('btnInit').onclick=()=>{
 };
 refreshPatchList();
 /* ============ boot ============ */
-drawLayers();
-setChordFromDegree(0);   /* A minor i — ready to run */
-seqShow();
+const ACTIVE_KEY='am1.active',ERA_KEY='am1.era';
+let booted=false;
+try{
+  const a=localStorage.getItem(ACTIVE_KEY);
+  if(a){
+    const j=JSON.parse(a);
+    /* only the named {n,p} format restores — a nameless blob can't tell
+       the patches section the truth, so it's treated as no session */
+    if(j&&j.p&&j.n){
+      applyPatch(j.p);
+      activeSel=j.n;refreshPatchList(j.n);
+      const rn=j.n.slice(2);
+      document.getElementById('patchName').value=j.n[0]==='f'?dispName(rn):rn;
+      stat('session restored');booted=true;
+    }
+  }
+}catch(e){}
+if(!booted){
+  try{
+    applyPatch(JSON.parse(JSON.stringify(FACTORY['berlin_bees'])));
+    activeSel='f:berlin_bees';refreshPatchList(activeSel);
+    document.getElementById('patchName').value=dispName('berlin_bees');stat(dispName('berlin_bees'));
+  }catch(e){
+    drawLayers();setChordFromDegree(0);seqShow();
+  }
+  try{const er=localStorage.getItem(ERA_KEY);
+    if(er==='mk1'||er==='mk2'){state.circuit=er;refreshUI();applyMaster()}
+  }catch(e){}
+}
+function persistSession(){
+  try{
+    localStorage.setItem(ACTIVE_KEY,JSON.stringify({n:activeSel,p:serializePatch()}));
+    localStorage.setItem(ERA_KEY,state.circuit);
+  }catch(e){}
+}
+setInterval(persistSession,3000);
+window.addEventListener('pagehide',persistSession);
 </script>
 </body>
 </html>

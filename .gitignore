@@ -12,3 +12,6 @@ node_modules/
 
 # build/work dirs
 tm-1/build/.work/
+
+# dev
+electro-smith
