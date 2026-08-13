@@ -1,7 +1,7 @@
 baseURL = 'https://zombieapocalypsetech.com/'
 languageCode = 'en-us'
-title = 'Zombie Apocalypse Tech'
-titleAbbrv = 'ZAT'
+title = 'ZACOS'
+titleAbbrv = 'ZACOS'
 theme = 'zat'
 summaryLength = 40
 

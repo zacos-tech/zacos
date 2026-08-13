@@ -1,0 +1,12 @@
+{{- /* Renders a date as C<cycle>·D<day>, counted from The Turning.
+     Cycle 1 Day 1 = the Turning itself; D resets on each anniversary. */ -}}
+{{- $turningYear := 2014 -}}{{- /* The Turning: January 13, 2014 */ -}}
+{{- $d := . -}}
+{{- $m := int ($d.Format "1") -}}
+{{- $afterAnniversary := or (gt $m 1) (ge $d.Day 13) -}}
+{{- $cycle := sub $d.Year $turningYear -}}
+{{- if $afterAnniversary }}{{ $cycle = add $cycle 1 }}{{ end -}}
+{{- $cycleStart := time.AsTime (printf "%d-01-13" (add $turningYear (sub $cycle 1))) -}}
+{{- $dayOnly := time.AsTime ($d.Format "2006-01-02") -}}
+{{- $day := add (div (sub $dayOnly.Unix $cycleStart.Unix) 86400) 1 -}}
+C{{ $cycle }}·D{{ $day }}

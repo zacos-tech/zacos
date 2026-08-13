@@ -13,8 +13,8 @@ If you're near a city, Micro Centers are good places to find computer parts. I'v
 
 ...
 
-They reach for me, because they don’t know I’m not really here. 
+Life was more fun when you were around. I had such a feeling of being alive. Of being inside a moment that felt like it could last forever. That was a long time ago. The zombies reach out to me, through the fence. From the darkness. I know they only do it because they don’t know, I’m not really here.
 
-I’m alone at the bottom of the Bermuda Triangle. 
+I’m alone at the bottom of the Bermuda Triangle.
 
 Dreaming of you.
