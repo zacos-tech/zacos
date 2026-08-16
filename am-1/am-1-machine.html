@@ -48,6 +48,7 @@ button.big{padding:9px 22px}
 #seqbar .c.note{background:linear-gradient(180deg,#463b28,#382e1e);border-color:#7a6640;color:#efe3c4;box-shadow:inset 0 1px 0 rgba(255,245,225,0.11)}
 #seqbar .c.off{background:#181818;border-color:#4a4034;color:#5c5348}
 #seqbar .c.rest{background:#1b1b1b;color:#3a3a3a}
+#seqbar .c.plive{background:#3a2226;border-color:var(--led);color:var(--led-pale);box-shadow:inset 0 1px 0 rgba(255,180,170,0.08)}
 #seqbar .c.empty{cursor:default;opacity:0.45}
 #seqbar .c .m{position:absolute;left:1px;right:1px;height:2px;border-radius:1px;opacity:0.95}
 #seqbar .c .m0{top:-1px;background:#c96}
@@ -219,7 +220,7 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
       <span class="stat" id="stat">—</span>
       <span class="hdrDiv" aria-hidden="true"></span>
       <button id="btnInit">init</button>
-      <button id="btnBounce" aria-pressed="false">bounce</button>
+      <button id="btnBounce" aria-pressed="false">record</button>
       <span class="hdrDiv" aria-hidden="true"></span>
       <select id="circuitSel" aria-label="era">
         <option value="mk1" selected>2026</option>
@@ -239,16 +240,14 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
       <button id="btnPSave">save</button>
       <select id="patchList"></select>
       <button id="btnPDel">delete</button>
-      <button id="btnPExport">export file</button>
-      <button id="btnPImport">import file</button>
+      <button id="btnPExport">export</button>
+      <button id="btnPImport">import</button>
       <input type="file" id="fileImport" accept=".json,application/json" hidden>
-      <button id="btnCopy">copy</button>
-      <button id="btnPaste">paste</button>
     </div>
   </div>
 
   <div class="master harmony">
-    <h2>HARMONY</h2>
+    <h2 style="display:flex;align-items:baseline">HARMONY<span id="chordName" style="margin-left:auto;color:var(--t);font-weight:400;letter-spacing:.08em;text-transform:none">—</span></h2>
   <div class="kbrow">
     <div class="kbstack">
       <div class="kb" id="kb"></div>
@@ -259,7 +258,6 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
         key <select id="key"></select>
         scale <select id="scale"></select>
         <button id="btn7" aria-pressed="false">7ths</button>
-        <span id="chordName" style="color:var(--t)">—</span>
       </div>
       <div class="row" id="degRow"></div>
       <div class="row">
@@ -268,7 +266,9 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
         <button id="seqRest">rest</button>
         <button id="seqClr">clear</button>
         <button id="seqFollow" aria-pressed="false">follow</button>
-        <span id="seqShow" style="color:var(--faint);font-size:10px;align-self:center;max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</span>
+      </div>
+      <div class="row">
+        <span id="seqShow" style="color:var(--faint);font-size:10px;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</span>
       </div>
     </div>
   </div>
@@ -317,7 +317,7 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
         <div class="ctl"><label for="phase">phaser</label><input type="range" id="phase" min="0" max="100" value="0"><output id="phaseOut">0</output></div>
       </div>
       <div>
-        <div class="ctl"><label>verb type</label>
+        <div class="ctl"><label>reverb type</label>
           <div class="seg" id="verbTypeSeg">
             <button data-v="hall" aria-pressed="true">hall</button>
             <button data-v="plate" aria-pressed="false">plate</button>
@@ -325,8 +325,8 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
             <button data-v="dark" aria-pressed="false">dark</button>
           </div>
         </div>
-        <div class="ctl"><label for="verbSize">verb size</label><input type="range" id="verbSize" min="0" max="100" value="45"><output id="verbSizeOut">45</output></div>
-        <div class="ctl"><label for="verbMix">verb mix</label><input type="range" id="verbMix" min="0" max="100" value="25"><output id="verbMixOut">25</output></div>
+        <div class="ctl"><label for="verbSize">reverb size</label><input type="range" id="verbSize" min="0" max="100" value="45"><output id="verbSizeOut">45</output></div>
+        <div class="ctl"><label for="verbMix">reverb mix</label><input type="range" id="verbMix" min="0" max="100" value="25"><output id="verbMixOut">25</output></div>
       </div>
     </div>
   </div>
@@ -349,7 +349,8 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
             <button data-v="shape" aria-pressed="false">shape</button>
             <button data-v="drive" aria-pressed="false">drive</button>
             <button data-v="verb" aria-pressed="false">verb</button>
-            <button data-v="reso" aria-pressed="false">reso</button>
+            <button data-v="phase" aria-pressed="false">phase</button>
+            <button data-v="dlyfb" aria-pressed="false">regen</button>
           </div></div>
         <div class="ctl"><label for="modRate">rate</label><input type="range" id="modRate" min="0" max="100" value="25"><output id="modRateOut">25</output></div>
         <div class="ctl"><label for="modDepth">depth</label><input type="range" id="modDepth" min="0" max="100" value="0"><output id="modDepthOut">0</output></div>
@@ -365,11 +366,12 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
           </div></div>
         <div class="ctl"><label>target 2</label>
           <div class="seg" id="mod2Target">
+            <button data-v="reso" aria-pressed="false">reso</button>
             <button data-v="pitch" aria-pressed="true">pitch</button>
             <button data-v="feedbk" aria-pressed="false">feedbk</button>
             <button data-v="delay" aria-pressed="false">delay</button>
             <button data-v="level" aria-pressed="false">level</button>
-            <button data-v="phase" aria-pressed="false">phase</button>
+            <button data-v="drone" aria-pressed="false">drone</button>
           </div></div>
         <div class="ctl"><label for="mod2Rate">rate 2</label><input type="range" id="mod2Rate" min="0" max="100" value="20"><output id="mod2RateOut">20</output></div>
         <div class="ctl"><label for="mod2Depth">depth 2</label><input type="range" id="mod2Depth" min="0" max="100" value="0"><output id="mod2DepthOut">0</output></div>
@@ -440,7 +442,7 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
   <p><b>DELAY</b> is a tempo-synced ping-pong. Repeats lose treble as they go. <b>REVERB</b> has four rooms: hall, plate, spring, dark. <b>PHASER</b> is a four-stage sweep. The left and right channels sweep a quarter cycle apart.</p>
 
   <h3>Mod</h3>
-  <p>Two LFOs. <b>LFO 1</b> reaches audio rate and targets cutoff, shape, drive, reverb or resonance. <b>LFO 2</b> is slower and targets pitch, feedback, delay, level or phaser. Waves: tri, saw, square, random, <b>chaos</b>. Chaos follows a Lorenz attractor and never repeats. At rate 0 a cycle takes about thirty minutes.</p>
+  <p>Two LFOs. <b>LFO 1</b> reaches audio rate and targets cutoff, shape, drive, reverb, phaser or regen (delay feedback). <b>LFO 2</b> is slower and targets resonance, pitch, feedback, delay, level or the drone level. Waves: tri, saw, square, random, <b>chaos</b>. Chaos follows a Lorenz attractor and never repeats. At rate 0 a cycle takes about thirty minutes.</p>
 
   <h3>Master</h3>
   <p><b>TEMPO</b> runs 5 to 180. <b>SWING</b> shifts every second pulse. <b>PITCH</b> transposes up to an octave either way without touching the clock. <b>GLIDE</b> slides between notes. <b>DRIVE</b> is clean transistor color at low settings, clipping in the upper range, and aliased at the top. <b>ENTROPY</b> loosens playback from 0 to 100. At 0 the machine is exact. At 100, pitch wanders past a semitone, notes scoop in late, and about one in five plays weak. Timing is not affected. <b>FEEDBACK</b> returns the output through a delay tuned to the key. Above about 90 it howls on the tonic. <b>CUTOFF</b> and <b>RESONANCE</b> are one filter over everything. <b>OUTPUT</b> is the volume.</p>
@@ -452,7 +454,7 @@ select{background:var(--panel2);color:var(--t);border:1px solid var(--hair);bord
   <p>Rolls a complete patch inside the current scale.</p>
 
   <h3>Patches</h3>
-  <p>38 factory patches. Patches save by name and travel as JSON files through export and import. The session is stored automatically and comes back on the next visit, year included. <b>INIT</b> clears the machine to zero. <b>BOUNCE</b> records the output to a WAV file.</p>
+  <p>38 factory patches. Patches save by name and travel as JSON files through export and import. The session is stored automatically and comes back on the next visit, year included. <b>INIT</b> clears the machine to zero. <b>RECORD</b> captures the output to a WAV file.</p>
 
   <h3>Keys</h3>
   <p><span class="k">space</span> run/stop · <span class="k">T</span> tap tempo · <span class="k">1/2/3</span> hold to ratchet · <span class="k">REST</span> during recording.</p>
@@ -529,10 +531,10 @@ const ROLES={bass:{base:36,sub:true},arp:{base:48,sub:false},lead:{base:60,sub:f
 /* CAL — the calibration table. Every value here was tuned by ear in the
    harness; this block ports verbatim to the hardware firmware. */
 const CAL={
-  drive:{taper:1.5,span:7,comp:1.3,bias:0.24,asym:0.22,floorG:0.35,tiltF:250,tiltDb:3.5,lpF:9000,lpHiF:18000,lpCurve:1.8,biasHz:7,biasK:0.09,gnarlLo:0.65,crunch:0.45,crunchG:1.8},
+  drive:{taper:1.5,span:7,comp:1.3,bias:0.24,asym:0.22,floorG:0.35,tiltF:250,tiltDb:3.5,lpF:9000,lpHiF:18000,lpCurve:1.8,biasHz:7,biasK:0.09,nodeF:5200,spike:0.14,gnarlLo:0.65,crunch:0.45,crunchG:1.8},
   fb:{taper:1.6,max:1.15,root:36},
   cut:{base:16,span:10.25},
-  mod:{base:0.000556,span:324000,audioCap:180,tickCap:30,pitchSpan:0.7,shapeSpan:50,cutSwing:60,driveSwing:0.8,levelSwing:0.8,resoSwing:0.85,chaosK:2.2},
+  mod:{base:0.000556,span:324000,audioCap:180,tickCap:30,ageSwing:45,pitchSpan:0.7,shapeSpan:50,cutSwing:60,driveSwing:0.8,levelSwing:0.8,resoSwing:0.85,chaosK:2.2},
   voice:{driftCents:4,humBase:0.92,humSpan:0.16,glideMax:0.35,sawDetune:1.006,duty:0.483,droopN:26,droopP:0.6,bow2:1.07,bow3:1.03,bellRatio:3.01,bellHit:3.2,bellTail:0.45,pluckFb:0.88,pluckFbSpan:0.115,pluckDampBase:900,pluckDampSpan:5000},
   /* AGE — the Prophet Rev4 VINTAGE move, wearing the house name (the TM-1's
      AGE knob is its sibling: same gesture, tape physics instead). Each PART
@@ -553,7 +555,7 @@ const CAL={
     driftMax:144,scoopMax:95,scoopTMin:0.05,scoopTSpan:0.09,settleStretch:2.4,
     envJitMax:0.42,cutJit:0.10,humLo:0.5,humHi:2.4,
     sickMax:0.2,sickVelHi:0.45,sickVelSpan:0.37,sickDurHi:0.75,sickDurSpan:0.45,aliveRamp:4},
-  phaser:{rate:0.11,stages:4,center:800,sweepCents:2400,q:0.5,fbMax:0.65,wetMax:0.5,wetTaper:0.6},
+  phaser:{rate:0.11,stages:4,center:800,sweepCents:2400,q:0.5,fbMax:0.65,wetMax:0.5,wetTaper:0.6,makeup:0.42},
   drone:{lvl:0.5,lp:420,detune:1.004,
     /* strings — the 70s string-machine drone (Solina/Eminent school): saws
        two octaves above the basement, through a two-tap ensemble chorus
@@ -578,7 +580,7 @@ const state={
     {name:'PART II',  role:'arp',  voice:'square', pattern:'updown', div:1, oct:2, shape:20, level:60, on:true, len:0, idx:-1},
     {name:'PART III', role:'lead', voice:'saw',    pattern:'up',     div:3, oct:2, shape:52, level:46, on:true, len:0, idx:-1}
   ],
-  seqOff:[], swing:0, glide:0, pitch:0, drone:35, drive:15, fb:0, age:0, circuit:'mk1', cutoff:72, reso:18, vol:80,
+  seqOff:[], progOff:[], swing:0, glide:0, pitch:0, drone:35, drive:15, fb:0, age:0, circuit:'mk1', cutoff:72, reso:18, vol:80,
   dlyDiv:3, dlyFb:45, dlyMix:30, phase:0, verbType:'hall', verbSize:45, verbMix:25,
   mod:{wave:'tri',target:'cutoff',rate:25,depth:0},
   mod2:{wave:'tri',target:'pitch',rate:20,depth:0},
@@ -662,8 +664,9 @@ function buildPattern(layer){
     notes=notes.concat(notes.slice(1,-1).reverse());
   return lenCycle(notes,layer);
 }
+console.log('AM-1 build: 2026-08-15 mod-revert');   /* stale-copy detector — if the console shows an older date, reload */
 /* ============ audio ============ */
-let ctx=null,master,preFilt,filt,shaper,dcBlock,anaSaw,anaPulse,driveIn,driveOut,drvTiltIn,drvTiltOut,drvRound,drvSum,drvRect,drvBiasLp,drvBiasG,phOut,phDry,phWet,phFbL,phFbR,phLfo,phLfoB,phDepth,phDepthB,phAps,fbDly,fbG,dly,dlyR,dsum,dmerge,dlyFbG,dlyWet,dlyDamp,comp,modOsc,scCut,scDrive,scVerb,scReso,noiseBuf,recDest,droneNodes=null,bnc=null,verb,verbWet,lastVerbSize=-1,lastVerbType='',lastDrive=-1;
+let ctx=null,master,preFilt,filt,shaper,dcBlock,anaSaw,anaPulse,driveIn,driveOut,drvTiltIn,drvTiltOut,drvRound,drvNodeLp,drvSum,drvRect,drvBiasLp,drvBiasG,phOut,phDry,phWet,phFbL,phFbR,phLfo,phLfoB,phDepth,phDepthB,phAps,fbDly,fbG,dly,dlyR,dsum,dmerge,dlyFbG,dlyWet,dlyDamp,comp,modOsc,scCut,scDrive,scVerb,scDlyFb,noiseBuf,recDest,droneNodes=null,bnc=null,verb,verb2,verbIn,vXfA,vXfB,verbTimer=null,verbActive=0,verbWet,lastVerbSize=-1,lastVerbType='',lastDrive=-1;
 /* Drive transfer curve: tanh normalized to unity at the rails, so the
    output ceiling never moves — more drive = more snarl, not more level.
    Also the feedback loop's safety limiter. */
@@ -689,7 +692,9 @@ function curve(amount){
   const u=Math.max(0,Math.min(1,(amount-CAL.drive.gnarlLo)/(1-CAL.drive.gnarlLo)));   /* the gnarl fade */
   const g=1+k+u*CAL.drive.crunchG,b=CAL.drive.bias*amount,a=CAL.drive.asym*(0.35+amount*0.65)*(1-u);
   const cr=u*CAL.drive.crunch;   /* crunch: blend toward hard corners up top */
-  const F=x=>{const w=g*(x+a*x*x+b),t=Math.tanh(w);
+  const sp=CAL.drive.spike*(1-u);   /* the just-clip spike lives below the gnarl */
+  const F=x=>{const w=g*(x+a*x*x+b);let t=Math.tanh(w);
+    if(sp>0&&w>2){const e=w-2;t+=sp*e*Math.exp(-2*e)}   /* + peak pulled past the settled clip level — the needle over the plateau, the fizz on pure waves */
     return cr?t+(Math.max(-1,Math.min(1,w*1.4))-t)*cr:t};
   const dc=F(0);
   let peak=0;
@@ -732,6 +737,7 @@ function initAudio(){
   drvTiltOut=ctx.createBiquadFilter();drvTiltOut.type='lowshelf';drvTiltOut.frequency.value=CAL.drive.tiltF;drvTiltOut.gain.value=-CAL.drive.tiltDb;
   drvRound=ctx.createBiquadFilter();drvRound.type='lowpass';drvRound.frequency.value=CAL.drive.lpF;drvRound.Q.value=0.5;
   drvSum=ctx.createGain();
+  drvNodeLp=ctx.createBiquadFilter();drvNodeLp.type='lowpass';drvNodeLp.frequency.value=19500;drvNodeLp.Q.value=0.6;   /* the CP3's summing-node cap — 3.3nF to ground BEFORE the transistors. Darken in, let the clip regenerate the brightness. 5.2k not 2.2k: the 2.2k figure assumes one 22k input; three parts + drone in parallel raise the node corner */
   drvRect=ctx.createWaveShaper();
   {const n=1024,rc=new Float32Array(n);for(let i=0;i<n;i++){const x=i*2/n-1;rc[i]=Math.abs(x)}drvRect.curve=rc}
   drvBiasLp=ctx.createBiquadFilter();drvBiasLp.type='lowpass';drvBiasLp.frequency.value=CAL.drive.biasHz;
@@ -739,7 +745,7 @@ function initAudio(){
   driveIn.connect(drvTiltIn);
   drvTiltIn.connect(drvSum);
   drvTiltIn.connect(drvRect);drvRect.connect(drvBiasLp);drvBiasLp.connect(drvBiasG);drvBiasG.connect(drvSum);   /* the charging cap: feedforward, no cycle */
-  drvSum.connect(shaper);shaper.connect(dcBlock);dcBlock.connect(drvTiltOut);drvTiltOut.connect(drvRound);drvRound.connect(driveOut);
+  drvSum.connect(drvNodeLp);drvNodeLp.connect(shaper);shaper.connect(dcBlock);dcBlock.connect(drvTiltOut);drvTiltOut.connect(drvRound);drvRound.connect(driveOut);
   fbDly=ctx.createDelay(0.1);fbDly.delayTime.value=0.024;
   fbG=ctx.createGain();fbG.gain.value=0;
   driveOut.connect(fbDly);fbDly.connect(fbG);fbG.connect(preFilt);
@@ -786,15 +792,19 @@ function initAudio(){
   dlyR.connect(dlyFbG);dlyFbG.connect(dly);
   dlyDamp.connect(dmerge,0,0);dlyR.connect(dmerge,0,1);
   dmerge.connect(dlyWet);dlyWet.connect(comp);
-  verb=ctx.createConvolver();verbWet=ctx.createGain();
-  phOut.connect(verb);dlyWet.connect(verb);
-  verb.connect(verbWet);verbWet.connect(comp);
+  verb=ctx.createConvolver();verb2=ctx.createConvolver();verbWet=ctx.createGain();
+  verbIn=ctx.createGain();vXfA=ctx.createGain();vXfB=ctx.createGain();
+  vXfA.gain.value=1;vXfB.gain.value=0;
+  phOut.connect(verbIn);dlyWet.connect(verbIn);
+  verbIn.connect(verb);verbIn.connect(verb2);   /* two rooms, one live — size/type changes fade to the idle one instead of beheading the tail */
+  verb.connect(vXfA);verb2.connect(vXfB);vXfA.connect(verbWet);vXfB.connect(verbWet);
+  verbWet.connect(comp);
   comp.connect(master);master.connect(ctx.destination);master.connect(recDest);
   modOsc=ctx.createOscillator();modOsc.type='triangle';modOsc.frequency.value=1;
-  scCut=ctx.createGain();scDrive=ctx.createGain();scVerb=ctx.createGain();scReso=ctx.createGain();
-  scCut.gain.value=0;scDrive.gain.value=0;scVerb.gain.value=0;scReso.gain.value=0;
-  modOsc.connect(scCut);modOsc.connect(scDrive);modOsc.connect(scVerb);modOsc.connect(scReso);
-  scCut.connect(filt.frequency);scDrive.connect(driveIn.gain);scVerb.connect(verbWet.gain);scReso.connect(filt.Q);
+  scCut=ctx.createGain();scDrive=ctx.createGain();scVerb=ctx.createGain();scDlyFb=ctx.createGain();scDlyFb.gain.value=0;
+  scCut.gain.value=0;scDrive.gain.value=0;scVerb.gain.value=0;scDlyFb.gain.value=0;
+  [scCut,scDrive,scVerb,scDlyFb].forEach(g=>modOsc.connect(g));
+  scCut.connect(filt.frequency);scDrive.connect(driveIn.gain);scVerb.connect(verbWet.gain);scDlyFb.connect(dlyFbG.gain);
   modOsc.start();
   applyMaster();
 }
@@ -835,8 +845,13 @@ function makeIR(seconds,type){
 function applyMaster(){
   if(!ctx)return;
   if(state.verbSize!==lastVerbSize||state.verbType!==lastVerbType){
-    verb.buffer=makeIR(0.3+state.verbSize/100*5,state.verbType);
     lastVerbSize=state.verbSize;lastVerbType=state.verbType;
+    if(!verb.buffer){const b=makeIR(0.3+state.verbSize/100*5,state.verbType);verb.buffer=b;verb2.buffer=b;}
+    else{clearTimeout(verbTimer);verbTimer=setTimeout(()=>{
+      const b=makeIR(0.3+state.verbSize/100*5,state.verbType),t=ctx.currentTime;
+      if(verbActive===0){verb2.buffer=b;vXfB.gain.setTargetAtTime(1,t,0.03);vXfA.gain.setTargetAtTime(0,t,0.03);verbActive=1}
+      else{verb.buffer=b;vXfA.gain.setTargetAtTime(1,t,0.03);vXfB.gain.setTargetAtTime(0,t,0.03);verbActive=0}
+    },120)}
   }
   verbWet.gain.value=state.verbMix/100*0.8;
   filt.frequency.value=cutHz(state.cutoff);   /* 16 Hz .. ~19.5 kHz */
@@ -847,12 +862,14 @@ function applyMaster(){
       if(drvBiasG)drvBiasG.gain.value=0;
       if(drvTiltIn){drvTiltIn.gain.value=0;drvTiltOut.gain.value=0;}
       if(drvRound)drvRound.frequency.value=19500;
+      if(drvNodeLp)drvNodeLp.frequency.value=19500;
       shaper.oversample='2x';
     }else{
       const u=Math.max(0,Math.min(1,(d-CAL.drive.gnarlLo)/(1-CAL.drive.gnarlLo)));
       if(drvBiasG)drvBiasG.gain.value=-CAL.drive.biasK*(0.25+d*0.75)*(1-0.5*u);
       if(drvTiltIn){drvTiltIn.gain.value=CAL.drive.tiltDb*(1-u);drvTiltOut.gain.value=-CAL.drive.tiltDb*(1-u);}
       if(drvRound)drvRound.frequency.value=CAL.drive.lpF+Math.pow(d,CAL.drive.lpCurve)*(CAL.drive.lpHiF-CAL.drive.lpF);
+      if(drvNodeLp)drvNodeLp.frequency.value=CAL.drive.nodeF;   /* the node cap is not drive-dependent: it colors the 1983 mixer even clean */
       shaper.oversample=u>0.5?'2x':'4x';   /* the aliasing dirt readmitted — the animal keeps its teeth */
     }}
   driveIn.gain.value=1+Math.pow(state.drive/100,CAL.drive.taper)*CAL.drive.span;
@@ -865,6 +882,7 @@ function applyMaster(){
   const pa=state.phase/100,pw=Math.pow(pa,CAL.phaser.wetTaper)*CAL.phaser.wetMax;
   phWet.gain.value=pw;
   phDry.gain.value=1-pw;
+  phOut.gain.value=1+pw*CAL.phaser.makeup*2;   /* makeup: the 50/50 sum halves un-notched regions and the notches eat energy — restore the average so the swirl never reads as a volume drop */
   phFbL.gain.value=pa*CAL.phaser.fbMax;phFbR.gain.value=pa*CAL.phaser.fbMax;
   dlyFbG.gain.value=state.dlyFb/100;
   dlyWet.gain.value=state.dlyMix/100*0.9;
@@ -888,16 +906,17 @@ function ageWalkTick(dt){
   for(let i=0;i<4;i++){
     if(now>ageWalk.next[i]){
       ageWalk.tgt[i]=Math.random()*2-1;
-      if(Math.random()<CAL.age.slipMax*(state.age/100))
+      if(Math.random()<CAL.age.slipMax*(effAge()/100))
         ageWalk.tgt[i]*=1.15+Math.random()*0.35;   /* the lurch — a tuning slip */
-      const rl=1-CAL.age.walkRestless*(state.age/100);   /* the warble: wander cycles shorten linearly with age */
+      const rl=1-CAL.age.walkRestless*(effAge()/100);   /* the warble: wander cycles shorten linearly with age */
       ageWalk.next[i]=now+(CAL.age.walkMin+Math.random()*CAL.age.walkSpan)*rl;
     }
     ageWalk.off[i]+=(ageWalk.tgt[i]-ageWalk.off[i])*Math.min(1,dt*0.35);
   }
 }
-function ageWalkCents(i){return ageWalk.off[i]*CAL.age.walkMax*(state.age/100)}
-function ageDrone(){return Math.pow(2,CAL.age.droneCents*(state.age/100)/1200)}
+function effAge(){return Math.max(0,Math.min(100,state.age+modAgeOff))}
+function ageWalkCents(i){return ageWalk.off[i]*CAL.age.walkMax*(effAge()/100)}
+function ageDrone(){return Math.pow(2,CAL.age.droneCents*(effAge()/100)/1200)}
 function droneRoot(){
   return snapToScale(24+state.key)
     +(state.droneNote==='fifth'?7:(state.droneNote==='high'||state.droneNote==='low')?12:0)
@@ -1014,7 +1033,7 @@ const PART_PAN=[-0.06,-0.33,0.33];
    then its stereo seat (bass near centre — mono-compatible low end). */
 function playNote(layer,midi,t,pi){
   const sh=Math.max(0,Math.min(100,layer.shape+modShapeOff))/100;
-  const vin=state.age/100,VA=CAL.age,alive=Math.min(1,vin*VA.aliveRamp);   /* the alive floor fades in by ~25 */
+  const vin=effAge()/100,VA=CAL.age,alive=Math.min(1,vin*VA.aliveRamp);   /* the alive floor fades in by ~25 */
   const age=1+(VA.partEnv[pi%3]-1)*vin+(Math.random()-0.5)*2*VA.envJitMax*vin;
   let sick=1,sickVel=1;   /* decided first — the note's health shapes everything below */
   if(Math.random()<VA.sickMax*vin){
@@ -1104,7 +1123,7 @@ function playNote(layer,midi,t,pi){
   g.connect(rf);rf.connect(pan);pan.connect(preFilt);
 }
 /* ============ mod ============ */
-let modLast=0,modShapeOff=0,modTimer=null,modPitchOff=0;
+let modLast=0,modShapeOff=0,modAgeOff=0,modTimer=null,modPitchOff=0;
 const lfoS={a:{phase:0,rnd:0,x:0.9,y:0.1,z:20},b:{phase:0,rnd:0,x:-0.4,y:1.1,z:24}};
 /* Shared LFO core — both LFOs advance through here. Wall-clock dt
    (not tick count) so throttled tabs keep phase honest; a new random
@@ -1142,10 +1161,20 @@ const modHz=()=>CAL.mod.base*Math.pow(CAL.mod.span,state.mod.rate/100);
 function modTick(){
   if(!ctx)return;
   const now=performance.now(),dt=modLast?(now-modLast)/1000:0;modLast=now;
-  const m=state.mod;mod2Tick(dt);
+  const m=state.mod;
+  mod2Tick(dt);
   const lfo=lfoStep(lfoS.a,m,dt);
-  modShapeOff=0;
-  if(m.target==='shape'){modShapeOff=lfo*CAL.mod.shapeSpan;return}
+  modShapeOff=0;modAgeOff=0;
+  if(m.target==='shape')modShapeOff=lfo*CAL.mod.shapeSpan;
+  if(m.target==='phase'&&phWet&&phFbL){
+    const pa=Math.max(0,Math.min(1,state.phase/100*(1+lfo)));
+    const pw=Math.pow(pa,CAL.phaser.wetTaper)*CAL.phaser.wetMax;
+    phWet.gain.setTargetAtTime(pw,ctx.currentTime,0.012);
+    phDry.gain.setTargetAtTime(1-pw,ctx.currentTime,0.012);
+    phOut.gain.setTargetAtTime(1+pw*CAL.phaser.makeup*2,ctx.currentTime,0.012);
+    phFbL.gain.setTargetAtTime(pa*CAL.phaser.fbMax,ctx.currentTime,0.012);
+    phFbR.gain.setTargetAtTime(pa*CAL.phaser.fbMax,ctx.currentTime,0.012);
+  }
   if(m.wave!=='rnd'&&m.wave!=='chaos')return;  /* the audio-rate oscillator owns the param */
   if(m.target==='cutoff'){
     const c=Math.max(0,Math.min(100,state.cutoff+lfo*CAL.mod.cutSwing));
@@ -1154,8 +1183,8 @@ function modTick(){
     driveIn.gain.setTargetAtTime((1+Math.pow(state.drive/100,CAL.drive.taper)*CAL.drive.span)*Math.max(0.05,1+lfo*CAL.mod.driveSwing),ctx.currentTime,0.012);
   }else if(m.target==='verb'){
     verbWet.gain.setTargetAtTime(Math.max(0,state.verbMix/100*0.9*(1+lfo)),ctx.currentTime,0.012);
-  }else if(m.target==='reso'){
-    filt.Q.setTargetAtTime(Math.max(0.2,(0.4+state.reso/100*11)*(1+lfo*CAL.mod.resoSwing)),ctx.currentTime,0.012);
+  }else if(m.target==='dlyfb'){
+    dlyFbG.gain.setTargetAtTime(Math.max(0,Math.min(0.98,state.dlyFb/100*(1+lfo))),ctx.currentTime,0.012);   /* regen: dub swells, capped shy of runaway */
   }
 }
 /* LFO 2 — control-rate by design; its targets are per-note (pitch) or
@@ -1169,23 +1198,21 @@ function mod2Tick(dt){
   modPitchOff=0;
   if(m2.target==='pitch'){
     modPitchOff=lfo2*CAL.mod.pitchSpan;
+  }else if(m2.target==='reso'){
+    filt.Q.setTargetAtTime(Math.max(0.2,(0.4+state.reso/100*11)*(1+lfo2*CAL.mod.resoSwing)),ctx.currentTime,0.012);
   }else if(m2.target==='feedbk'){
     fbG.gain.setTargetAtTime(Math.pow(state.fb/100,CAL.fb.taper)*CAL.fb.max*Math.max(0,1+lfo2),ctx.currentTime,0.012);
   }else if(m2.target==='delay'){
     dlyWet.gain.setTargetAtTime(Math.max(0,state.dlyMix/100*0.9*(1+lfo2)),ctx.currentTime,0.012);
   }else if(m2.target==='level'){
     master.gain.setTargetAtTime(Math.pow(state.vol/100,1.4)*Math.max(0.02,1+lfo2*CAL.mod.levelSwing),ctx.currentTime,0.012);
-  }else if(m2.target==='phase'&&phWet&&phFbL){
-    const pa=Math.max(0,Math.min(1,state.phase/100*(1+lfo2)));
-    const pw=Math.pow(pa,CAL.phaser.wetTaper)*CAL.phaser.wetMax;
-    phWet.gain.setTargetAtTime(pw,ctx.currentTime,0.012);
-    phDry.gain.setTargetAtTime(1-pw,ctx.currentTime,0.012);
-    phFbL.gain.setTargetAtTime(pa*CAL.phaser.fbMax,ctx.currentTime,0.012);
-    phFbR.gain.setTargetAtTime(pa*CAL.phaser.fbMax,ctx.currentTime,0.012);
+  }else if(m2.target==='drone'&&droneNodes&&state.running){
+    const kind=droneNodes.kind,base=state.drone/100*(kind==='strings'?CAL.drone.strings.lvl:kind==='choir'?CAL.drone.choir.lvl:CAL.drone.lvl);
+    droneNodes.g.gain.setTargetAtTime(Math.max(0,base*(1+lfo2)),ctx.currentTime,0.012);   /* the bed breathes — amount-family, self-healing */
   }
   /* the drone breathes with the machine: mod2 pitch (when aimed there),
      the AGE sag, and its own thermal walk, all in one live retune */
-  if(droneNodes&&(state.age>0||(m2.target==='pitch'&&m2.depth>0))){
+  if(droneNodes&&(state.age>0||modAgeOff>0||(m2.target==='pitch'&&m2.depth>0))){
     const pm=Math.pow(2,(state.pitch+modPitchOff)/12+ageWalkCents(3)/1200),r=mtof(droneRoot());
     droneNodes.o1.frequency.setTargetAtTime(r*pm*ageDrone(),ctx.currentTime,0.05);
     droneNodes.o2.frequency.setTargetAtTime(r*pm*droneDet()*ageDrone(),ctx.currentTime,0.05);
@@ -1207,7 +1234,7 @@ function applyModRouting(){
   const dBase=1+Math.pow(state.drive/100,CAL.drive.taper)*CAL.drive.span;
   scDrive.gain.value=(audio&&m.target==='drive')?d*dBase*0.7:0;
   scVerb.gain.value=(audio&&m.target==='verb')?d*state.verbMix/100*0.9:0;
-  scReso.gain.value=(audio&&m.target==='reso')?d*(0.4+state.reso/100*11)*CAL.mod.resoSwing:0;
+  scDlyFb.gain.value=(audio&&m.target==='dlyfb')?d*(state.dlyFb/100)*0.9:0;
 }
 /* ============ clock ============ */
 let pulse=0,nextT=0,timer=null,lookahead=0.16;   /* jank armor: 160ms window against main-thread stalls */
@@ -1227,8 +1254,10 @@ function schedule(){
     /* progression: one step per whole note (16 pulses). An automated
        degree press — applies at schedule time exactly as a finger would. */
     if(state.progSeq.length&&p%16===0){
-      const st=state.progSeq[Math.floor(p/16)%state.progSeq.length];
-      if(st!=null&&st!==state.degree)setChordFromDegree(st);
+      const pi=Math.floor(p/16)%state.progSeq.length;
+      const st=state.progSeq[pi];
+      if(st!=null&&!state.progOff[pi]&&st!==state.degree)setChordFromDegree(st);
+      progLive(pi);
     }
     const swingOff=(p%2)?(state.swing/100)*(60/state.tempo/4)*0.33:0;
     const t=nextT+swingOff;
@@ -1299,18 +1328,36 @@ let seqArmed=false;
    the selected step again to make it a rest, click past the end to extend.
    No cursor, no pages — direct manipulation, same as everything else. */
 function seqShow(){
+  const prog=state.seqMode==='prog';
   document.getElementById('seqShow').textContent=
-    state.seq.length?state.seq.map(n=>n==null?'\u00b7':KEYS[n%12]).join(' '):'\u2014';
+    prog?(state.progSeq.length?state.progSeq.map(d=>d==null?'\u2013':NUMERALS[d]).join(' '):'\u2014')
+        :(state.seq.length?state.seq.map(n=>n==null?'\u00b7':KEYS[n%12]).join(' '):'\u2014');
+  const mb=document.getElementById('seqMode');
+  if(mb){mb.textContent=prog?'chords':'melody';mb.setAttribute('aria-pressed',prog)}
   const bar=document.getElementById('seqbar');bar.innerHTML='';
   for(let i=0;i<16;i++){
     const c=document.createElement('div');
-    const used=i<state.seq.length,off=used&&state.seqOff[i];
-    c.className='c'+(used?(state.seq[i]==null?' rest':(off?' off':' note')):' empty');
-    c.textContent=used?(state.seq[i]==null?'·':KEYS[state.seq[i]%12]):'';
-    c.title=used?(state.seq[i]==null?'rest':KEYS[state.seq[i]%12]+(off?' — off':' — click to switch off')):'';
-    c.onclick=()=>seqStepClick(i);
+    if(prog){
+      const used=i<state.progSeq.length,d=used?state.progSeq[i]:null,off=used&&state.progOff[i];
+      c.className='c'+(used?(d==null?' rest':(off?' off':' note')):' empty');
+      c.textContent=used?(d==null?'–':NUMERALS[d]):'';
+      c.title=used?(d==null?'hold':NUMERALS[d]+(off?' — off, chord holds':' — click to switch off')):'';
+      c.onclick=()=>progStepClick(i);
+    }else{
+      const used=i<state.seq.length,off=used&&state.seqOff[i];
+      c.className='c'+(used?(state.seq[i]==null?' rest':(off?' off':' note')):' empty');
+      c.textContent=used?(state.seq[i]==null?'·':KEYS[state.seq[i]%12]):'';
+      c.title=used?(state.seq[i]==null?'rest':KEYS[state.seq[i]%12]+(off?' — off':' — click to switch off')):'';
+      c.onclick=()=>seqStepClick(i);
+    }
     bar.appendChild(c);
   }
+}
+/* light the progression step the clock is on — chords mode only */
+function progLive(idx){
+  if(state.seqMode!=='prog')return;
+  const bar=document.getElementById('seqbar');if(!bar)return;
+  [...bar.children].forEach((c,i)=>c.classList.toggle('plive',i===idx));
 }
 /* Click a step to switch it OFF and on again — the classic step-sequencer
    gesture, and the bar's entire vocabulary. The note stays underneath; an
@@ -1320,6 +1367,13 @@ function seqStepClick(i){
   if(i>=state.seq.length)return;
   state.seqOff[i]=state.seqOff[i]?0:1;
   seqShow();rebuildPatterns();
+}
+/* same grammar for the progression: an off step skips its press — the
+   previous chord holds. Live-safe: the scheduler reads it per advance. */
+function progStepClick(i){
+  if(i>=state.progSeq.length||state.progSeq[i]==null)return;
+  state.progOff[i]=state.progOff[i]?0:1;
+  seqShow();
 }
 
 /* running markers: each part on seq/rev shows its own position on the bar
@@ -1415,7 +1469,7 @@ document.getElementById('seqRest').onclick=()=>{
   }
   if(state.seq.length<16){state.seqOff[state.seq.length]=0;state.seq.push(null);seqShow();rebuildPatterns()}};
 document.getElementById('seqClr').onclick=()=>{
-  if(state.seqMode==='prog'){state.progSeq=[];progShow();return}
+  if(state.seqMode==='prog'){state.progSeq=[];state.progOff=[];seqShow();return}
   state.seq=[];state.seqOff=[];seqShow();rebuildPatterns()};
 /* the prog line — roman numerals in the show span; – is a hold */
 function progShow(){
@@ -1605,7 +1659,7 @@ wireSeg('mod2Wave',v=>state.mod2.wave=v);
 wireSeg('mod2Target',v=>{state.mod2.target=v;applyMaster()});
 wireSeg('dlyTimeSeg',v=>{state.dlyDiv=+v;applyMaster()});
 /* ============ tools ============ */
-const stat=t=>document.getElementById('stat').textContent=t;
+const stat=t=>document.getElementById('stat').textContent=t?t.charAt(0).toUpperCase()+t.slice(1):t;
 function encodeWav(L,R,rate){
   const n=L.length,buf=new ArrayBuffer(44+n*4),v=new DataView(buf);
   const w=(o,str)=>{for(let i=0;i<str.length;i++)v.setUint8(o+i,str.charCodeAt(i))};
@@ -1647,7 +1701,7 @@ document.getElementById('btnBounce').onclick=function(){
     const a=document.createElement('a');a.href=URL.createObjectURL(blob);
     a.download='AM1_'+nm+'.wav';
     document.body.appendChild(a);a.click();a.remove();
-    bnc=null;this.setAttribute('aria-pressed',false);stat('bounced \u00b7 wav');
+    bnc=null;this.setAttribute('aria-pressed',false);stat('recorded \u00b7 wav');
   }
 };
 /* FIELDS — the single source of truth for every patch parameter.
@@ -1660,6 +1714,7 @@ const FIELDS=[
   {k:'degree',    d:0,      ui:null},
   {k:'seq',       d:[],     ui:{kind:'seq'}},
   {k:'seqOff',    d:[],     ui:null},        /* muted steps — note kept, plays as a rest */
+  {k:'progOff',   d:[],     ui:null},        /* muted progression steps — degree kept, previous chord holds */
   {k:'seqMode',   d:'mel',  ui:null},        /* what SEQ REC writes: mel notes | prog degrees */
   {k:'progSeq',   d:[],     ui:null},        /* recorded degree progression; null = hold */
   {k:'follow',    d:false,  ui:{kind:'press', id:'seqFollow'}},
@@ -1699,6 +1754,8 @@ function fieldDefault(f){return JSON.parse(JSON.stringify(f.d))}
    instead of sending NaN into the audio math. */
 FIELDS.forEach(f=>{if(state[f.k]===undefined)state[f.k]=fieldDefault(f)});
 function mergePatchIntoState(j){
+  if(j&&j.mod&&!['cutoff','shape','drive','verb','phase','dlyfb'].includes(j.mod.target))j.mod={...j.mod,target:'cutoff'};        /* guard: targets from retired experiments */
+  if(j&&j.mod2&&!['reso','pitch','feedbk','delay','level','drone'].includes(j.mod2.target))j.mod2={...j.mod2,target:'pitch'};
   if(j.vintage!==undefined&&j.age===undefined)j.age=j.vintage;   /* pre-rename patches */
   FIELDS.forEach(f=>{
     const v=j[f.k];
@@ -1747,11 +1804,6 @@ function serializePatch(){
   });
   return JSON.parse(JSON.stringify(p));
 }
-document.getElementById('btnCopy').onclick=async()=>{
-  const p=JSON.stringify(serializePatch());
-  try{await navigator.clipboard.writeText(p);stat('patch copied')}
-  catch(e){prompt('copy the patch:',p)}
-};
 /* The one door every patch walks through — factory, bank, import,
    paste, ANOMALY: merge, refresh, redraw, commit. */
 function applyPatch(j){
@@ -1761,10 +1813,6 @@ function applyPatch(j){
     drawLayers();afterChord();seqShow();applyMaster();stat('patch loaded');
   }catch(e){stat('bad patch')}
 }
-document.getElementById('btnPaste').onclick=()=>{
-  const p=prompt('paste a patch:');if(!p)return;
-  try{applyPatch(JSON.parse(p))}catch(e){stat('bad patch')}
-};
 /* ---------- patch bank ---------- */
 const FACTORY={
 /* the player's own patches (Aug 2026) — handed in by name, filed by genre; values verbatim */
@@ -1780,7 +1828,7 @@ const FACTORY={
 'soft_ivory_tower':{"v":1,"circuit":"mk1","key":10,"scale":"phrygian","chord":[75,78,82],"degree":3,"seq":[],"seqOff":[],"seqMode":"mel","progSeq":[],"follow":true,"sevenths":false,"glide":0,"pitch":0,"tempo":84,"swing":0,"drone":0,"drive":13,"age":0,"cutoff":67,"reso":0,"fb":0,"vol":80,"dlyDiv":2,"dlyFb":40,"dlyMix":23,"phase":0,"verbType":"dark","verbSize":100,"verbMix":100,"mod":{"wave":"saw","target":"drive","rate":58,"depth":32},"mod2":{"wave":"tri","target":"pitch","rate":20,"depth":0},"droneVoice":"saw","droneNote":"root","layers":[{"role":"bass","voice":"square","pattern":"updown","div":1,"oct":3,"shape":29,"level":86,"on":true,"len":0},{"role":"arp","voice":"saw","pattern":"random","div":4,"oct":3,"shape":56,"level":35,"on":true,"len":0},{"role":"lead","voice":"glass","pattern":"updown","div":4,"oct":1,"shape":69,"level":51,"on":true,"len":0}]},
 'wave_shimmer':{"v":1,"key":2,"scale":"lydian","chord":[69,73,76,80],"degree":4,"seq":[],"follow":false,"sevenths":true,"glide":0,"pitch":0,"tempo":114,"swing":0,"drone":0,"drive":12,"cutoff":51,"reso":7,"fb":4,"vol":80,"dlyDiv":2,"dlyFb":23,"dlyMix":14,"verbType":"dark","verbSize":43,"verbMix":30,"mod":{"wave":"tri","target":"shape","rate":63,"depth":32},"mod2":{"wave":"rnd","target":"feedbk","rate":17,"depth":21},"droneVoice":"sine","droneNote":"fifth","layers":[{"role":"bass","voice":"square","pattern":"up","div":3,"oct":2,"shape":42,"level":86,"on":true},{"role":"bass","voice":"bell","pattern":"down","div":2,"oct":2,"shape":76,"level":60,"on":true},{"role":"arp","voice":"glass","pattern":"up","div":1,"oct":2,"shape":72,"level":62,"on":true}]},
 'gnarl_scream':{"v":1,"key":5,"scale":"lydian","chord":[65,69,72,76],"degree":0,"seq":[],"seqOff":[],"follow":false,"sevenths":true,"glide":0,"pitch":-7.1,"tempo":180,"swing":0,"drone":44,"drive":59,"age":100,"cutoff":100,"reso":57,"fb":54,"vol":80,"dlyDiv":3,"dlyFb":39,"dlyMix":100,"phase":0,"verbType":"dark","verbSize":50,"verbMix":100,"mod":{"wave":"chaos","target":"drive","rate":81,"depth":100},"mod2":{"wave":"chaos","target":"pitch","rate":48,"depth":100},"droneVoice":"saw","droneNote":"high","layers":[{"role":"bass","voice":"glass","pattern":"up","div":1,"oct":4,"shape":49,"level":70,"on":true,"len":0},{"role":"arp","voice":"glass","pattern":"updown","div":1,"oct":4,"shape":45,"level":70,"on":true,"len":0},{"role":"lead","voice":"glass","pattern":"down","div":1,"oct":4,"shape":58,"level":70,"on":true,"len":0}]},
-'wave_burnt':{"v":1,"circuit":"mk2","key":0,"scale":"major","chord":[64,67,71],"degree":2,"seq":[],"follow":false,"glide":0,"pitch":0,"tempo":180,"swing":100,"drone":34,"drive":50,"cutoff":60,"reso":92,"fb":0,"vol":50,"dlyDiv":3,"dlyFb":65,"dlyMix":100,"verbType":"hall","verbSize":100,"verbMix":100,"mod":{"wave":"tri","target":"cutoff","rate":25,"depth":0},"layers":[{"role":"bass","voice":"saw","pattern":"updown","div":2,"oct":4,"shape":26,"level":100,"on":true},{"role":"arp","voice":"square","pattern":"updown","div":1,"oct":2,"shape":20,"level":60,"on":false},{"role":"lead","voice":"saw","pattern":"up","div":3,"oct":2,"shape":52,"level":46,"on":false}]},
+'wave_burnt':{"v":1,"circuit":"mk2","key":0,"scale":"major","chord":[64,67,71],"degree":2,"seq":[],"follow":false,"glide":0,"pitch":0,"tempo":180,"swing":100,"drone":34,"drive":25,"cutoff":60,"reso":92,"fb":0,"vol":50,"dlyDiv":3,"dlyFb":65,"dlyMix":100,"verbType":"hall","verbSize":100,"verbMix":100,"mod":{"wave":"tri","target":"cutoff","rate":25,"depth":0},"layers":[{"role":"bass","voice":"saw","pattern":"updown","div":2,"oct":4,"shape":26,"level":100,"on":true},{"role":"arp","voice":"square","pattern":"updown","div":1,"oct":2,"shape":20,"level":60,"on":false},{"role":"lead","voice":"saw","pattern":"up","div":3,"oct":2,"shape":52,"level":46,"on":false}]},
 'soft_wash':{"v":1,"circuit":"mk2","key":10,"scale":"dorian","chord":[73,77,80],"degree":2,"seq":[],"follow":false,"glide":0,"pitch":0,"tempo":5,"swing":100,"drone":0,"drive":30,"cutoff":60,"reso":70,"vol":80,"dlyDiv":4,"dlyFb":50,"dlyMix":100,"verbType":"dark","verbSize":100,"verbMix":100,"mod":{"wave":"tri","target":"cutoff","rate":73,"depth":87},"layers":[{"role":"bass","voice":"saw","pattern":"updown","div":4,"oct":3,"shape":100,"level":66,"on":true},{"role":"bass","voice":"square","pattern":"updown","div":2,"oct":3,"shape":100,"level":73,"on":true},{"role":"arp","voice":"bell","pattern":"up","div":1,"oct":2,"shape":93,"level":77,"on":false}]},
 /* the fifteenth: his hand-tuned vespers — phaser pinned, delay wash */
 'soft_vespers':{"v":1,"circuit":"mk2","key":7,"scale":"major","chord":[67,71,74],"degree":0,"seq":[],"seqOff":[],"seqMode":"mel","progSeq":[],"follow":false,"sevenths":false,"glide":0,"pitch":-9.5,"tempo":56,"swing":0,"drone":25,"drive":8,"age":13,"cutoff":62,"reso":12,"fb":0,"vol":78,"dlyDiv":4,"dlyFb":30,"dlyMix":76,"phase":100,"verbType":"dark","verbSize":100,"verbMix":100,"mod":{"wave":"tri","target":"cutoff","rate":10,"depth":12},"mod2":{"wave":"tri","target":"pitch","rate":5,"depth":8},"droneVoice":"choir","droneNote":"root","layers":[{"role":"lead","voice":"glass","pattern":"up","div":4,"oct":1,"shape":55,"level":42,"on":true,"len":5},{"role":"arp","voice":"bell","pattern":"random","div":3,"oct":1,"shape":64,"level":30,"on":true,"len":0},{"role":"bass","voice":"saw","pattern":"up","div":4,"oct":1,"shape":40,"level":34,"on":false,"len":0}]},
@@ -1826,12 +1874,12 @@ const FACTORY={
 /* his: stillness with every restraint maxed — the same pad, deeper asleep */
 'soft_faint_stirrings':{"v":1,"circuit":"mk1","key":2,"scale":"lydian","chord":[62,66,69],"degree":0,"seq":[],"seqOff":[],"seqMode":"mel","progSeq":[],"follow":false,"sevenths":true,"glide":25,"pitch":-8.1,"tempo":5,"swing":100,"drone":45,"drive":100,"age":8,"cutoff":45,"reso":5,"fb":0,"vol":70,"dlyDiv":4,"dlyFb":55,"dlyMix":45,"phase":100,"verbType":"hall","verbSize":90,"verbMix":60,"mod":{"wave":"tri","target":"cutoff","rate":4,"depth":14},"mod2":{"wave":"tri","target":"level","rate":6,"depth":10},"droneVoice":"choir","droneNote":"root","layers":[{"role":"bass","voice":"square","pattern":"up","div":4,"oct":1,"shape":90,"level":22,"on":true,"len":0},{"role":"arp","voice":"glass","pattern":"updown","div":3,"oct":3,"shape":90,"level":28,"on":true,"len":0},{"role":"lead","voice":"glass","pattern":"up","div":4,"oct":2,"shape":95,"level":40,"on":true,"len":0}]},
 /* commissioned: the fun-and-fast gap — uptempo synthwave joy and clinical speed */
-'wave_arcade':{"v":1,"circuit":"mk2","key":9,"scale":"dorian","chord":[69,72,76],"degree":0,"seq":[],"seqOff":[],"seqMode":"mel","progSeq":[0,0,3,3,6,6,3,3],"follow":false,"sevenths":false,"glide":0,"pitch":0,"tempo":145,"swing":0,"drone":12,"droneVoice":"saw","droneNote":"root","drive":8,"age":5,"fb":0,"phase":30,"cutoff":70,"reso":25,"vol":78,"dlyDiv":3,"dlyFb":40,"dlyMix":30,"verbType":"plate","verbSize":40,"verbMix":22,"mod":{"wave":"tri","target":"cutoff","rate":30,"depth":16},"mod2":{"wave":"tri","target":"level","rate":24,"depth":5},"layers":[
+'wave_arcade':{"v":1,"circuit":"mk2","key":9,"scale":"dorian","chord":[69,72,76],"degree":0,"seq":[],"seqOff":[],"seqMode":"prog","progSeq":[0,0,0,0,3,3,3,3,6,6,6,6,3,3,3,3],"follow":false,"sevenths":false,"glide":0,"pitch":0,"tempo":145,"swing":0,"drone":12,"droneVoice":"saw","droneNote":"root","drive":8,"age":5,"fb":0,"phase":30,"cutoff":70,"reso":25,"vol":78,"dlyDiv":3,"dlyFb":40,"dlyMix":30,"verbType":"plate","verbSize":40,"verbMix":22,"mod":{"wave":"tri","target":"cutoff","rate":30,"depth":16},"mod2":{"wave":"tri","target":"level","rate":24,"depth":5},"layers":[
 {"role":"bass","voice":"square","pattern":"up","div":1,"oct":1,"shape":30,"level":78,"on":true},
 {"role":"arp","voice":"saw","pattern":"updown","div":2,"oct":2,"shape":45,"level":62,"on":true},
 {"role":"lead","voice":"pluck","pattern":"random","div":2,"oct":3,"shape":50,"level":50,"on":true}]},
 /* commissioned: as close to pure drone as the machine goes — every part off, the strings hold the floor */
-'soft_dim_horizon':{"v":1,"circuit":"mk2","key":2,"scale":"minor","chord":[62,65,69],"degree":0,"seq":[],"seqOff":[],"seqMode":"mel","progSeq":[],"follow":false,"sevenths":false,"glide":0,"pitch":0,"tempo":40,"swing":0,"drone":85,"drive":0,"age":30,"cutoff":55,"reso":8,"fb":0,"vol":90,"dlyDiv":4,"dlyFb":30,"dlyMix":81,"phase":20,"verbType":"dark","verbSize":80,"verbMix":50,"mod":{"wave":"chaos","target":"cutoff","rate":3,"depth":85},"mod2":{"wave":"chaos","target":"pitch","rate":30,"depth":60},"droneVoice":"saw","droneNote":"root","layers":[{"role":"bass","voice":"saw","pattern":"random","div":2,"oct":4,"shape":100,"level":90,"on":true,"len":0},{"role":"arp","voice":"glass","pattern":"updown","div":3,"oct":2,"shape":70,"level":40,"on":false,"len":0},{"role":"lead","voice":"glass","pattern":"up","div":4,"oct":3,"shape":80,"level":35,"on":false,"len":0}]}
+'soft_dim_horizon':{"v":1,"circuit":"mk2","key":2,"scale":"minor","chord":[62,65,69],"degree":0,"seq":[],"seqOff":[],"seqMode":"mel","progSeq":[],"follow":false,"sevenths":false,"glide":0,"pitch":0,"tempo":40,"swing":0,"drone":65,"drive":0,"age":30,"cutoff":55,"reso":8,"fb":0,"vol":90,"dlyDiv":4,"dlyFb":30,"dlyMix":81,"phase":20,"verbType":"dark","verbSize":80,"verbMix":50,"mod":{"wave":"chaos","target":"cutoff","rate":3,"depth":85},"mod2":{"wave":"chaos","target":"pitch","rate":30,"depth":60},"droneVoice":"saw","droneNote":"root","layers":[{"role":"bass","voice":"saw","pattern":"random","div":2,"oct":4,"shape":100,"level":90,"on":true,"len":0},{"role":"arp","voice":"glass","pattern":"updown","div":3,"oct":2,"shape":70,"level":40,"on":false,"len":0},{"role":"lead","voice":"glass","pattern":"up","div":4,"oct":3,"shape":80,"level":35,"on":false,"len":0}]}
 };
 const BANK_KEY='am1.patches';
 function readBank(){try{return JSON.parse(localStorage.getItem(BANK_KEY))||{}}catch(e){return{}}}
@@ -1861,6 +1909,8 @@ function refreshPatchList(sel){
 document.getElementById('btnPSave').onclick=()=>{
   const n=document.getElementById('patchName').value.trim();
   if(!n){stat('name the patch first');return}
+  const norm=n.toLowerCase().replace(/,\s*/g,'_').replace(/\s+/g,'_');
+  if(FACTORY[norm]||FACTORY[n]){stat('factory patch \u2014 save under a new name');return}
   const b=readBank();b[n]=serializePatch();
   stat(writeBank(b)?('saved \u00b7 '+n):'storage unavailable \u2014 use export');
   activeSel='s:'+n;refreshPatchList(activeSel);
